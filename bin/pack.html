@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>第三方库构建 | 前端技术文档</title>
+    <meta name="description" content="前端技术文档">
+    <link rel="icon" href="/logo.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.45389b8a.css" as="style"><link rel="preload" href="/assets/js/app.3b3280be.js" as="script"><link rel="preload" href="/assets/js/7.04c4429b.js" as="script"><link rel="prefetch" href="/assets/js/10.a0b9a44d.js"><link rel="prefetch" href="/assets/js/11.5aec6354.js"><link rel="prefetch" href="/assets/js/12.b15f9966.js"><link rel="prefetch" href="/assets/js/13.eec6bfd0.js"><link rel="prefetch" href="/assets/js/14.75f8a564.js"><link rel="prefetch" href="/assets/js/15.7dad9611.js"><link rel="prefetch" href="/assets/js/16.9c042622.js"><link rel="prefetch" href="/assets/js/17.6a68e1d6.js"><link rel="prefetch" href="/assets/js/18.e5c48550.js"><link rel="prefetch" href="/assets/js/19.957b79e0.js"><link rel="prefetch" href="/assets/js/2.2d1d6aef.js"><link rel="prefetch" href="/assets/js/20.8a3f3365.js"><link rel="prefetch" href="/assets/js/21.dd807e82.js"><link rel="prefetch" href="/assets/js/22.b00fc2fb.js"><link rel="prefetch" href="/assets/js/23.4e079ab4.js"><link rel="prefetch" href="/assets/js/24.11f8bbf7.js"><link rel="prefetch" href="/assets/js/25.0492da5b.js"><link rel="prefetch" href="/assets/js/26.58985ce8.js"><link rel="prefetch" href="/assets/js/27.c988a92d.js"><link rel="prefetch" href="/assets/js/28.aee06b84.js"><link rel="prefetch" href="/assets/js/29.981ade72.js"><link rel="prefetch" href="/assets/js/3.aa4d3fac.js"><link rel="prefetch" href="/assets/js/4.fa590378.js"><link rel="prefetch" href="/assets/js/5.140d71b6.js"><link rel="prefetch" href="/assets/js/6.f2b40d51.js"><link rel="prefetch" href="/assets/js/8.a622f03f.js"><link rel="prefetch" href="/assets/js/9.84384134.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.45389b8a.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">前端技术文档</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">开源库</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://wangbin3162.github.io/bin-ui-doc/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  bin-ui
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://wangbin3162.github.io/bin-animation-doc/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  bin-animation
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://wangbin3162.github.io/vue-admin-doc/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-admin
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="/bin/pack.html" class="nav-link router-link-exact-active router-link-active">第三方库构建</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">前端文档</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/es5/" class="nav-link">ES5</a></li><li class="dropdown-item"><!----> <a href="/es6/" class="nav-link">ES6</a></li><li class="dropdown-item"><!----> <a href="/vue/" class="nav-link">Vue</a></li><li class="dropdown-item"><!----> <a href="/html/" class="nav-link">Html &amp; CSS</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">工具帮助</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>工具</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/tools/axios.html" class="nav-link">Axios</a></li><li class="dropdown-subitem"><a href="/tools/flow.html" class="nav-link">Flow</a></li></ul></li><li class="dropdown-item"><h4>帮助</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/helper/tinymce.html" class="nav-link">Tinymce</a></li><li class="dropdown-subitem"><a href="/helper/server.html" class="nav-link">Server</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">外链书签</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>核心插件</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://cn.vuejs.org/v2/api/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VueAPI
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Devtools
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VueCli
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://vue-loader.vuejs.org/zh/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VueLoader
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://router.vuejs.org/zh/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VueRouter
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li><li class="dropdown-item"><h4>UI框架</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://doc.d2admin.fairyever.com/zh/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  D2Admin
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="http://element-cn.eleme.io/#/zh-CN/component/installation" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  element-ui
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="http://react.yubolun.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  React
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li><li class="dropdown-item"><h4>第三方库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="http://vue.awesometiny.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VUE精选
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  better-scroll
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="http://techbrood.com/threejs/docs/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Three.js
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://echarts.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  echarts
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li><li class="dropdown-item"><h4>常用工具</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  jsAPI
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://alibaba.github.io/ice/docs/iceworks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  飞冰
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="http://www.iconfont.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  阿里图标库
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://icomoon.io/app/#/select" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  字体制作
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li></ul></div></div><div class="nav-item"><a href="https://wangbin3162.github.io/bin-home/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  名片页
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/wangbin3162/bin" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">开源库</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://wangbin3162.github.io/bin-ui-doc/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  bin-ui
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://wangbin3162.github.io/bin-animation-doc/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  bin-animation
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://wangbin3162.github.io/vue-admin-doc/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue-admin
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="/bin/pack.html" class="nav-link router-link-exact-active router-link-active">第三方库构建</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">前端文档</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/es5/" class="nav-link">ES5</a></li><li class="dropdown-item"><!----> <a href="/es6/" class="nav-link">ES6</a></li><li class="dropdown-item"><!----> <a href="/vue/" class="nav-link">Vue</a></li><li class="dropdown-item"><!----> <a href="/html/" class="nav-link">Html &amp; CSS</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">工具帮助</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>工具</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/tools/axios.html" class="nav-link">Axios</a></li><li class="dropdown-subitem"><a href="/tools/flow.html" class="nav-link">Flow</a></li></ul></li><li class="dropdown-item"><h4>帮助</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/helper/tinymce.html" class="nav-link">Tinymce</a></li><li class="dropdown-subitem"><a href="/helper/server.html" class="nav-link">Server</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">外链书签</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>核心插件</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://cn.vuejs.org/v2/api/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VueAPI
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Devtools
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://cli.vuejs.org/zh/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VueCli
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://vue-loader.vuejs.org/zh/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VueLoader
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://router.vuejs.org/zh/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VueRouter
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li><li class="dropdown-item"><h4>UI框架</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://doc.d2admin.fairyever.com/zh/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  D2Admin
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="http://element-cn.eleme.io/#/zh-CN/component/installation" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  element-ui
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="http://react.yubolun.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  React
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li><li class="dropdown-item"><h4>第三方库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="http://vue.awesometiny.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  VUE精选
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://ustbhuangyi.github.io/better-scroll/doc/zh-hans/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  better-scroll
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="http://techbrood.com/threejs/docs/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Three.js
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://echarts.baidu.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  echarts
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li><li class="dropdown-item"><h4>常用工具</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="http://www.runoob.com/js/js-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  jsAPI
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://alibaba.github.io/ice/docs/iceworks" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  飞冰
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="http://www.iconfont.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  阿里图标库
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-subitem"><a href="https://icomoon.io/app/#/select" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  字体制作
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li></ul></div></div><div class="nav-item"><a href="https://wangbin3162.github.io/bin-home/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  名片页
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://github.com/wangbin3162/bin" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>第三方库构建</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/bin/pack.html#一、如何编写一个第三方库" class="sidebar-link">一、如何编写一个第三方库</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/bin/pack.html#_1-新建vue项目" class="sidebar-link">1.新建vue项目</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_2-打包构建准备" class="sidebar-link">2.打包构建准备</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_3-配置babel-config-js" class="sidebar-link">3.配置babel.config.js</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_4-配置webpack-config-js" class="sidebar-link">4.配置webpack.config.js</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_5-配置package-json" class="sidebar-link">5.配置package.json</a></li></ul></li><li><a href="/bin/pack.html#二、如何编写vue组件库" class="sidebar-link">二、如何编写VUE组件库</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/bin/pack.html#_1-分包" class="sidebar-link">1.分包</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_2-安装markdown依赖" class="sidebar-link">2.安装Markdown依赖</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_3-编写demo基本架构" class="sidebar-link">3.编写demo基本架构</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_4-编写基本配置" class="sidebar-link">4.编写基本配置</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_5-编写一个演示案例" class="sidebar-link">5.编写一个演示案例</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_6-库模式打包" class="sidebar-link">6.库模式打包</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_7-gulp引入单独打包样式" class="sidebar-link">7.gulp引入单独打包样式</a></li></ul></li><li><a href="/bin/pack.html#三、发布npm" class="sidebar-link">三、发布npm</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/bin/pack.html#_1-配置编译源代码" class="sidebar-link">1.配置编译源代码</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_2-配置基本文件" class="sidebar-link">2.配置基本文件</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_3-配置package-json" class="sidebar-link">3.配置package.json</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_4-登录npm" class="sidebar-link">4.登录npm</a></li><li class="sidebar-sub-header"><a href="/bin/pack.html#_5-发包" class="sidebar-link">5.发包</a></li></ul></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="第三方库构建"><a href="#第三方库构建" aria-hidden="true" class="header-anchor">#</a> 第三方库构建</h1> <h2 id="一、如何编写一个第三方库"><a href="#一、如何编写一个第三方库" aria-hidden="true" class="header-anchor">#</a> 一、如何编写一个第三方库</h2> <p>为了实现一个vue transition组件结合钩子函数的css3动画库，基于es6来进行模块化开发。</p> <p>具体代码参考<a href="https://github.com/wangbin3162/bin-animation" target="_blank" rel="noopener noreferrer">bin-animation源码<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>，本文档旨在记录webpack打包构建过程</p> <h3 id="_1-新建vue项目"><a href="#_1-新建vue项目" aria-hidden="true" class="header-anchor">#</a> 1.新建vue项目</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>vue create bin-animation
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>在src目录下新建bin-animation文件夹用于存储当前库的核心代码，代码部分详情参阅源码部分阅读。再src目录下新建一个index.js用于在全局暴露一个 Animation对象</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>import animations from './bin-animation/'
+
+window.Animation = animations
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="_2-打包构建准备"><a href="#_2-打包构建准备" aria-hidden="true" class="header-anchor">#</a> 2.打包构建准备</h3> <p>核心库完成编写并简单测试成功后来开始安装webpack基础依赖</p> <h4 id="_2-1安装"><a href="#_2-1安装" aria-hidden="true" class="header-anchor">#</a> 2.1安装</h4> <p>全局安装webpack4</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">yarn</span> <span class="token function">add</span> global webpack
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h4 id="_2-1在一个项目中安装基础依赖"><a href="#_2-1在一个项目中安装基础依赖" aria-hidden="true" class="header-anchor">#</a> 2.1在一个项目中安装基础依赖</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">yarn</span> <span class="token function">add</span> webpack webpack-cli --dev
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h4 id="_2-3安装编译es6的必备依赖"><a href="#_2-3安装编译es6的必备依赖" aria-hidden="true" class="header-anchor">#</a> 2.3安装编译es6的必备依赖</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">yarn</span> <span class="token function">add</span> @babel/core @babel/preset-env @babel/plugin-transform-runtime  --dev
+<span class="token function">yarn</span> <span class="token function">add</span>  @babel/polyfill  @babel/runtime
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h4 id="_2-4安装清除lib和拷贝插件"><a href="#_2-4安装清除lib和拷贝插件" aria-hidden="true" class="header-anchor">#</a> 2.4安装清除lib和拷贝插件</h4> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code><span class="token function">yarn</span> <span class="token function">add</span> clean-webpack-plugin copy-webpack-plugin --dev
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_3-配置babel-config-js"><a href="#_3-配置babel-config-js" aria-hidden="true" class="header-anchor">#</a> 3.配置babel.config.js</h3> <p>我们需要配置babel插件，暂时先配置下方的基础配置</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>module.exports = {
+  presets: [
+    '@vue/app',
+    [
+      '@babel/env',
+      {
+        targets: ['last 2 versions', 'ie &gt;= 7']
+      }
+    ]
+  ],
+  plugins: ['@babel/plugin-transform-runtime']
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h3 id="_4-配置webpack-config-js"><a href="#_4-配置webpack-config-js" aria-hidden="true" class="header-anchor">#</a> 4.配置webpack.config.js</h3> <p>最后配置webpack的打包配置，这里因为打包时我们默认输出的是浏览器可直接饮用的js，但是我们也希望在发布npm包的时候有一个common版本，所以这里我们将bin-animation的源码拷贝至打包lib目录下，因为我们用es6编写的插件默认就是可以直接在es6环境下导入的。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>const path = require('path')
+// 清除文件
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+// 拷贝插件
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+module.exports = {
+  entry: {
+    app: './src/index.js'
+  },
+  output: {
+    path: path.resolve(__dirname, 'lib'), //输出目录
+    filename: 'bin-animation.min.js' //输出文件名称，建议与源文件同名
+  },
+  module: {
+    rules: [{
+      test: /\.js$/,
+      exclude: /(node_modules)/,
+      use: {
+        loader: 'babel-loader'
+      }
+    }]
+  },
+  // 插件
+  plugins: [
+    // 删除文件 保留新文件
+    new CleanWebpackPlugin(),
+    new CopyWebpackPlugin([ // 复制插件
+      {
+        from: path.join(__dirname, './src/bin-animation'),
+        to: path.join(__dirname, './lib')
+      }
+    ])
+  ]
+}
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br></div></div><h3 id="_5-配置package-json"><a href="#_5-配置package-json" aria-hidden="true" class="header-anchor">#</a> 5.配置package.json</h3> <p>最后配置package.json来进行快速配置编译</p> <div class="language- line-numbers-mode"><pre class="language-text"><code> &quot;scripts&quot;: {
+     &quot;build:lib&quot;: &quot;webpack --mode production --config webpack.config.js&quot;
+  },
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>发布模式是生产模式 --config是指定配置文件。这样我们就生成了一个自定义的第三方库。</p> <h2 id="二、如何编写vue组件库"><a href="#二、如何编写vue组件库" aria-hidden="true" class="header-anchor">#</a> 二、如何编写VUE组件库</h2> <p>如何编写一个组件库，具体组件参考<a href="https://github.com/wangbin3162/bin-ui" target="_blank" rel="noopener noreferrer">bin-ui源码<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>,这里只记录分包和构建过程。</p> <h3 id="_1-分包"><a href="#_1-分包" aria-hidden="true" class="header-anchor">#</a> 1.分包</h3> <p>默认的cli3脚手架生成的src目录既是我们run serve运行的demo文件，那这时候我们第三方库的源码写到的src目录中，我们就要将example分离至单独的文件夹</p> <p>像这样</p> <ul><li>examples：示例演示的代码</li> <li>src：自己编写的组件或者第三方库</li></ul> <p>我们先将原有的demo文件统统放置到examples文件夹下，但是这时候我们默认的调试路径就不对了，因此我们需要重新编写指定路径</p> <p>vue.config.js</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>module.exports = {
+  publicPath: process.env.NODE_ENV === 'production' ? '/bin-ui-doc' : '/',
+  productionSourceMap: false,
+  // 修改 pages 入口
+  pages: {
+    index: {
+      entry: 'examples/main.js',
+      template: 'public/index.html', // 模板
+      filename: 'index.html' // 输出文件
+    }
+  },
+  // 扩展 webpack 配置
+  chainWebpack: config =&gt; {
+    // 把 packages 和 examples 加入编译，因为新增的文件默认是不被 webpack 处理的
+    config.module
+      .rule('js')
+      .include
+      .add('/src')
+      .add('/examples')
+      .end()
+      .use('babel')
+      .loader('babel-loader')
+      .tap(options =&gt; {
+        // 修改它的选项...
+        return options
+      })
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br></div></div><p>注意：这里的publicPath是指默认打包发布的演示案例的基础路径，根据你的库来明明。</p> <p>至此，运行，发现原有的demo已经运行成功了。</p> <h3 id="_2-安装markdown依赖"><a href="#_2-安装markdown依赖" aria-hidden="true" class="header-anchor">#</a> 2.安装Markdown依赖</h3> <p>因为我们需要编写示例代码，这就避免不了上面看演示，下面直接显示代码这种情况，为此我们需要引入Markdown来让我们可以 再Markdown中编写vue或者代码组件</p> <p>首先需要安装Markdown的支持</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>yarn add highlight.js markdown-it markdown-it-anchor markdown-it-container vue-markdown-loader --dev
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>安装成功后我们需要识别Markdown代码并进行高亮所以要用到highlight上面那个js，这里我们还需要配置一下vue.config.js</p> <div class="language- line-numbers-mode"><pre class="language-text"><code> ...
+  // 扩展 webpack 配置
+  chainWebpack: config =&gt; {
+    
+    config.module.rule('md')
+      .test(/\.md/)
+      .use('vue-loader')
+      .loader('vue-loader')
+      .end()
+      .use('vue-markdown-loader')
+      .loader('vue-markdown-loader/lib/markdown-compiler')
+      .options({
+        raw: true,
+        use: [
+          [require('markdown-it-container'), 'demo', {
+            validate (params) {
+              return params.trim().match(/^demo\s*(.*)$/)
+            },
+            render: function (tokens, idx) {
+              const m = tokens[idx].info.trim().match(/^demo\s*(.*)$/)
+              if (tokens[idx].nesting === 1) {
+                const description = m &amp;&amp; m.length &gt; 1 ? m[1] : ''
+                const content = tokens[idx + 1].type === 'fence' ? tokens[idx + 1].content : ''
+                let descriptionHTML = description ? markdownRender.render(description) : ''
+                // 2.使用自定义开发组件【DemoBlock】来包裹内容并且渲染成案例和代码示例
+                return `&lt;demo-block&gt;
+                          &lt;div slot=&quot;source&quot;&gt;${content}&lt;/div&gt;
+                          ${descriptionHTML}
+                          &lt;div slot=&quot;highlight&quot;&gt;`
+              } else {
+                return '&lt;/div&gt;&lt;/demo-block&gt;\n'
+              }
+            }
+          }]
+        ]
+      })
+  }
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br></div></div><p>这里调试了很多次，结合自定义的demoblock组件可以达到比较好的渲染效果。</p> <p>基础组件部分这里不做赘述，具体参考bin-ui源码部分，值得注意的是，我们的演示案例引用了自己编写的组件，所以在其他第三方库开发（如自己另行开发的bin-animation）的时候如果想引入这个examples模板，则推荐安装bin-ui组件后复制其示例文件夹并修改后使用。</p> <h3 id="_3-编写demo基本架构"><a href="#_3-编写demo基本架构" aria-hidden="true" class="header-anchor">#</a> 3.编写demo基本架构</h3> <p>demo架构基本是按照左侧为路由菜单，右侧显示示例代码的这种模式，这里不做赘述，只说明几个注意点，</p> <pre><code>1.assets：文件夹下的color-brewer这个是设置代码颜色的样式。其他的是demo的样式
+2.components：此文件夹下为基础模块，demo-block是代码演示区块
+3.docs：存储所有的doc代码，与路由匹配
+</code></pre> <p>demo-block这个组件和其内部的ui实现使用到了自己封装的ui库，因此需要引入</p> <p>路由这里编写了一个nav.config.json来组装路由，如下</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>{
+  &quot;开发指南&quot;: [
+    {
+      &quot;name&quot;: &quot;giud&quot;,
+      &quot;path&quot;: &quot;/giud&quot;,
+      &quot;desc&quot;: &quot;介绍&quot;
+    }
+  ]
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>路由:</p> <p>路由的部分有个注意点，具体代码参考源码，路由index如下</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>import Vue from 'vue'
+import VueRouter from 'vue-router'
+import hljs from 'highlight.js'
+
+import BinUI from 'bin-ui'
+
+Vue.use(BinUI)
+
+// 路由数据
+import routes from './routes'
+
+Vue.use(VueRouter)
+
+// 导出路由 在 main.js 里使用
+const router = new VueRouter({
+  mode: 'hash',
+  base: process.env.BASE_URL,
+  routes
+})
+
+router.beforeEach((to, from, next) =&gt; {
+  BinUI.LoadingBar.start()
+  next()
+})
+router.afterEach(() =&gt; {
+  Vue.nextTick(() =&gt; {
+    const blocks = document.querySelectorAll('pre code:not(.hljs)')
+    Array.prototype.forEach.call(blocks, hljs.highlightBlock)
+  })
+  BinUI.LoadingBar.done()
+})
+
+export default router
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br></div></div><p>这里需要在路由结束时做一个操作，即调用highlight.js来给代码做设置，这里照着写即可</p> <p>routers.js部分则是对nav.config.json做了一个统一遍历引入，后期则不需另行编写</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>import navConf from '../nav.config.json'
+
+let routes = [
+  {
+    path: '/',
+    redirect: 'giud',
+    name: 'index'
+  }
+]
+
+Object.keys(navConf).forEach((header) =&gt; {
+  routes = routes.concat(navConf[header])
+})
+
+let addComponent = (router) =&gt; {
+  router.forEach((route) =&gt; {
+    if (route.items) {
+      addComponent(route.items)
+      routes = routes.concat(route.items)
+    } else {
+      if (!route.name) return
+      route.meta = {desc: route.desc}
+      route.component = r =&gt; require.ensure([], () =&gt;
+        r(require(`../docs/${route.name}.md`)))
+    }
+  })
+}
+addComponent(routes)
+export default routes
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br></div></div><h3 id="_4-编写基本配置"><a href="#_4-编写基本配置" aria-hidden="true" class="header-anchor">#</a> 4.编写基本配置</h3> <p>至此我们项目的基本架构即搭设完成，运行后也能看到项目的基本结构，针对不同库的介绍和部分修改则需要对代码进行局部编写</p> <p>需要修改的地方</p> <p>1.app.vue文件中的路由导航</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>watch: {
+  '$route.path' () {
+    // 触发伪滚动条更新
+    this.componentScrollBox.scrollTop = 0
+    this.$nextTick(() =&gt; {
+      this.componentScrollBar.update()
+      if (this.$route.meta.desc) {
+        this.$util.title(this.$route.meta.desc+' - [bin-animation]')
+      }
+    })
+  }
+},
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>2.header.vue组件中的标题logo和git地址</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;div class=&quot;logo&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;link&quot;&gt;
+    &lt;router-link :to=&quot;{name: 'giud'}&quot; class=&quot;active&quot;&gt;指南&lt;/router-link&gt;
+    &lt;a href=&quot;https://github.com/wangbin3162/bin-ui&quot; class=&quot;github&quot; target=&quot;_blank&quot;&gt;GitHub&lt;/a&gt;
+&lt;/div&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>3.footer.vue组件中的copyright</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>Copyright © 2019-present bin-animation
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_5-编写一个演示案例"><a href="#_5-编写一个演示案例" aria-hidden="true" class="header-anchor">#</a> 5.编写一个演示案例</h3> <p>首先添加一个演示案例1到nav.config.json中并在docs文件中创建demo01.md文件</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&quot;演示&quot;: [
+    {
+      &quot;desc&quot;: &quot;案例&quot;,
+      &quot;path&quot;: &quot;/component&quot;,
+      &quot;items&quot;: [
+        {
+          &quot;desc&quot;: &quot;演示案例1&quot;,
+          &quot;icon&quot;: &quot;ios-watch&quot;,
+          &quot;name&quot;: &quot;demo01&quot;,
+          &quot;path&quot;: &quot;/demo01&quot;
+        }
+      ]
+    }
+  ]
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>md文件中只需要编写正常的代码即可实现功能</p> <p>:::demo</p> <div class="language-html line-numbers-mode"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">export</span> <span class="token keyword">default</span><span class="token punctuation">{</span>
+        
+    <span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>:::</p> <h3 id="_6-库模式打包"><a href="#_6-库模式打包" aria-hidden="true" class="header-anchor">#</a> 6.库模式打包</h3> <p>当库开发完毕后。cli3脚手架默认有个打包模式，及lib模式</p> <p>在package.json中配置</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&quot;scripts&quot;: {
+    &quot;serve&quot;: &quot;vue-cli-service serve&quot;,
+    &quot;lint&quot;: &quot;vue-cli-service lint&quot;,
+    &quot;build&quot;: &quot;vue-cli-service build&quot;,
+    &quot;build:lib&quot;: &quot;npm run lib &amp;&amp; npm run style&quot;,
+    &quot;lib&quot;: &quot;vue-cli-service build --target lib --name bin-ui --dest lib src/index.js&quot;,
+    &quot;style&quot;: &quot;gulp build&quot;
+  },
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>打包后及可生成一个umd，和common方式的js，其中umd可以直接被浏览器引用</p> <p>webpack打包待定。</p> <h3 id="_7-gulp引入单独打包样式"><a href="#_7-gulp引入单独打包样式" aria-hidden="true" class="header-anchor">#</a> 7.gulp引入单独打包样式</h3> <p>因为样式这块区别于js，因此打算使用gulp去分别打包，这样可以按需引入</p> <pre><code>&quot;gulp&quot;: &quot;^4.0.0&quot;,
+&quot;gulp-autoprefixer&quot;: &quot;^4.0.0&quot;,
+&quot;gulp-cssmin&quot;: &quot;^0.1.7&quot;,
+&quot;gulp-stylus&quot;: &quot;^2.7.0&quot;,
+</code></pre> <p>安装完毕后编写gulpfile.js</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>'use strict'
+// 单独打包css
+const {src, dest, series} = require('gulp')
+const stylus = require('gulp-stylus')
+const autoprefixer = require('gulp-autoprefixer')
+const cssmin = require('gulp-cssmin')
+
+// 打包默认的
+function compile () {
+  return src('./src/styles/*.styl')
+    .pipe(stylus())
+    .pipe(autoprefixer({
+      browsers: ['ie &gt; 9', 'last 2 versions'],
+      cascade: false
+    }))
+    .pipe(cssmin())
+    .pipe(dest('./lib/styles'))
+}
+
+// 打包common
+function compileCommon () {
+  return src('./src/styles/common/*.styl')
+    .pipe(stylus())
+    .pipe(autoprefixer({
+      browsers: ['ie &gt; 9', 'last 2 versions'],
+      cascade: false
+    }))
+    .pipe(cssmin())
+    .pipe(dest('./lib/styles/common'))
+}
+
+// 打包modules
+function compileModule () {
+  return src('./src/styles/modules/*.styl')
+    .pipe(stylus())
+    .pipe(autoprefixer({
+      browsers: ['ie &gt; 9', 'last 2 versions'],
+      cascade: false
+    }))
+    .pipe(cssmin())
+    .pipe(dest('./lib/styles/modules'))
+}
+
+// 复制字体包
+function copyfont () {
+  return src('./src/styles/fonts/**')
+    .pipe(cssmin())
+    .pipe(dest('./lib/styles/fonts'))
+}
+
+exports.build = series(compileCommon, compileModule, compile, copyfont)
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br></div></div><h2 id="三、发布npm"><a href="#三、发布npm" aria-hidden="true" class="header-anchor">#</a> 三、发布npm</h2> <h3 id="_1-配置编译源代码"><a href="#_1-配置编译源代码" aria-hidden="true" class="header-anchor">#</a> 1.配置编译源代码</h3> <p>首先需要配置并编译源码至lib（或其他如dist）目录</p> <h3 id="_2-配置基本文件"><a href="#_2-配置基本文件" aria-hidden="true" class="header-anchor">#</a> 2.配置基本文件</h3> <p>配置基本文件如.gitignore .npmignore LICENSE等基本文件</p> <h3 id="_3-配置package-json"><a href="#_3-配置package-json" aria-hidden="true" class="header-anchor">#</a> 3.配置package.json</h3> <p>package.json文件必须包含，其中几个参数需要设置</p> <p>name：库名称
+version：版本号（每次npm发包的版本号必须不同）
+description：库描述
+main：默认引入时的入口文件
+keywords：搜索关键字
+files：npm发包时包含的文件夹，优先级最大
+等等</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>{
+  &quot;name&quot;: &quot;bin-[name]&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;lib/index.js&quot;,
+  &quot;keywords&quot;: [
+    &quot;vue&quot;,
+    &quot;animations&quot;,
+    &quot;transition&quot;,
+    &quot;components&quot;
+  ],
+  &quot;author&quot;: &quot;wang bin&quot;,
+  &quot;files&quot;: [
+    &quot;lib&quot;
+  ],
+  &quot;private&quot;: false,
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;scripts&quot;: {
+    &quot;build:lib&quot;: &quot;webpack --mode production --config webpack.config.js&quot;
+  },
+  &quot;homepage&quot;: &quot;https://wangbin3162.github.io/bin-animation-doc/&quot;,
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><h3 id="_4-登录npm"><a href="#_4-登录npm" aria-hidden="true" class="header-anchor">#</a> 4.登录npm</h3> <p>npm login 后输入wangbin3162 用户名密码邮箱即可</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>npm login
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_5-发包"><a href="#_5-发包" aria-hidden="true" class="header-anchor">#</a> 5.发包</h3> <p>执行命令，发包至npm</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>npm publish
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/app.3b3280be.js" defer></script><script src="/assets/js/7.04c4429b.js" defer></script>
+  </body>
+</html>
