@@ -1,24 +1,36 @@
 # 介绍
 
-本文档博客旨在与记录前端相关技术文档，以便于更好的工作学习，下方会列举个人开源库及部分页面案例演示，本项目会持续更新
+本文档博客旨在与记录前端相关技术文档，以便于更好的工作学习，下方会列举个人开源库及部分页面案例演示，本项目会持续更新。
 
-## 个人开源库
+收录基于vue开发的UI库、动画库、admin管理系统、数据可视化平台等一系列个人开源库文档和预览地址。
 
-收录基于vue开发的UI库、动画库、admin管理系统、数据可视化平台等一系列生态圈，以下是github仓库地址
+***bin-ui*** 基于vue2.6的UI组件库
 
-[bin-ui](https://github.com/wangbin3162/bin-ui/) UI组件库
+[Github 仓库](https://github.com/wangbin3162/bin-ui/) | [文档说明](https://wangbin3162.github.io/docs/bin-ui/) 
 
-[bin-animation](https://github.com/wangbin3162/bin-animation/) css3动画库
+***bin-admin*** 基于bin-ui的集成后台管理系统 2.0版本
 
-[bin-keyframe-animation](https://github.com/wangbin3162/bin-keyframe-animation/) js关键帧动画库
+[Github 仓库](https://github.com/wangbin3162/bin-admin/) | [文档说明](https://wangbin3162.github.io/docs/bin-admin/)  | [预览地址](https://wangbin3162.github.io/preview/bin-admin/) 
 
-[bin-admin](https://github.com/wangbin3162/bin-admin/) 后台管理系统admin2.0版本
+***bin-data*** 基于bin-ui的数据可视化系统平台
 
-[bin-data](https://github.com/wangbin3162/bin-data/) 大数据可视化系统平台
+[Github 仓库](https://github.com/wangbin3162/bin-data/) | [文档说明](https://wangbin3162.github.io/docs/bin-data/)  | [预览地址](https://wangbin3162.github.io/preview/bin-data/)
 
-[bin-static-web](https://github.com/wangbin3162/bin-static-web/) 静态页面脚手架
+***bin-animation*** 基于vue transition钩子函数的css3动画库
 
-[vue-admin](https://github.com/wangbin3162/vue-admin/) admin1.0版本(无登录)
+[Github 仓库](https://github.com/wangbin3162/bin-animation/) | [预览地址](https://wangbin3162.github.io/preview/bin-animation/) 
+
+***bin-keyframe-animation*** js关键帧动画库
+
+[Github 仓库](https://github.com/wangbin3162/bin-keyframe-animation/) | [预览地址](https://wangbin3162.github.io/preview/bin-keyframe-animation/)
+
+***vue-admin*** 后台管理系统1.0版本，无登录和权限验证，基于element-ui和bin-ui
+
+[Github 仓库](https://github.com/wangbin3162/vue-admin/) | [文档说明](https://wangbin3162.github.io/docs/vue-admin/)  | [预览地址](https://wangbin3162.github.io/preview/vue-admin/)
+
+***bin-static-web*** 静态页面脚手架,可快速拉取编写静态文件，并可打包es6
+
+[Github 仓库](https://github.com/wangbin3162/bin-static-web/) 
 
 ## 其他页面示例
 
