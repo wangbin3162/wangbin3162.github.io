@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 1024">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#_未命名的渐变_39);
+      }
+
+      .cls-2 {
+        fill: url(#_未命名的渐变_45);
+      }
+
+      .cls-3 {
+        fill: url(#_未命名的渐变_4);
+      }
+
+      .cls-4 {
+        fill: #30a2ef;
+      }
+
+      .cls-5 {
+        fill: url(#_未命名的渐变_36);
+      }
+
+      .cls-6 {
+        fill: #307af2;
+      }
+    </style>
+    <linearGradient id="_未命名的渐变_4" data-name="未命名的渐变 4" x1="192.88" y1="755.11" x2="197.18" y2="755.11" gradientTransform="translate(-20034 25122) scale(105 -33)" gradientUnits="userSpaceOnUse">
+      <stop offset=".34" stop-color="#00e3cc"/>
+      <stop offset="1" stop-color="#5de16b"/>
+    </linearGradient>
+    <linearGradient id="_未命名的渐变_36" data-name="未命名的渐变 36" x1="258.76" y1="123.57" x2="856.54" y2="361.14" gradientUnits="userSpaceOnUse">
+      <stop offset=".28" stop-color="#398aff"/>
+      <stop offset="1" stop-color="#5ab1ff"/>
+    </linearGradient>
+    <linearGradient id="_未命名的渐变_39" data-name="未命名的渐变 39" x1="232.34" y1="148.28" x2="368.37" y2="883.26" gradientUnits="userSpaceOnUse">
+      <stop offset=".08" stop-color="#237af9"/>
+      <stop offset=".09" stop-color="#2279f9"/>
+      <stop offset=".66" stop-color="#0960fc"/>
+      <stop offset="1" stop-color="#0057fe"/>
+    </linearGradient>
+    <linearGradient id="_未命名的渐变_45" data-name="未命名的渐变 45" x1="860.26" y1="666.4" x2="54.79" y2="353.75" gradientUnits="userSpaceOnUse">
+      <stop offset=".08" stop-color="#0fe8d8"/>
+      <stop offset=".31" stop-color="#14c4e2"/>
+      <stop offset=".61" stop-color="#1b9bee"/>
+      <stop offset=".85" stop-color="#1f82f6"/>
+      <stop offset="1" stop-color="#2179f9"/>
+    </linearGradient>
+  </defs>
+  <path id="_圆形_1" data-name="圆形 1" class="cls-4" d="M660.3,926.89c125.09-.82,227.33-98.81,236.18-222.91-7.65-22.13-73.86-61.62-144.39-66.95,0,0,8.73,34.94-.97,73-13.87,56.41-66.77,74.55-90.18,75.15l-.64,141.71Z"/>
+  <path id="_并集" data-name="并集" class="cls-6" d="M660.3,926.9c79.74-.52,150.17-40.54,193.06-101.6-31.73,5.02-116.63,3.78-159.83-48.18-12.84,5.24-24.91,7.86-32.59,8.07h0s-330.65-.01-330.65-.01v70.85c0,18.79,7.46,36.81,20.75,50.1,13.29,13.29,31.31,20.75,50.1,20.75h259.15Zm-1.5,.01h1.5"/>
+  <path id="_矩形_2" data-name="矩形 2" class="cls-3" d="M218.65,274.18h450.88V132.48H218.65v141.71Z"/>
+  <path class="cls-5" d="M653.54,132.48H218.65v141.71h434.88c83.74,12.88,100.91,103.65,60.12,153.03,66.56,17.18,110.96,55.52,117.53,67.12,31.26-38.95,49.94-88.42,49.94-142.26,0-125.69-101.9-219.59-227.59-219.59Z"/>
+  <path id="_矩形_1" data-name="矩形 1" class="cls-1" d="M218.65,845.3c0,30.06,23.62,81.59,73,81.59h176.06c-94.47,0-94.47-141.36-94.47-141.36V132.48H218.65V845.3Z"/>
+  <path id="_路径_1" data-name="路径 1" class="cls-2" d="M375.01,594.27c364.01,8.3,463.84,24.7,517.71,79.86,1.16-45.07-65.65-135.23-408.19-162.96,91.15-1.57,321.13,15.41,390.53,98.07-5.28-48.59-66.43-163.17-262.02-167.8-244.48-5.8-287.02-7.19-279.03-7.16-150.25-3.85-219.27-42.57-274.13-114.42-3.25,126.64,23.93,267.75,315.13,274.41Z"/>
+</svg>

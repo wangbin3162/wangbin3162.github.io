@@ -1,0 +1,20 @@
+.VPHome {
+  .name {
+    position: relative;
+    top: -15px;
+    font-size: 58px;
+  }
+}
+
+html.dark {
+  --vp-sidebar-bg-color: var(--bin-bg-color-1);
+  --vp-c-text-1: var(--bin-text-color-4);
+
+  .VPNav .VPNavBar.has-sidebar,
+  .Layout .VPSidebar {
+    border-color: var(--bin-bg-color-4);
+  }
+  .Layout .VPSidebar .VPSidebarItem:not(.level-0):hover {
+    background-color: transparent;
+  }
+}

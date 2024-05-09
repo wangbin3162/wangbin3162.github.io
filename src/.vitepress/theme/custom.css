@@ -1,0 +1,298 @@
+:root {
+  --bin-color-primary: #1089ff;
+  --bin-color-primary-light1: #40a1ff;
+  --bin-color-primary-light2: #70b8ff;
+  --bin-color-primary-light3: #9fd0ff;
+  --bin-color-primary-light4: #cfe7ff;
+  --bin-color-primary-light5: #e7f3ff;
+  --bin-color-primary-light6: #f3f9ff;
+  --bin-color-primary-active: #0e7be6;
+  /* 标题 */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(135deg, #3c8ce7 10%, #00eaff 100%);
+
+  /* 图标背景 */
+  --vp-home-hero-image-background-image: linear-gradient(-35deg, #3c8ce7 10%, #00eaff 50%);
+  --vp-home-hero-image-filter: blur(170px);
+
+  /* brand按钮 */
+  --vp-button-brand-border: var(--bin-color-primary);
+  --vp-button-brand-text: #fff;
+  --vp-button-brand-bg: var(--bin-color-primary);
+
+  --vp-button-brand-hover-border: var(--bin-color-primary-light1);
+  --vp-button-brand-hover-text: #fff;
+  --vp-button-brand-hover-bg: var(--bin-color-primary-light1);
+
+  --vp-button-brand-active-border: var(--bin-color-primary-active);
+  --vp-button-brand-active-text: #fff;
+  --vp-button-brand-active-bg: var(--bin-color-primary-active);
+
+  --vp-button-alt-border: var(--vp-button-alt-bg);
+  --vp-button-alt-hover-border: var(--vp-button-alt-border);
+
+  /* 主题基色 */
+  --vp-c-brand: var(--bin-color-primary);
+  --vp-c-brand-light: var(--bin-color-primary);
+  --vp-c-brand-dark: var(--bin-color-primary);
+  /* 顶部导航 */
+  --vp-nav-logo-height: 36px;
+  /* side-bar */
+  --vp-sidebar-width: 260px;
+  --vp-sidebar-bg-color: #fff;
+
+  --vp-c-text-1: #515a6e;
+}
+
+body {
+  color: var(--vp-c-text-1);
+  width: unset;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: var(--vp-c-text-1);
+}
+
+/* 顶部nav导航样式 */
+.VPNav {
+  .VPNavBar {
+    .VPNavBarTitle {
+      .title {
+        background: var(--vp-home-hero-name-background);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: var(--vp-home-hero-name-color);
+        font-size: 20px;
+        border-bottom-color: transparent;
+        padding: 0;
+      }
+    }
+    &.has-sidebar {
+      border-bottom: 1px solid #eee;
+      .curtain {
+        display: none;
+      }
+
+      @media (min-width: 1440px) {
+        .content {
+          padding-left: var(--vp-sidebar-width);
+          padding-right: 32px;
+        }
+      }
+    }
+    .VPNavBarMenuLink {
+      font-size: 15px;
+      &.active {
+        position: relative;
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          border-bottom: 2px solid var(--bin-color-primary);
+        }
+      }
+    }
+  }
+
+  .VPSocialLink:hover {
+    > svg {
+      fill: var(--vp-c-text-1);
+    }
+  }
+
+  .VPMenuGroup {
+    border-top: 0;
+    padding: 0 !important;
+    margin: 4px 0 4px;
+    .title {
+      font-size: 12px;
+      padding: 0 !important;
+      line-height: 28px;
+      font-size: 12px;
+      font-weight: 600;
+      width: auto !important;
+      color: rgba(60, 60, 60, 0.33);
+    }
+    + .VPMenuLink {
+      border-top: 0;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .VPMenuLink {
+    line-height: 30px;
+  }
+
+  @media (min-width: 1440px) {
+    .VPNavBar {
+      &.has-sidebar {
+        .title {
+          padding-left: 32px;
+          width: var(--vp-sidebar-width);
+        }
+        .VPNavBarTitle.has-sidebar .title {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
+/* sidebar */
+.Layout {
+  .VPSidebar {
+    padding: var(--vp-nav-height) 0 0 0;
+    border-right: 1px solid #eee;
+    .nav {
+      height: 100%;
+      padding: 0 0 6px 6px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .VPSidebarItem.level-0 {
+      padding-bottom: 0;
+      .item {
+        .text {
+          color: var(--vp-c-text-1);
+        }
+      }
+    }
+    .VPSidebarItem:not(.level-0) {
+      margin-top: 6px;
+      transition: 0.2s;
+      border-radius: 5px;
+      .item {
+        height: 42px;
+        .text {
+          display: flex;
+          align-items: center;
+          > i {
+            margin-right: 5px;
+          }
+          > span {
+            color: var(--bin-color-text-secondary);
+            margin-left: 5px;
+          }
+          .empty {
+            position: relative;
+            width: 6px;
+            height: 6px;
+            border-radius: 3px;
+            background-color: red;
+            top: -3px;
+          }
+        }
+      }
+      &:hover {
+        color: var(--vp-c-text-1);
+        background-color: var(--bin-color-select-hover);
+
+        .item {
+          .text {
+            > span {
+              color: var(--bin-color-primary);
+            }
+          }
+        }
+        &.is-active {
+          background-color: var(--bin-color-primary-light5);
+          .item {
+            .text {
+              > span {
+                color: var(--bin-color-primary);
+              }
+            }
+          }
+        }
+      }
+      &.is-active {
+        background-color: var(--bin-color-primary-light5);
+        .item {
+          .text {
+            > span {
+              color: var(--bin-color-primary);
+            }
+          }
+        }
+      }
+    }
+    .group {
+      width: 100%;
+      + .group {
+        border-top: none;
+      }
+      .VPSidebarItem {
+        padding: 0 8px;
+      }
+      .VPSidebarItem.level-1 {
+        padding-left: 16px;
+      }
+    }
+    .curtain {
+      margin-right: 0;
+    }
+  }
+  @media (min-width: 1440px) {
+    .VPSidebar {
+      width: var(--vp-sidebar-width);
+      .nav {
+        width: 100%;
+      }
+    }
+  }
+}
+/* Content */
+.Layout {
+  @media (min-width: 1440px) {
+    .VPContent.has-sidebar {
+      padding-left: var(--vp-sidebar-width);
+      padding-right: 0;
+    }
+  }
+}
+/* doc */
+.VPDoc.has-aside {
+  .aside {
+    .content {
+      padding: 0;
+      padding-left: 16px;
+      border-left: none;
+      .outline-title,
+      .outline-marker {
+        display: none;
+      }
+      .outline-link {
+        margin-bottom: 4px;
+        padding: 2px 8px;
+        transition: 0.2s;
+        border-radius: 3px;
+        line-height: 1.5;
+        &:hover {
+          color: var(--bin-color-primary);
+        }
+        &.active {
+          color: var(--bin-color-primary);
+          background-color: var(--bin-color-primary-light5);
+        }
+      }
+    }
+  }
+  .content {
+    padding: 0 0 40px 16px;
+    .content-container {
+      max-width: unset;
+      width: 100%;
+    }
+  }
+}
+
+.vitepress-demo-preview__element-plus__container > .vitepress-demo-preview-preview {
+  padding: 20px;
+}
