@@ -1,24 +1,1189 @@
-<!DOCTYPE html>
-<html lang="en-US" dir="ltr">
+<!doctype html>
+<html lang="zh-CN">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>个人主页</title>
-    <meta name="description" content="王彬的个人站点集合">
-    <meta name="generator" content="VitePress v1.1.4">
-    <link rel="preload stylesheet" href="/assets/style.DPmIzQzc.css" as="style">
-    
-    <script type="module" src="/assets/app.CfE5t5SR.js"></script>
-    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="modulepreload" href="/assets/chunks/theme.By-XIfz0.js">
-    <link rel="modulepreload" href="/assets/chunks/framework.ChmcN5ok.js">
-    <link rel="modulepreload" href="/assets/index.md.BUIvyc30.lean.js">
-    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
-    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>开源组件库合集</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      }
+    </style>
   </head>
-  <body>
-    <div id="app"><div class="Layout" data-v-a4936845><!--[--><!--]--><!--[--><span tabindex="-1" data-v-cf23d831></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-cf23d831> Skip to content </a><!--]--><!----><header class="VPNav" data-v-a4936845 data-v-dd4f9cc9><div class="VPNavBar home top" data-v-dd4f9cc9 data-v-ceae5e50><div class="wrapper" data-v-ceae5e50><div class="container" data-v-ceae5e50><div class="title" data-v-ceae5e50><div class="VPNavBarTitle" data-v-ceae5e50 data-v-0507c446><a class="title" href="/" data-v-0507c446><!--[--><!--]--><!--[--><img class="VPImage logo" src="/logo.svg" alt data-v-154d58c6><!--]--><span data-v-0507c446>个人主页</span><!--[--><!--]--></a></div></div><div class="content" data-v-ceae5e50><div class="content-body" data-v-ceae5e50><!--[--><!--]--><div class="VPNavBarSearch search" data-v-ceae5e50><!----></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-ceae5e50 data-v-ccfbd9f3><span id="main-nav-aria-label" class="visually-hidden" data-v-ccfbd9f3>Main Navigation</span><!--[--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-ccfbd9f3 data-v-3dad2223><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-3dad2223><span class="text" data-v-3dad2223><!----><span data-v-3dad2223>资源</span><span class="vpi-chevron-down text-icon" data-v-3dad2223></span></span></button><div class="menu" data-v-3dad2223><div class="VPMenu" data-v-3dad2223 data-v-823ca69a><div class="items" data-v-823ca69a><!--[--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://wangbin3162.github.io/bin-admin-pro/" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->bin-admin-pro<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://wangbin3162.github.io/bin-datav" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->bin-datav<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://wangbin3162.github.io/bin-datav-schema/" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->bin-datav-schema<!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-ccfbd9f3 data-v-3dad2223><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-3dad2223><span class="text" data-v-3dad2223><!----><span data-v-3dad2223>官方库v3</span><span class="vpi-chevron-down text-icon" data-v-3dad2223></span></span></button><div class="menu" data-v-3dad2223><div class="VPMenu" data-v-3dad2223 data-v-823ca69a><div class="items" data-v-823ca69a><!--[--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://wangbin3162.github.io/bin-ui-next/" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->bin-ui-next<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://wangbin3162.github.io/bin-editor-next/" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->bin-editor-next<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://wangbin3162.github.io/bin-charts-next/" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->bin-charts-next<!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-ccfbd9f3 data-v-3dad2223><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-3dad2223><span class="text" data-v-3dad2223><!----><span data-v-3dad2223>官方库v2</span><span class="vpi-chevron-down text-icon" data-v-3dad2223></span></span></button><div class="menu" data-v-3dad2223><div class="VPMenu" data-v-3dad2223 data-v-823ca69a><div class="items" data-v-823ca69a><!--[--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://wangbin3162.github.io/bin-ui/" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->bin-ui<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://wangbin3162.github.io/bin-ace-editor/" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->bin-ace-editor<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://wangbin3162.github.io/bin-charts/" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->bin-charts<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://wangbin3162.github.io/bin-tree-org/" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->bin-tree-org<!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-ccfbd9f3 data-v-3dad2223><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-3dad2223><span class="text" data-v-3dad2223><!----><span data-v-3dad2223>动画库</span><span class="vpi-chevron-down text-icon" data-v-3dad2223></span></span></button><div class="menu" data-v-3dad2223><div class="VPMenu" data-v-3dad2223 data-v-823ca69a><div class="items" data-v-823ca69a><!--[--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://wangbin3162.github.io/bin-animation/" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->bin-animation<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://wangbin3162.github.io/bin-keyframe-animation/" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->bin-keyframe-animation<!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-ccfbd9f3 data-v-3dad2223><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-3dad2223><span class="text" data-v-3dad2223><!----><span data-v-3dad2223>技术博客</span><span class="vpi-chevron-down text-icon" data-v-3dad2223></span></span></button><div class="menu" data-v-3dad2223><div class="VPMenu" data-v-3dad2223 data-v-823ca69a><div class="items" data-v-823ca69a><!--[--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://juejin.cn/post/6844904018230116360" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->HTML/CSS<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://juejin.cn/post/6844904018251087885" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->Es5<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://juejin.cn/post/6844904018318196743" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->Es6<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://juejin.cn/post/6844904018339168270" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->Vue2<!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-823ca69a data-v-d9972931><a class="VPLink link vp-external-link-icon" href="https://juejin.cn/user/4230576475747928/posts" target="_blank" rel="noreferrer" data-v-d9972931><!--[-->掘金文章<!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-ceae5e50 data-v-ae8fa341><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title="Switch to dark theme" aria-checked="false" data-v-ae8fa341 data-v-d318da9d data-v-d39ee4b5><span class="check" data-v-d39ee4b5><span class="icon" data-v-d39ee4b5><!--[--><span class="vpi-sun sun" data-v-d318da9d></span><span class="vpi-moon moon" data-v-d318da9d></span><!--]--></span></span></button></div><div class="VPSocialLinks VPNavBarSocialLinks social-links" data-v-ceae5e50 data-v-77d1a4bf data-v-6c0703d6><!--[--><a class="VPSocialLink no-icon" href="https://github.com/wangbin3162.github.io" aria-label="github" target="_blank" rel="noopener" data-v-6c0703d6 data-v-b113f301><span class="vpi-social-github" /></a><!--]--></div><div class="VPFlyout VPNavBarExtra extra" data-v-ceae5e50 data-v-76f450e1 data-v-3dad2223><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-3dad2223><span class="vpi-more-horizontal icon" data-v-3dad2223></span></button><div class="menu" data-v-3dad2223><div class="VPMenu" data-v-3dad2223 data-v-823ca69a><!----><!--[--><!--[--><!----><div class="group" data-v-76f450e1><div class="item appearance" data-v-76f450e1><p class="label" data-v-76f450e1>Appearance</p><div class="appearance-action" data-v-76f450e1><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title="Switch to dark theme" aria-checked="false" data-v-76f450e1 data-v-d318da9d data-v-d39ee4b5><span class="check" data-v-d39ee4b5><span class="icon" data-v-d39ee4b5><!--[--><span class="vpi-sun sun" data-v-d318da9d></span><span class="vpi-moon moon" data-v-d318da9d></span><!--]--></span></span></button></div></div></div><div class="group" data-v-76f450e1><div class="item social-links" data-v-76f450e1><div class="VPSocialLinks social-links-list" data-v-76f450e1 data-v-6c0703d6><!--[--><a class="VPSocialLink no-icon" href="https://github.com/wangbin3162.github.io" aria-label="github" target="_blank" rel="noopener" data-v-6c0703d6 data-v-b113f301><span class="vpi-social-github" /></a><!--]--></div></div></div><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-ceae5e50 data-v-09674f2c><span class="container" data-v-09674f2c><span class="top" data-v-09674f2c></span><span class="middle" data-v-09674f2c></span><span class="bottom" data-v-09674f2c></span></span></button></div></div></div></div><div class="divider" data-v-ceae5e50><div class="divider-line" data-v-ceae5e50></div></div></div><!----></header><!----><!----><div class="VPContent is-home" id="VPContent" data-v-a4936845 data-v-33ff1d7f><div class="VPHome" data-v-33ff1d7f data-v-3a691f7e><!--[--><!--]--><div class="VPHero has-image VPHomeHero" data-v-3a691f7e data-v-b87e213a><div class="container" data-v-b87e213a><div class="main" data-v-b87e213a><!--[--><!--]--><!--[--><h1 class="name" data-v-b87e213a><span class="clip" data-v-b87e213a>王彬的个人站点集合</span></h1><!----><p class="tagline" data-v-b87e213a>使用Vue3+Vitepress，可定制主题</p><!--]--><!--[--><!--]--><div class="actions" data-v-b87e213a><!--[--><div class="action" data-v-b87e213a><a class="VPButton medium brand" href="https://wangbin3162.github.io/bin-ui-design/" target="_blank" rel="noreferrer" data-v-b87e213a data-v-832e8ecd>组件库</a></div><div class="action" data-v-b87e213a><a class="VPButton medium alt" href="https://github.com/wangbin3162/bin-ui-design/" target="_blank" rel="noreferrer" data-v-b87e213a data-v-832e8ecd>View on GitHub</a></div><!--]--></div><!--[--><!--]--></div><div class="image" data-v-b87e213a><div class="image-container" data-v-b87e213a><div class="image-bg" data-v-b87e213a></div><!--[--><!--[--><img class="VPImage image-src" src="/logo.svg" alt="Bin UI Logo" data-v-154d58c6><!--]--><!--]--></div></div></div></div><!--[--><!--]--><!--[--><!--]--><div class="VPFeatures VPHomeFeatures" data-v-3a691f7e data-v-e7cee636><div class="container" data-v-e7cee636><div class="items" data-v-e7cee636><!--[--><div class="grid-3 item" data-v-e7cee636><div class="VPLink no-icon VPFeature" data-v-e7cee636 data-v-e679bd3a><!--[--><article class="box" data-v-e679bd3a><div class="icon" data-v-e679bd3a>⚡️</div><h2 class="title" data-v-e679bd3a>持续更新</h2><p class="details" data-v-e679bd3a>收录所有组件工具，并可以进行快速跳转。</p><!----></article><!--]--></div></div><div class="grid-3 item" data-v-e7cee636><div class="VPLink no-icon VPFeature" data-v-e7cee636 data-v-e679bd3a><!--[--><article class="box" data-v-e679bd3a><div class="icon" data-v-e679bd3a>🖖</div><h2 class="title" data-v-e679bd3a>包含各种文档</h2><p class="details" data-v-e679bd3a>包含各种文档连接跳转,方便快速定位。</p><!----></article><!--]--></div></div><div class="grid-3 item" data-v-e7cee636><div class="VPLink no-icon VPFeature" data-v-e7cee636 data-v-e679bd3a><!--[--><article class="box" data-v-e679bd3a><div class="icon" data-v-e679bd3a>🛠️</div><h2 class="title" data-v-e679bd3a>多种组件、工具</h2><p class="details" data-v-e679bd3a>多种组件库及衍生库，极大的方便各类开发。</p><!----></article><!--]--></div></div><!--]--></div></div></div><!--[--><!--]--><div class="vp-doc container" style="--vp-offset:calc(50% - Infinitypx);" data-v-3a691f7e data-v-db7b0bbd><!--[--><div style="position:relative;" data-v-3a691f7e><div></div></div><!--]--></div></div></div><footer class="VPFooter" data-v-a4936845 data-v-1c98b8ba><div class="container" data-v-1c98b8ba><!----><p class="copyright" data-v-1c98b8ba>MIT Licensed | Copyright © 2023-present bin-ui-design</p></div></footer><!--[--><!--]--></div></div>
-    <script>window.__VP_HASH_MAP__=JSON.parse("{\"index.md\":\"BUIvyc30\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"个人主页\",\"description\":\"王彬的个人站点集合\",\"base\":\"/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"logo\":\"/logo.svg\",\"siteTitle\":\"个人主页\",\"nav\":[{\"text\":\"资源\",\"items\":[{\"text\":\"bin-admin-pro\",\"link\":\"https://wangbin3162.github.io/bin-admin-pro/\",\"target\":\"_blank\"},{\"text\":\"bin-datav\",\"link\":\"https://wangbin3162.github.io/bin-datav\",\"target\":\"_blank\"},{\"text\":\"bin-datav-schema\",\"link\":\"https://wangbin3162.github.io/bin-datav-schema/\",\"target\":\"_blank\"}]},{\"text\":\"官方库v3\",\"items\":[{\"text\":\"bin-ui-next\",\"link\":\"https://wangbin3162.github.io/bin-ui-next/\",\"target\":\"_blank\"},{\"text\":\"bin-editor-next\",\"link\":\"https://wangbin3162.github.io/bin-editor-next/\",\"target\":\"_blank\"},{\"text\":\"bin-charts-next\",\"link\":\"https://wangbin3162.github.io/bin-charts-next/\",\"target\":\"_blank\"}]},{\"text\":\"官方库v2\",\"items\":[{\"text\":\"bin-ui\",\"link\":\"https://wangbin3162.github.io/bin-ui/\",\"target\":\"_blank\"},{\"text\":\"bin-ace-editor\",\"link\":\"https://wangbin3162.github.io/bin-ace-editor/\",\"target\":\"_blank\"},{\"text\":\"bin-charts\",\"link\":\"https://wangbin3162.github.io/bin-charts/\",\"target\":\"_blank\"},{\"text\":\"bin-tree-org\",\"link\":\"https://wangbin3162.github.io/bin-tree-org/\",\"target\":\"_blank\"}]},{\"text\":\"动画库\",\"items\":[{\"text\":\"bin-animation\",\"link\":\"https://wangbin3162.github.io/bin-animation/\",\"target\":\"_blank\"},{\"text\":\"bin-keyframe-animation\",\"link\":\"https://wangbin3162.github.io/bin-keyframe-animation/\",\"target\":\"_blank\"}]},{\"text\":\"技术博客\",\"items\":[{\"text\":\"HTML/CSS\",\"link\":\"https://juejin.cn/post/6844904018230116360\",\"target\":\"_blank\"},{\"text\":\"Es5\",\"link\":\"https://juejin.cn/post/6844904018251087885\",\"target\":\"_blank\"},{\"text\":\"Es6\",\"link\":\"https://juejin.cn/post/6844904018318196743\",\"target\":\"_blank\"},{\"text\":\"Vue2\",\"link\":\"https://juejin.cn/post/6844904018339168270\",\"target\":\"_blank\"},{\"text\":\"掘金文章\",\"link\":\"https://juejin.cn/user/4230576475747928/posts\",\"target\":\"_blank\"}]}],\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/wangbin3162.github.io\"}],\"footer\":{\"copyright\":\"MIT Licensed | Copyright © 2023-present bin-ui-design\"}},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
-    
+  <body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col items-center text-center">
+          <!-- Avatar -->
+          <div
+            class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold mb-4 shadow-lg"
+          >
+            WB
+          </div>
+          <!-- Name -->
+          <h1 class="text-2xl font-bold text-gray-900 mb-2">王彬</h1>
+          <!-- Bio -->
+          <!-- <p class="text-gray-600 max-w-md mb-4">
+                    10年前端开发经验，热爱技术与探索，专注于 Vue3 生态与可视化组件库开发
+                </p> -->
+
+          <!-- Tags -->
+          <div
+            class="flex justify-center gap-2 mb-6 whitespace-nowrap overflow-x-auto"
+          >
+            <span
+              class="px-3 py-1.5 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 text-sm rounded-full border border-blue-100 flex items-center gap-1.5 shrink-0"
+            >
+              <span>👐</span> 搬砖者
+            </span>
+            <span
+              class="px-3 py-1.5 bg-gradient-to-r from-purple-50 to-pink-50 text-purple-700 text-sm rounded-full border border-purple-100 flex items-center gap-1.5 shrink-0"
+            >
+              <span>😈</span> 小有想法
+            </span>
+            <span
+              class="px-3 py-1.5 bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 text-sm rounded-full border border-green-100 flex items-center gap-1.5 shrink-0"
+            >
+              <span>⛲</span> 前端开发
+            </span>
+            <span
+              class="px-3 py-1.5 bg-gradient-to-r from-orange-50 to-amber-50 text-orange-700 text-sm rounded-full border border-orange-100 flex items-center gap-1.5 shrink-0"
+            >
+              <span>🙋</span> 懂点设计
+            </span>
+            <span
+              class="px-3 py-1.5 bg-gradient-to-r from-rose-50 to-red-50 text-rose-700 text-sm rounded-full border border-rose-100 flex items-center gap-1.5 shrink-0"
+            >
+              <span>💎</span> 交互体验
+            </span>
+            <span
+              class="px-3 py-1.5 bg-gradient-to-r from-violet-50 to-fuchsia-50 text-violet-700 text-sm rounded-full border border-violet-100 flex items-center gap-1.5 shrink-0"
+            >
+              <span>🔖</span> 开源爱好者
+            </span>
+          </div>
+          <!-- GitHub Link -->
+          <a
+            href="https://github.com/wangbin3162"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+              />
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- bin-ui-design -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-ui-design.png"
+                alt="bin-ui-design"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >🧩</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">🧩</span>
+              bin-ui-design
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md font-medium"
+                >TypeScript</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue3 和 TypeScript 的组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-ui-design"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-ui-design"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-admin-pro -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-admin-pro.png"
+                alt="bin-admin-pro"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-green-50 to-emerald-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >⚙️</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">⚙️</span>
+              bin-admin-pro
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-green-50 text-green-700 text-xs rounded-md font-medium"
+                >Vue3 全家桶</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              基于 bin-ui 的后端管理系统
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-admin-pro"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-admin-pro"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-editor-next -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-editor-next.png"
+                alt="bin-editor-next"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-50 to-violet-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >📝</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">📝</span>
+              bin-editor-next
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded-md font-medium"
+                >brace</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              基于 brace 的 Vue3 编辑器组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-editor-next"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-editor-next"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-datav -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-datav.png"
+                alt="bin-datav"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-cyan-50 to-blue-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >📊</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">📊</span>
+              bin-datav
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-cyan-50 text-cyan-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-cyan-50 text-cyan-700 text-xs rounded-md font-medium"
+                >TypeScript</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue3 和 TypeScript 的数据可视化组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-datav"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-datav"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-datav-schema -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-datav-schema.png"
+                alt="bin-datav-schema"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >🖥️</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">🖥️</span>
+              bin-datav-schema
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs rounded-md font-medium"
+                >TypeScript</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              vite + vue3 数据可视化大屏框架
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-datav-schema"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-datav-schema"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-grid-layout -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-grid-layout.png"
+                alt="bin-grid-layout"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-50 to-amber-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >⬜</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">⬜</span>
+              bin-grid-layout
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-orange-50 text-orange-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-orange-50 text-orange-700 text-xs rounded-md font-medium"
+                >TypeScript</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue3 和 TypeScript 的网格布局组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-grid-layout"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-grid-layout"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-charts-next -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-charts-next.png"
+                alt="bin-charts-next"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-pink-50 to-rose-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >📈</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">📈</span>
+              bin-charts-next
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-pink-50 text-pink-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-pink-50 text-pink-700 text-xs rounded-md font-medium"
+                >echarts</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue3 和 echarts 的图表组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-charts-next"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-charts-next"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-form-maker -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-form-maker.png"
+                alt="bin-form-maker"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-teal-50 to-cyan-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >📋</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">📋</span>
+              bin-form-maker
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-teal-50 text-teal-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-teal-50 text-teal-700 text-xs rounded-md font-medium"
+                >TypeScript</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue3 和 TypeScript 的表单生成器组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-form-maker"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-form-maker"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-excel-pro -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-excel-pro.png"
+                alt="bin-excel-pro"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-lime-50 to-green-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >📑</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">📑</span>
+              bin-excel-pro
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-lime-50 text-lime-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-lime-50 text-lime-700 text-xs rounded-md font-medium"
+                >univer</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue3 和 univer 的 Excel 表格组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-excel-pro"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-excel-pro"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-tree-org -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-tree-org.png"
+                alt="bin-tree-org"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >🌳</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">🌳</span>
+              bin-tree-org
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-emerald-50 text-emerald-700 text-xs rounded-md font-medium"
+                >Vue2</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue2 的组织树组件
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-tree-org"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-tree-org"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-animation -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-animation.png"
+                alt="bin-animation"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-yellow-50 to-amber-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >✨</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">✨</span>
+              bin-animation
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-yellow-50 text-yellow-700 text-xs rounded-md font-medium"
+                >Vue</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              基于vue，结合transition钩子函数配合的css3动画库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-animation"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-animation"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-keyframe-animation -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-keyframe-animation.png"
+                alt="bin-keyframe-animation"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-red-50 to-rose-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >🎬</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">🎬</span>
+              bin-keyframe-animation
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-red-50 text-red-700 text-xs rounded-md font-medium"
+                >JavaScript</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              js关键帧动画库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-keyframe-animation"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-keyframe-animation"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 mt-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <p class="text-center text-gray-500 text-sm">
+          &copy; 2024 Open Source Components. All rights reserved.
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
