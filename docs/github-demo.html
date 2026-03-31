@@ -1,0 +1,1189 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>开源组件库合集</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col items-center text-center">
+          <!-- Avatar -->
+          <div
+            class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold mb-4 shadow-lg"
+          >
+            WB
+          </div>
+          <!-- Name -->
+          <h1 class="text-2xl font-bold text-gray-900 mb-2">王彬</h1>
+          <!-- Bio -->
+          <!-- <p class="text-gray-600 max-w-md mb-4">
+                    10年前端开发经验，热爱技术与探索，专注于 Vue3 生态与可视化组件库开发
+                </p> -->
+
+          <!-- Tags -->
+          <div
+            class="flex justify-center gap-2 mb-6 whitespace-nowrap overflow-x-auto"
+          >
+            <span
+              class="px-3 py-1.5 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 text-sm rounded-full border border-blue-100 flex items-center gap-1.5 shrink-0"
+            >
+              <span>👐</span> 搬砖者
+            </span>
+            <span
+              class="px-3 py-1.5 bg-gradient-to-r from-purple-50 to-pink-50 text-purple-700 text-sm rounded-full border border-purple-100 flex items-center gap-1.5 shrink-0"
+            >
+              <span>😈</span> 小有想法
+            </span>
+            <span
+              class="px-3 py-1.5 bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 text-sm rounded-full border border-green-100 flex items-center gap-1.5 shrink-0"
+            >
+              <span>⛲</span> 前端开发
+            </span>
+            <span
+              class="px-3 py-1.5 bg-gradient-to-r from-orange-50 to-amber-50 text-orange-700 text-sm rounded-full border border-orange-100 flex items-center gap-1.5 shrink-0"
+            >
+              <span>🙋</span> 懂点设计
+            </span>
+            <span
+              class="px-3 py-1.5 bg-gradient-to-r from-rose-50 to-red-50 text-rose-700 text-sm rounded-full border border-rose-100 flex items-center gap-1.5 shrink-0"
+            >
+              <span>💎</span> 交互体验
+            </span>
+            <span
+              class="px-3 py-1.5 bg-gradient-to-r from-violet-50 to-fuchsia-50 text-violet-700 text-sm rounded-full border border-violet-100 flex items-center gap-1.5 shrink-0"
+            >
+              <span>🔖</span> 开源爱好者
+            </span>
+          </div>
+          <!-- GitHub Link -->
+          <a
+            href="https://github.com/wangbin3162"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+              />
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- bin-ui-design -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-ui-design.png"
+                alt="bin-ui-design"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >🧩</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">🧩</span>
+              bin-ui-design
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md font-medium"
+                >TypeScript</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue3 和 TypeScript 的组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-ui-design"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-ui-design"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-admin-pro -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-admin-pro.png"
+                alt="bin-admin-pro"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-green-50 to-emerald-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >⚙️</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">⚙️</span>
+              bin-admin-pro
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-green-50 text-green-700 text-xs rounded-md font-medium"
+                >Vue3 全家桶</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              基于 bin-ui 的后端管理系统
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-admin-pro"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-admin-pro"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-editor-next -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-editor-next.png"
+                alt="bin-editor-next"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-50 to-violet-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >📝</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">📝</span>
+              bin-editor-next
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded-md font-medium"
+                >brace</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              基于 brace 的 Vue3 编辑器组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-editor-next"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-editor-next"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-datav -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-datav.png"
+                alt="bin-datav"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-cyan-50 to-blue-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >📊</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">📊</span>
+              bin-datav
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-cyan-50 text-cyan-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-cyan-50 text-cyan-700 text-xs rounded-md font-medium"
+                >TypeScript</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue3 和 TypeScript 的数据可视化组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-datav"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-datav"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-datav-schema -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-datav-schema.png"
+                alt="bin-datav-schema"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >🖥️</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">🖥️</span>
+              bin-datav-schema
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs rounded-md font-medium"
+                >TypeScript</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              vite + vue3 数据可视化大屏框架
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-datav-schema"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-datav-schema"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-grid-layout -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-grid-layout.png"
+                alt="bin-grid-layout"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-50 to-amber-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >⬜</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">⬜</span>
+              bin-grid-layout
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-orange-50 text-orange-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-orange-50 text-orange-700 text-xs rounded-md font-medium"
+                >TypeScript</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue3 和 TypeScript 的网格布局组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-grid-layout"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-grid-layout"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-charts-next -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-charts-next.png"
+                alt="bin-charts-next"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-pink-50 to-rose-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >📈</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">📈</span>
+              bin-charts-next
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-pink-50 text-pink-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-pink-50 text-pink-700 text-xs rounded-md font-medium"
+                >echarts</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue3 和 echarts 的图表组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-charts-next"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-charts-next"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-form-maker -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-form-maker.png"
+                alt="bin-form-maker"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-teal-50 to-cyan-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >📋</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">📋</span>
+              bin-form-maker
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-teal-50 text-teal-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-teal-50 text-teal-700 text-xs rounded-md font-medium"
+                >TypeScript</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue3 和 TypeScript 的表单生成器组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-form-maker"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-form-maker"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-excel-pro -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-excel-pro.png"
+                alt="bin-excel-pro"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-lime-50 to-green-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >📑</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">📑</span>
+              bin-excel-pro
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-lime-50 text-lime-700 text-xs rounded-md font-medium"
+                >Vue3</span
+              >
+              <span
+                class="px-2 py-1 bg-lime-50 text-lime-700 text-xs rounded-md font-medium"
+                >univer</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue3 和 univer 的 Excel 表格组件库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-excel-pro"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-excel-pro"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-tree-org -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-tree-org.png"
+                alt="bin-tree-org"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >🌳</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">🌳</span>
+              bin-tree-org
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-emerald-50 text-emerald-700 text-xs rounded-md font-medium"
+                >Vue2</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              一个基于 Vue2 的组织树组件
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-tree-org"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-tree-org"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-animation -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-animation.png"
+                alt="bin-animation"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-yellow-50 to-amber-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >✨</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">✨</span>
+              bin-animation
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-yellow-50 text-yellow-700 text-xs rounded-md font-medium"
+                >Vue</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              基于vue，结合transition钩子函数配合的css3动画库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-animation"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-animation"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- bin-keyframe-animation -->
+        <div
+          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
+        >
+          <div class="p-3 bg-white border-b border-gray-100">
+            <div
+              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
+            >
+              <img
+                src="images/bin-keyframe-animation.png"
+                alt="bin-keyframe-animation"
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onerror="
+                  this.style.display = 'none'
+                  this.nextElementSibling.style.display = 'flex'
+                "
+              />
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-red-50 to-rose-100 hidden"
+              >
+                <span
+                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
+                  >🎬</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3
+              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
+            >
+              <span class="text-xl">🎬</span>
+              bin-keyframe-animation
+            </h3>
+            <div class="flex flex-wrap gap-2 mb-3">
+              <span
+                class="px-2 py-1 bg-red-50 text-red-700 text-xs rounded-md font-medium"
+                >JavaScript</span
+              >
+            </div>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+              js关键帧动画库
+            </p>
+            <div class="flex gap-2">
+              <a
+                href="https://github.com/wangbin3162/bin-keyframe-animation"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://wangbin3162.github.io/bin-keyframe-animation"
+                target="_blank"
+                rel="noopener"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+                演示
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 mt-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <p class="text-center text-gray-500 text-sm">
+          &copy; 2024 Open Source Components. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

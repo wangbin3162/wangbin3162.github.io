@@ -1,1189 +1,790 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>开源组件库合集</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {
-        font-family:
-          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-          'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-      }
-    </style>
-  </head>
-  <body class="bg-gray-50 min-h-screen">
-    <!-- Header -->
-    <header class="bg-white border-b border-gray-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="flex flex-col items-center text-center">
-          <!-- Avatar -->
-          <div
-            class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold mb-4 shadow-lg"
-          >
-            WB
-          </div>
-          <!-- Name -->
-          <h1 class="text-2xl font-bold text-gray-900 mb-2">王彬</h1>
-          <!-- Bio -->
-          <!-- <p class="text-gray-600 max-w-md mb-4">
-                    10年前端开发经验，热爱技术与探索，专注于 Vue3 生态与可视化组件库开发
-                </p> -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>王彬的个人站点</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060d1a;
+      --accent: #00e5ff;
+      --accent2: #7b61ff;
+      --gold: #ffd60a;
+      --success: #00ff88;
+      --text: #e8f4fd;
+      --text-muted: #5a7fa0;
+      --text-dim: #8aa5c0;
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: 'Noto Sans SC', sans-serif; font-size: 14px; }
 
-          <!-- Tags -->
-          <div
-            class="flex justify-center gap-2 mb-6 whitespace-nowrap overflow-x-auto"
-          >
-            <span
-              class="px-3 py-1.5 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 text-sm rounded-full border border-blue-100 flex items-center gap-1.5 shrink-0"
-            >
-              <span>👐</span> 搬砖者
-            </span>
-            <span
-              class="px-3 py-1.5 bg-gradient-to-r from-purple-50 to-pink-50 text-purple-700 text-sm rounded-full border border-purple-100 flex items-center gap-1.5 shrink-0"
-            >
-              <span>😈</span> 小有想法
-            </span>
-            <span
-              class="px-3 py-1.5 bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 text-sm rounded-full border border-green-100 flex items-center gap-1.5 shrink-0"
-            >
-              <span>⛲</span> 前端开发
-            </span>
-            <span
-              class="px-3 py-1.5 bg-gradient-to-r from-orange-50 to-amber-50 text-orange-700 text-sm rounded-full border border-orange-100 flex items-center gap-1.5 shrink-0"
-            >
-              <span>🙋</span> 懂点设计
-            </span>
-            <span
-              class="px-3 py-1.5 bg-gradient-to-r from-rose-50 to-red-50 text-rose-700 text-sm rounded-full border border-rose-100 flex items-center gap-1.5 shrink-0"
-            >
-              <span>💎</span> 交互体验
-            </span>
-            <span
-              class="px-3 py-1.5 bg-gradient-to-r from-violet-50 to-fuchsia-50 text-violet-700 text-sm rounded-full border border-violet-100 flex items-center gap-1.5 shrink-0"
-            >
-              <span>🔖</span> 开源爱好者
-            </span>
-          </div>
-          <!-- GitHub Link -->
-          <a
-            href="https://github.com/wangbin3162"
-            target="_blank"
-            rel="noopener"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
-          >
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-              />
-            </svg>
-            GitHub
-          </a>
+    #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.35; pointer-events: none; }
+    #progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); z-index: 200; transition: width 0.6s cubic-bezier(.4,0,.2,1); box-shadow: 0 0 12px var(--accent); }
+    #slide-counter { position: fixed; top: 18px; right: 22px; font-family: 'Exo 2', sans-serif; font-size: 12px; color: var(--text-muted); z-index: 200; letter-spacing: 2px; }
+    #slide-counter em { font-style: normal; color: var(--accent); }
+
+    .nav-btn { position: fixed; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--glass-border); background: rgba(6,13,26,0.6); backdrop-filter: blur(12px); color: var(--text-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 200; transition: all 0.3s ease; font-size: 22px; line-height: 1; }
+    .nav-btn:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 20px rgba(0,229,255,0.25); }
+    .nav-btn:disabled { opacity: 0.15; pointer-events: none; }
+    #prev-btn { left: 14px; }
+    #next-btn { right: 14px; }
+
+    #dots { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; gap: 7px; z-index: 200; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); cursor: pointer; transition: all 0.3s ease; }
+    .dot.active { background: var(--accent); box-shadow: 0 0 8px var(--accent); width: 22px; border-radius: 3px; }
+
+    #slides { position: relative; width: 100%; height: 100vh; z-index: 10; }
+    .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 56px 76px; opacity: 0; pointer-events: none; transition: opacity .55s cubic-bezier(.4,0,.2,1), transform .55s cubic-bezier(.4,0,.2,1); }
+    .slide.active { opacity: 1; pointer-events: all; }
+
+    .r { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+    .slide.active .r { opacity: 1; transform: translateY(0); }
+    .slide.active .r:nth-child(1) { transition-delay: .08s; }
+    .slide.active .r:nth-child(2) { transition-delay: .16s; }
+    .slide.active .r:nth-child(3) { transition-delay: .24s; }
+    .slide.active .r:nth-child(4) { transition-delay: .32s; }
+    .slide.active .r:nth-child(5) { transition-delay: .40s; }
+
+    /* Shared */
+    .sec-label { font-family: 'Exo 2', sans-serif; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; opacity: 0.9; }
+    .slide-title { font-size: 44px; font-weight: 700; line-height: 1.1; margin-bottom: 6px; }
+    .divider { width: 56px; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); margin: 14px 0 20px; }
+    .chip { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 13px; font-family: 'Exo 2', sans-serif; background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.15); color: var(--accent); }
+
+    /* ── Cover ── */
+    .cover { text-align: center; max-width: 680px; }
+    .avatar { width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(135deg, #00e5ff, #7b61ff); display: flex; align-items: center; justify-content: center; font-family: 'Exo 2', sans-serif; font-size: 30px; font-weight: 800; color: #060d1a; margin: 0 auto 24px; animation: avatarPulse 3s ease-in-out infinite; }
+    @keyframes avatarPulse { 0%,100% { box-shadow: 0 0 0 4px rgba(0,229,255,.12), 0 0 40px rgba(0,229,255,.25); } 50% { box-shadow: 0 0 0 8px rgba(0,229,255,.05), 0 0 60px rgba(0,229,255,.4); } }
+    .cover-name { font-size: 68px; font-weight: 700; letter-spacing: 10px; line-height: 1; background: linear-gradient(120deg, #fff 40%, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 14px; }
+    .cover-role { font-family: 'Exo 2', sans-serif; font-size: 14px; letter-spacing: 5px; color: var(--accent); text-transform: uppercase; margin-bottom: 28px; }
+    .cover-stats { display: flex; justify-content: center; margin-bottom: 28px; }
+    .cstat { padding: 14px 28px; border-left: 1px solid var(--glass-border); }
+    .cstat:first-child { border-left: none; }
+    .cstat-n { font-family: 'Exo 2', sans-serif; font-size: 34px; font-weight: 800; color: var(--accent); line-height: 1; }
+    .cstat-l { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+    .cover-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .ctag { padding: 6px 16px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 100px; font-size: 14px; color: var(--text-dim); }
+
+    /* ── Bio ── */
+    .bio-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; width: 100%; max-width: 960px; align-items: center; }
+    .bio-text { font-size: 14px; line-height: 1.95; color: var(--text-dim); }
+    .bio-text strong { color: var(--text); }
+    .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .bio-card { padding: 18px 14px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; text-align: center; }
+    .bio-n { font-family: 'Exo 2', sans-serif; font-size: 28px; font-weight: 800; color: var(--accent); }
+    .bio-l { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+
+    /* ── Work ── */
+    .work-wrap { width: 100%; max-width: 860px; }
+    .timeline { position: relative; padding-left: 36px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 16px; width: 1px; background: linear-gradient(to bottom, var(--accent), transparent); }
+    .titem { position: relative; margin-bottom: 26px; }
+    /* Scoped to .timeline only — fixes dot appearing on tech stack chips */
+    .timeline .titem::before { content: ''; position: absolute; left: -40px; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+    .tperiod { font-family: 'Exo 2', sans-serif; font-size: 12px; letter-spacing: 2px; color: var(--accent); margin-bottom: 4px; }
+    .tcompany { font-size: 20px; font-weight: 700; margin-bottom: 2px; }
+    .trole { font-size: 14px; color: var(--text-muted); margin-bottom: 10px; }
+    .tpoints { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .tpoints li { font-size: 14px; color: var(--text-dim); padding-left: 16px; position: relative; line-height: 1.55; }
+    .tpoints li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); opacity: 0.7; }
+
+    /* ── Projects ── */
+    .proj-wrap { width: 100%; max-width: 1080px; }
+    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .pcard { padding: 22px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 14px; position: relative; overflow: hidden; transition: all 0.3s ease; }
+    .pcard::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: 0; transition: opacity 0.3s; }
+    .pcard:hover { border-color: rgba(0,229,255,0.2); transform: translateY(-2px); }
+    .pcard:hover::before { opacity: 1; }
+    .picon { font-size: 26px; margin-bottom: 10px; }
+    .pname { font-size: 16px; font-weight: 700; margin-bottom: 5px; }
+    .pperiod { font-family: 'Exo 2', sans-serif; font-size: 12px; letter-spacing: 1px; color: var(--accent); margin-bottom: 8px; }
+    .pdesc { font-size: 14px; color: var(--text-dim); line-height: 1.65; margin-bottom: 12px; }
+    .ptechs { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+    .presult { padding-top: 10px; border-top: 1px solid var(--glass-border); font-size: 14px; color: var(--success); }
+
+    /* ── OSS Cards ── */
+    .oss-wrap { width: 100%; max-width: 1200px; }
+    .oss-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; }
+    .ocard { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 10px; display: flex; flex-direction: column; gap: 7px; padding: 13px 14px; transition: all 0.3s ease; text-decoration: none; color: inherit; position: relative; overflow: hidden; }
+    .ocard::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: 0; transition: opacity 0.3s; }
+    .ocard:hover { border-color: rgba(0,229,255,0.25); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+    .ocard:hover::before { opacity: 1; }
+    .ocard-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; }
+    .ocard-title { font-family: 'Exo 2', sans-serif; font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .ocard-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .otag { font-size: 11px; padding: 2px 7px; border-radius: 4px; font-family: 'Exo 2', sans-serif; font-weight: 600; }
+    .otag-blue { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.2); }
+    .otag-green { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
+    .otag-purple { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.2); }
+    .otag-cyan { background: rgba(6,182,212,0.12); color: #22d3ee; border: 1px solid rgba(6,182,212,0.2); }
+    .otag-pink { background: rgba(236,72,153,0.12); color: #f472b6; border: 1px solid rgba(236,72,153,0.2); }
+    .otag-orange { background: rgba(249,115,22,0.12); color: #fb923c; border: 1px solid rgba(249,115,22,0.2); }
+    .otag-teal { background: rgba(20,184,166,0.12); color: #2dd4bf; border: 1px solid rgba(20,184,166,0.2); }
+    .otag-lime { background: rgba(132,204,22,0.12); color: #a3e635; border: 1px solid rgba(132,204,22,0.2); }
+    .otag-yellow { background: rgba(234,179,8,0.12); color: #facc15; border: 1px solid rgba(234,179,8,0.2); }
+    .otag-red { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
+    .ocard-desc { font-size: 12px; color: var(--text-dim); line-height: 1.45; flex: 1; }
+    .ocard-footer { display: flex; align-items: center; gap: 6px; padding-top: 7px; border-top: 1px solid var(--glass-border); margin-top: auto; }
+    .ostars { font-family: 'Exo 2', sans-serif; font-size: 12px; color: var(--gold); font-weight: 600; }
+    .ocard-btns { display: flex; gap: 5px; }
+    .obtn { padding: 3px 9px; border-radius: 5px; font-size: 11px; font-family: 'Exo 2', sans-serif; text-decoration: none; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 4px; font-weight: 600; }
+    .obtn svg { flex-shrink: 0; }
+    .obtn-gh { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+    .obtn-gh:hover { background: rgba(255,255,255,0.14); color: var(--text); }
+    .obtn-demo { background: rgba(0,229,255,0.1); color: var(--accent); border: 1px solid rgba(0,229,255,0.2); }
+    .obtn-demo:hover { background: rgba(0,229,255,0.18); }
+    /* Total card */
+    .ocard-total { align-items: center; justify-content: center; text-align: center; gap: 6px; }
+    .ocard-total-n { font-family: 'Exo 2', sans-serif; font-size: 40px; font-weight: 800; color: var(--gold); line-height: 1; }
+
+    /* ── Tech Stack ── */
+    .tech-wrap { width: 100%; max-width: 960px; }
+    .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .tcategory { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 14px; padding: 18px; }
+    .tcat-title { font-family: 'Exo 2', sans-serif; font-size: 12px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--glass-border); }
+    .titems { display: flex; flex-wrap: wrap; gap: 7px; }
+    /* Tech skill chips — NO ::before pseudo element (only .timeline .titem has it) */
+    .titem { padding: 5px 12px; border-radius: 6px; font-size: 14px; }
+    .titem.e { background: rgba(0,229,255,0.1); color: var(--accent); border: 1px solid rgba(0,229,255,0.2); }
+    .titem.p { background: rgba(123,97,255,0.1); color: #b8a7ff; border: 1px solid rgba(123,97,255,0.2); }
+    .titem.f { background: rgba(255,255,255,0.04); color: var(--text-muted); border: 1px solid var(--glass-border); }
+    .tech-legend { display: flex; gap: 18px; margin-top: 14px; font-size: 14px; color: var(--text-muted); align-items: center; }
+
+    /* ── Advantages ── */
+    .adv-wrap { width: 100%; max-width: 980px; }
+    .adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .acard { padding: 22px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 14px; transition: border-color 0.3s; }
+    .acard:hover { border-color: rgba(0,229,255,0.2); }
+    .aicon { font-size: 28px; margin-bottom: 12px; }
+    .atitle { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .adesc { font-size: 14px; color: var(--text-dim); line-height: 1.75; }
+
+    /* ── Contact ── */
+    .contact-wrap { text-align: center; max-width: 600px; width: 100%; }
+    .contact-links { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; text-align: left; }
+    .clink { display: flex; align-items: center; gap: 16px; padding: 16px 22px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; text-decoration: none; color: var(--text); transition: all 0.3s ease; }
+    .clink:hover { border-color: rgba(0,229,255,0.3); background: rgba(0,229,255,0.05); color: var(--accent); transform: translateX(6px); }
+    .cicon { font-size: 20px; width: 30px; text-align: center; flex-shrink: 0; }
+    .cicon svg { vertical-align: middle; }
+    .clabel { font-size: 13px; color: var(--text-muted); letter-spacing: 1px; }
+    .cval { font-family: 'Exo 2', sans-serif; font-size: 15px; margin-top: 2px; }
+
+    #deerflow { position: fixed; bottom: 18px; right: 18px; font-family: 'Exo 2', sans-serif; font-size: 11px; letter-spacing: 1px; color: var(--text-muted); opacity: 0.35; text-decoration: none; z-index: 200; transition: opacity 0.3s; }
+    #deerflow:hover { opacity: 0.75; }
+  </style>
+</head>
+<body>
+
+<canvas id="canvas-bg"></canvas>
+<div id="progress-bar"></div>
+<div id="slide-counter"><em id="cur">1</em> / <span id="tot">10</span></div>
+
+<button class="nav-btn" id="prev-btn" onclick="nav(-1)" disabled>‹</button>
+<button class="nav-btn" id="next-btn" onclick="nav(1)">›</button>
+<div id="dots"></div>
+
+<div id="slides">
+
+  <!-- 1: Cover -->
+  <div class="slide active" id="s0">
+    <div class="cover">
+      <div class="avatar r">WB</div>
+      <div class="cover-name r">王 彬</div>
+      <div class="cover-role r">Frontend Lead · 前端研发组长</div>
+      <div class="cover-stats r">
+        <div class="cstat"><div class="cstat-n">12</div><div class="cstat-l">年从业经验</div></div>
+        <div class="cstat"><div class="cstat-n">8</div><div class="cstat-l">人技术团队</div></div>
+        <div class="cstat"><div class="cstat-n">12</div><div class="cstat-l">个开源库</div></div>
+        <div class="cstat"><div class="cstat-n">50+</div><div class="cstat-l">核心项目</div></div>
+      </div>
+      <div class="cover-tags r">
+        <span class="ctag">Vue3 专家</span>
+        <span class="ctag">数据可视化</span>
+        <span class="ctag">AI 应用开发</span>
+        <span class="ctag">组件库设计</span>
+        <span class="ctag">开源贡献者</span>
+        <span class="ctag">全端开发</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2: Bio -->
+  <div class="slide" id="s1">
+    <div class="bio-wrap">
+      <div>
+        <p class="sec-label r">About Me</p>
+        <h2 class="slide-title r">个人简介</h2>
+        <div class="divider r"></div>
+        <p class="bio-text r">12年前端研发经验，现任<strong>前端研发组长</strong>，带领<strong>8人技术团队</strong>直接向研发总监汇报。精通 <strong>Vue3 生态</strong>与工程化体系，主导企业级组件库、数据可视化平台、低代码平台及 <strong>AI 智能体</strong>等多个大型项目从0到1落地。具备全端开发能力（Web / 小程序 / 桌面端），维护 <strong>11个开源组件库</strong>，兼顾技术深度与团队管理，擅长在政务、金融、企业信息化领域构建复杂系统解决方案。</p>
+      </div>
+      <div class="bio-grid r">
+        <div class="bio-card"><div class="bio-n">12+</div><div class="bio-l">年前端经验</div></div>
+        <div class="bio-card"><div class="bio-n">8</div><div class="bio-l">人团队规模</div></div>
+        <div class="bio-card"><div class="bio-n">20+</div><div class="bio-l">核心项目</div></div>
+        <div class="bio-card"><div class="bio-n">70%</div><div class="bio-l">构建速度提升</div></div>
+        <div class="bio-card"><div class="bio-n">50+</div><div class="bio-l">封装组件数</div></div>
+        <div class="bio-card"><div class="bio-n">3</div><div class="bio-l">省级优秀奖</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3: Work -->
+  <div class="slide" id="s2">
+    <div class="work-wrap">
+      <p class="sec-label r">Career</p>
+      <h2 class="slide-title r">工作经历</h2>
+      <div class="divider r"></div>
+      <div class="timeline r">
+        <div class="titem">
+          <div class="tperiod">2018.02 — 至今</div>
+          <div class="tcompany">徐州新蝶科技有限公司</div>
+          <div class="trole">前端研发组长 · 部门管理</div>
+          <ul class="tpoints">
+            <li>带领8人技术团队（前端/后端/UI/运维），直接向研发总监汇报，制定技术选型与研发流程规范</li>
+            <li>主导企业级 Vue3 组件库建设，封装 50+ 通用组件，服务全公司核心项目，减少重复开发 60%</li>
+            <li>推动工程化升级 Webpack → Vite，构建速度提升 70%；搭建性能监控，首屏加载优化 50%</li>
+            <li>主导数据可视化大屏平台，实现 20+ 块大屏，覆盖智慧城市/智慧工厂/信用体系等核心业务</li>
+            <li>带队开发 AI 智能体平台、智能知识库、OCR 识别平台等创新项目，推动公司数字化转型</li>
+            <li>建立 CI/CD 流水线，发布效率提升 80%，故障率降低 40%</li>
+          </ul>
+        </div>
+        <div class="titem">
+          <div class="tperiod">2015 — 2017</div>
+          <div class="tcompany">上海迪尔希科技有限公司</div>
+          <div class="trole">Unity 开发工程师</div>
+          <ul class="tpoints">
+            <li>使用 Unity3D + C# 开发互动游戏项目，负责渲染管线优化、内存管理、帧率提升</li>
+            <li>跨平台开发，确保游戏在 iOS / Android / PC 多平台稳定运行</li>
+          </ul>
         </div>
       </div>
-    </header>
+    </div>
+  </div>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- bin-ui-design -->
-        <div
-          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
-        >
-          <div class="p-3 bg-white border-b border-gray-100">
-            <div
-              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
-            >
-              <img
-                src="images/bin-ui-design.png"
-                alt="bin-ui-design"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                onerror="
-                  this.style.display = 'none'
-                  this.nextElementSibling.style.display = 'flex'
-                "
-              />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 hidden"
-              >
-                <span
-                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
-                  >🧩</span
-                >
-              </div>
-            </div>
+  <!-- 4: Projects I -->
+  <div class="slide" id="s3">
+    <div class="proj-wrap">
+      <p class="sec-label r">Projects · 01</p>
+      <h2 class="slide-title r">核心项目 <span style="color:var(--accent);font-size:.55em;font-weight:400">— 基础设施</span></h2>
+      <div class="divider r"></div>
+      <div class="proj-grid r">
+        <div class="pcard">
+          <div class="picon">🧩</div>
+          <div class="pname">bin-ui-design</div>
+          <div class="pperiod">2021.06 — 至今 · 技术负责人</div>
+          <div class="pdesc">企业级 Vue3 组件库，解决 UI 不统一问题。Monorepo 架构，Vitest+Cypress 测试覆盖率 85%。</div>
+          <div class="ptechs"><span class="chip">Vue3</span><span class="chip">TypeScript</span><span class="chip">Vite</span><span class="chip">Tailwind</span></div>
+          <div class="presult">✦ 服务 50+ 项目 · 减少重复开发 60%</div>
+        </div>
+        <div class="pcard">
+          <div class="picon">🖥️</div>
+          <div class="pname">数据可视化大屏平台</div>
+          <div class="pperiod">2022.03 — 至今 · 前端负责人</div>
+          <div class="pdesc">智慧城市/工厂决策可视化。拖拽式布局、Three.js 3D场景、百图表流畅运行，多屏自适应。</div>
+          <div class="ptechs"><span class="chip">Vue3</span><span class="chip">ECharts</span><span class="chip">Three.js</span><span class="chip">WebGL</span></div>
+          <div class="presult">✦ 20+ 块大屏 · 荣获「技术创新奖」</div>
+        </div>
+        <div class="pcard">
+          <div class="picon">🤖</div>
+          <div class="pname">AI 智能体平台</div>
+          <div class="pperiod">2025.06 — 至今 · 技术架构师</div>
+          <div class="pdesc">企业级 AI 平台，RAG 检索增强、多轮对话记忆、工具调用、流式响应，插件化扩展。</div>
+          <div class="ptechs"><span class="chip">Vue3</span><span class="chip">LangChain</span><span class="chip">OpenAI</span><span class="chip">WebSocket</span></div>
+          <div class="presult">✦ 内部工作效率提升 40%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5: Projects II -->
+  <div class="slide" id="s4">
+    <div class="proj-wrap">
+      <p class="sec-label r">Projects · 02</p>
+      <h2 class="slide-title r">核心项目 <span style="color:var(--accent2);font-size:.55em;font-weight:400">— 业务平台</span></h2>
+      <div class="divider r"></div>
+      <div class="proj-grid r">
+        <div class="pcard">
+          <div class="picon">📊</div>
+          <div class="pname">AI 智能问数平台</div>
+          <div class="pperiod">2024.06 — 至今 · 前端负责人</div>
+          <div class="pdesc">自然语言驱动财务数据查询与报告生成。CopilotKit 流式交互，ECharts 可视化，一键 PDF 导出。</div>
+          <div class="ptechs"><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">CopilotKit</span><span class="chip">ECharts</span></div>
+          <div class="presult">✦ 月报制作 2天→2小时，效率提升 75%</div>
+        </div>
+        <div class="pcard">
+          <div class="picon">🗄️</div>
+          <div class="pname">数据治理平台</div>
+          <div class="pperiod">2020.01 — 2025.10 · 前端负责人</div>
+          <div class="pdesc">数据血缘分析、质量监控、元数据管理。D3.js 复杂关系图，拖拽式数据建模交互。</div>
+          <div class="ptechs"><span class="chip">Vue3</span><span class="chip">D3.js</span><span class="chip">ECharts</span><span class="chip">AntV</span></div>
+          <div class="presult">✦ 覆盖 80% 数据资产 · 年度优秀项目</div>
+        </div>
+        <div class="pcard">
+          <div class="picon">🔧</div>
+          <div class="pname">低代码平台</div>
+          <div class="pperiod">2021.01 — 2023.01 · 前端负责人</div>
+          <div class="pdesc">可视化拖拽搭建应用，JSON Schema→Vue 代码转换，50+ 业务组件，版本控制与发布管理。</div>
+          <div class="ptechs"><span class="chip">Vue3</span><span class="chip">TypeScript</span><span class="chip">vue-flow</span></div>
+          <div class="presult">✦ 30+ 应用 · 开发周期缩短 70%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6: Projects III -->
+  <div class="slide" id="s5">
+    <div class="proj-wrap">
+      <p class="sec-label r">Projects · 03</p>
+      <h2 class="slide-title r">核心项目 <span style="color:var(--gold);font-size:.55em;font-weight:400">— 数字化转型</span></h2>
+      <div class="divider r"></div>
+      <div class="proj-grid r">
+        <div class="pcard">
+          <div class="picon">📚</div>
+          <div class="pname">智能知识库系统</div>
+          <div class="pperiod">2025.10 — 至今 · 前端负责人</div>
+          <div class="pdesc">企业级智能知识库，整合分散知识资源，支持智能检索、知识图谱可视化、标签管理与权限控制。</div>
+          <div class="ptechs"><span class="chip">Vue3</span><span class="chip">TypeScript</span><span class="chip">Elasticsearch</span><span class="chip">Mermaid</span></div>
+          <div class="presult">✦ 查找效率提升 80% · 知识复用率提升 50%</div>
+        </div>
+        <div class="pcard">
+          <div class="picon">🔍</div>
+          <div class="pname">OCR 智能识别平台</div>
+          <div class="pperiod">2023 — 至今 · 前端负责人</div>
+          <div class="pdesc">支持证件、票据、文档多场景文字识别。图片裁剪/旋转/增强预处理，批量上传异步处理，可视化校正界面。</div>
+          <div class="ptechs"><span class="chip">Vue3</span><span class="chip">bin-ui-design</span><span class="chip">表单设计器</span></div>
+          <div class="presult">✦ 识别准确率 95% · 减少人工录入 70%</div>
+        </div>
+        <div class="pcard">
+          <div class="picon">🔄</div>
+          <div class="pname">政府数据交换平台</div>
+          <div class="pperiod">2023 — 至今 · 前端负责人</div>
+          <div class="pdesc">跨部门数据共享交换，AntV G6 可视化关系图，WebSocket 实时监控告警，多维度统计分析报表。</div>
+          <div class="ptechs"><span class="chip">Vue3</span><span class="chip">AntV G6</span><span class="chip">ECharts</span><span class="chip">WebSocket</span></div>
+          <div class="presult">✦ 连接 20+ 政府部门 · 日均交换 1000万+条</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7: OSS -->
+  <div class="slide" id="s6">
+    <div class="oss-wrap">
+      <p class="sec-label r">Open Source</p>
+      <h2 class="slide-title r">开源贡献 <span style="color:var(--text-muted);font-size:.5em;font-weight:400">— 12 个仓库 · 682 Stars</span></h2>
+      <div class="divider r"></div>
+      <div class="oss-grid r">
+        <div class="ocard">
+          <div class="ocard-head">
+            <div class="ocard-title">🧩 bin-ui-design</div>
+            <span class="ostars">★ 135</span>
           </div>
-          <div class="p-5">
-            <h3
-              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
-            >
-              <span class="text-xl">🧩</span>
-              bin-ui-design
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span
-                class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md font-medium"
-                >Vue3</span
-              >
-              <span
-                class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-md font-medium"
-                >TypeScript</span
-              >
-            </div>
-            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-              一个基于 Vue3 和 TypeScript 的组件库
-            </p>
-            <div class="flex gap-2">
-              <a
-                href="https://github.com/wangbin3162/bin-ui-design"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://wangbin3162.github.io/bin-ui-design"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                演示
-              </a>
-            </div>
+          <div class="ocard-tags"><span class="otag otag-blue">Vue3</span><span class="otag otag-blue">TypeScript</span></div>
+          <div class="ocard-desc">一个基于 Vue3 和 TypeScript 的组件库</div>
+          <div class="ocard-footer">
+            <a class="obtn obtn-gh" href="https://github.com/wangbin3162/bin-ui-design" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+            <a class="obtn obtn-demo" href="https://wangbin3162.github.io/bin-ui-design" target="_blank" rel="noopener"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Preview</a>
           </div>
         </div>
-
-        <!-- bin-admin-pro -->
-        <div
-          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
-        >
-          <div class="p-3 bg-white border-b border-gray-100">
-            <div
-              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
-            >
-              <img
-                src="images/bin-admin-pro.png"
-                alt="bin-admin-pro"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                onerror="
-                  this.style.display = 'none'
-                  this.nextElementSibling.style.display = 'flex'
-                "
-              />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-green-50 to-emerald-100 hidden"
-              >
-                <span
-                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
-                  >⚙️</span
-                >
-              </div>
-            </div>
+        <div class="ocard">
+          <div class="ocard-head">
+            <div class="ocard-title">⚙️ bin-admin-pro</div>
+            <span class="ostars">★ 71</span>
           </div>
-          <div class="p-5">
-            <h3
-              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
-            >
-              <span class="text-xl">⚙️</span>
-              bin-admin-pro
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span
-                class="px-2 py-1 bg-green-50 text-green-700 text-xs rounded-md font-medium"
-                >Vue3 全家桶</span
-              >
-            </div>
-            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-              基于 bin-ui 的后端管理系统
-            </p>
-            <div class="flex gap-2">
-              <a
-                href="https://github.com/wangbin3162/bin-admin-pro"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://wangbin3162.github.io/bin-admin-pro"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                演示
-              </a>
-            </div>
+          <div class="ocard-tags"><span class="otag otag-green">Vue3 全家桶</span></div>
+          <div class="ocard-desc">基于 bin-ui 的后端管理系统</div>
+          <div class="ocard-footer">
+            <a class="obtn obtn-gh" href="https://github.com/wangbin3162/bin-admin-pro" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+            <a class="obtn obtn-demo" href="https://wangbin3162.github.io/bin-admin-pro" target="_blank" rel="noopener"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Preview</a>
           </div>
         </div>
-
-        <!-- bin-editor-next -->
-        <div
-          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
-        >
-          <div class="p-3 bg-white border-b border-gray-100">
-            <div
-              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
-            >
-              <img
-                src="images/bin-editor-next.png"
-                alt="bin-editor-next"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                onerror="
-                  this.style.display = 'none'
-                  this.nextElementSibling.style.display = 'flex'
-                "
-              />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-50 to-violet-100 hidden"
-              >
-                <span
-                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
-                  >📝</span
-                >
-              </div>
-            </div>
+        <div class="ocard">
+          <div class="ocard-head">
+            <div class="ocard-title">📝 bin-editor-next</div>
+            <span class="ostars">★ 194</span>
           </div>
-          <div class="p-5">
-            <h3
-              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
-            >
-              <span class="text-xl">📝</span>
-              bin-editor-next
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span
-                class="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded-md font-medium"
-                >Vue3</span
-              >
-              <span
-                class="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded-md font-medium"
-                >brace</span
-              >
-            </div>
-            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-              基于 brace 的 Vue3 编辑器组件库
-            </p>
-            <div class="flex gap-2">
-              <a
-                href="https://github.com/wangbin3162/bin-editor-next"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://wangbin3162.github.io/bin-editor-next"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                演示
-              </a>
-            </div>
+          <div class="ocard-tags"><span class="otag otag-purple">Vue3</span><span class="otag otag-purple">brace</span></div>
+          <div class="ocard-desc">基于 brace 的 Vue3 编辑器组件库</div>
+          <div class="ocard-footer">
+            <a class="obtn obtn-gh" href="https://github.com/wangbin3162/bin-editor-next" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+            <a class="obtn obtn-demo" href="https://wangbin3162.github.io/bin-editor-next" target="_blank" rel="noopener"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Preview</a>
           </div>
         </div>
-
-        <!-- bin-datav -->
-        <div
-          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
-        >
-          <div class="p-3 bg-white border-b border-gray-100">
-            <div
-              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
-            >
-              <img
-                src="images/bin-datav.png"
-                alt="bin-datav"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                onerror="
-                  this.style.display = 'none'
-                  this.nextElementSibling.style.display = 'flex'
-                "
-              />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-cyan-50 to-blue-100 hidden"
-              >
-                <span
-                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
-                  >📊</span
-                >
-              </div>
-            </div>
+        <div class="ocard">
+          <div class="ocard-head">
+            <div class="ocard-title">📊 bin-datav</div>
+            <span class="ostars">★ 94</span>
           </div>
-          <div class="p-5">
-            <h3
-              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
-            >
-              <span class="text-xl">📊</span>
-              bin-datav
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span
-                class="px-2 py-1 bg-cyan-50 text-cyan-700 text-xs rounded-md font-medium"
-                >Vue3</span
-              >
-              <span
-                class="px-2 py-1 bg-cyan-50 text-cyan-700 text-xs rounded-md font-medium"
-                >TypeScript</span
-              >
-            </div>
-            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-              一个基于 Vue3 和 TypeScript 的数据可视化组件库
-            </p>
-            <div class="flex gap-2">
-              <a
-                href="https://github.com/wangbin3162/bin-datav"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://wangbin3162.github.io/bin-datav"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                演示
-              </a>
-            </div>
+          <div class="ocard-tags"><span class="otag otag-cyan">Vue3</span><span class="otag otag-cyan">TypeScript</span></div>
+          <div class="ocard-desc">一个基于 Vue3 和 TypeScript 的数据可视化组件库</div>
+          <div class="ocard-footer">
+            <a class="obtn obtn-gh" href="https://github.com/wangbin3162/bin-datav" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+            <a class="obtn obtn-demo" href="https://wangbin3162.github.io/bin-datav" target="_blank" rel="noopener"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Preview</a>
           </div>
         </div>
-
-        <!-- bin-datav-schema -->
-        <div
-          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
-        >
-          <div class="p-3 bg-white border-b border-gray-100">
-            <div
-              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
-            >
-              <img
-                src="images/bin-datav-schema.png"
-                alt="bin-datav-schema"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                onerror="
-                  this.style.display = 'none'
-                  this.nextElementSibling.style.display = 'flex'
-                "
-              />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-100 hidden"
-              >
-                <span
-                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
-                  >🖥️</span
-                >
-              </div>
-            </div>
+        <div class="ocard">
+          <div class="ocard-head">
+            <div class="ocard-title">🖥️ bin-datav-schema</div>
+            <span class="ostars"></span>
           </div>
-          <div class="p-5">
-            <h3
-              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
-            >
-              <span class="text-xl">🖥️</span>
-              bin-datav-schema
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span
-                class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs rounded-md font-medium"
-                >Vue3</span
-              >
-              <span
-                class="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs rounded-md font-medium"
-                >TypeScript</span
-              >
-            </div>
-            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-              vite + vue3 数据可视化大屏框架
-            </p>
-            <div class="flex gap-2">
-              <a
-                href="https://github.com/wangbin3162/bin-datav-schema"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://wangbin3162.github.io/bin-datav-schema"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                演示
-              </a>
-            </div>
+          <div class="ocard-tags"><span class="otag otag-purple">Vue3</span><span class="otag otag-purple">TypeScript</span></div>
+          <div class="ocard-desc">vite + vue3 数据可视化大屏框架</div>
+          <div class="ocard-footer">
+            <a class="obtn obtn-gh" href="https://github.com/wangbin3162/bin-datav-schema" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+            <a class="obtn obtn-demo" href="https://wangbin3162.github.io/bin-datav-schema" target="_blank" rel="noopener"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Preview</a>
           </div>
         </div>
-
-        <!-- bin-grid-layout -->
-        <div
-          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
-        >
-          <div class="p-3 bg-white border-b border-gray-100">
-            <div
-              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
-            >
-              <img
-                src="images/bin-grid-layout.png"
-                alt="bin-grid-layout"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                onerror="
-                  this.style.display = 'none'
-                  this.nextElementSibling.style.display = 'flex'
-                "
-              />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-50 to-amber-100 hidden"
-              >
-                <span
-                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
-                  >⬜</span
-                >
-              </div>
-            </div>
+        <div class="ocard">
+          <div class="ocard-head">
+            <div class="ocard-title">⬜ bin-grid-layout</div>
+            <span class="ostars">★ 18</span>
           </div>
-          <div class="p-5">
-            <h3
-              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
-            >
-              <span class="text-xl">⬜</span>
-              bin-grid-layout
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span
-                class="px-2 py-1 bg-orange-50 text-orange-700 text-xs rounded-md font-medium"
-                >Vue3</span
-              >
-              <span
-                class="px-2 py-1 bg-orange-50 text-orange-700 text-xs rounded-md font-medium"
-                >TypeScript</span
-              >
-            </div>
-            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-              一个基于 Vue3 和 TypeScript 的网格布局组件库
-            </p>
-            <div class="flex gap-2">
-              <a
-                href="https://github.com/wangbin3162/bin-grid-layout"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://wangbin3162.github.io/bin-grid-layout"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                演示
-              </a>
-            </div>
+          <div class="ocard-tags"><span class="otag otag-orange">Vue3</span><span class="otag otag-orange">TypeScript</span></div>
+          <div class="ocard-desc">一个基于 Vue3 和 TypeScript 的网格布局组件库</div>
+          <div class="ocard-footer">
+            <a class="obtn obtn-gh" href="https://github.com/wangbin3162/bin-grid-layout" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+            <a class="obtn obtn-demo" href="https://wangbin3162.github.io/bin-grid-layout" target="_blank" rel="noopener"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Preview</a>
           </div>
         </div>
-
-        <!-- bin-charts-next -->
-        <div
-          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
-        >
-          <div class="p-3 bg-white border-b border-gray-100">
-            <div
-              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
-            >
-              <img
-                src="images/bin-charts-next.png"
-                alt="bin-charts-next"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                onerror="
-                  this.style.display = 'none'
-                  this.nextElementSibling.style.display = 'flex'
-                "
-              />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-pink-50 to-rose-100 hidden"
-              >
-                <span
-                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
-                  >📈</span
-                >
-              </div>
-            </div>
+        <div class="ocard">
+          <div class="ocard-head">
+            <div class="ocard-title">📈 bin-charts-next</div>
+            <span class="ostars">★ 24</span>
           </div>
-          <div class="p-5">
-            <h3
-              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
-            >
-              <span class="text-xl">📈</span>
-              bin-charts-next
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span
-                class="px-2 py-1 bg-pink-50 text-pink-700 text-xs rounded-md font-medium"
-                >Vue3</span
-              >
-              <span
-                class="px-2 py-1 bg-pink-50 text-pink-700 text-xs rounded-md font-medium"
-                >echarts</span
-              >
-            </div>
-            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-              一个基于 Vue3 和 echarts 的图表组件库
-            </p>
-            <div class="flex gap-2">
-              <a
-                href="https://github.com/wangbin3162/bin-charts-next"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://wangbin3162.github.io/bin-charts-next"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                演示
-              </a>
-            </div>
+          <div class="ocard-tags"><span class="otag otag-pink">Vue3</span><span class="otag otag-pink">echarts</span></div>
+          <div class="ocard-desc">一个基于 Vue3 和 echarts 的图表组件库</div>
+          <div class="ocard-footer">
+            <a class="obtn obtn-gh" href="https://github.com/wangbin3162/bin-charts-next" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+            <a class="obtn obtn-demo" href="https://wangbin3162.github.io/bin-charts-next" target="_blank" rel="noopener"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Preview</a>
           </div>
         </div>
-
-        <!-- bin-form-maker -->
-        <div
-          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
-        >
-          <div class="p-3 bg-white border-b border-gray-100">
-            <div
-              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
-            >
-              <img
-                src="images/bin-form-maker.png"
-                alt="bin-form-maker"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                onerror="
-                  this.style.display = 'none'
-                  this.nextElementSibling.style.display = 'flex'
-                "
-              />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-teal-50 to-cyan-100 hidden"
-              >
-                <span
-                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
-                  >📋</span
-                >
-              </div>
-            </div>
+        <div class="ocard">
+          <div class="ocard-head">
+            <div class="ocard-title">📋 bin-form-maker</div>
+            <span class="ostars">★ 7</span>
           </div>
-          <div class="p-5">
-            <h3
-              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
-            >
-              <span class="text-xl">📋</span>
-              bin-form-maker
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span
-                class="px-2 py-1 bg-teal-50 text-teal-700 text-xs rounded-md font-medium"
-                >Vue3</span
-              >
-              <span
-                class="px-2 py-1 bg-teal-50 text-teal-700 text-xs rounded-md font-medium"
-                >TypeScript</span
-              >
-            </div>
-            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-              一个基于 Vue3 和 TypeScript 的表单生成器组件库
-            </p>
-            <div class="flex gap-2">
-              <a
-                href="https://github.com/wangbin3162/bin-form-maker"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://wangbin3162.github.io/bin-form-maker"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                演示
-              </a>
-            </div>
+          <div class="ocard-tags"><span class="otag otag-teal">Vue3</span><span class="otag otag-teal">TypeScript</span></div>
+          <div class="ocard-desc">一个基于 Vue3 和 TypeScript 的表单生成器组件库</div>
+          <div class="ocard-footer">
+            <a class="obtn obtn-gh" href="https://github.com/wangbin3162/bin-form-maker" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+            <a class="obtn obtn-demo" href="https://wangbin3162.github.io/bin-form-maker" target="_blank" rel="noopener"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Preview</a>
           </div>
         </div>
-
-        <!-- bin-excel-pro -->
-        <div
-          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
-        >
-          <div class="p-3 bg-white border-b border-gray-100">
-            <div
-              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
-            >
-              <img
-                src="images/bin-excel-pro.png"
-                alt="bin-excel-pro"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                onerror="
-                  this.style.display = 'none'
-                  this.nextElementSibling.style.display = 'flex'
-                "
-              />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-lime-50 to-green-100 hidden"
-              >
-                <span
-                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
-                  >📑</span
-                >
-              </div>
-            </div>
+        <div class="ocard">
+          <div class="ocard-head">
+            <div class="ocard-title">📑 bin-excel-pro</div>
+            <span class="ostars">★ 6</span>
           </div>
-          <div class="p-5">
-            <h3
-              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
-            >
-              <span class="text-xl">📑</span>
-              bin-excel-pro
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span
-                class="px-2 py-1 bg-lime-50 text-lime-700 text-xs rounded-md font-medium"
-                >Vue3</span
-              >
-              <span
-                class="px-2 py-1 bg-lime-50 text-lime-700 text-xs rounded-md font-medium"
-                >univer</span
-              >
-            </div>
-            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-              一个基于 Vue3 和 univer 的 Excel 表格组件库
-            </p>
-            <div class="flex gap-2">
-              <a
-                href="https://github.com/wangbin3162/bin-excel-pro"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://wangbin3162.github.io/bin-excel-pro"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                演示
-              </a>
-            </div>
+          <div class="ocard-tags"><span class="otag otag-lime">Vue3</span><span class="otag otag-lime">univer</span></div>
+          <div class="ocard-desc">一个基于 Vue3 和 univer 的 Excel 表格组件库</div>
+          <div class="ocard-footer">
+            <a class="obtn obtn-gh" href="https://github.com/wangbin3162/bin-excel-pro" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+            <a class="obtn obtn-demo" href="https://wangbin3162.github.io/bin-excel-pro" target="_blank" rel="noopener"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Preview</a>
           </div>
         </div>
-
-        <!-- bin-tree-org -->
-        <div
-          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
-        >
-          <div class="p-3 bg-white border-b border-gray-100">
-            <div
-              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
-            >
-              <img
-                src="images/bin-tree-org.png"
-                alt="bin-tree-org"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                onerror="
-                  this.style.display = 'none'
-                  this.nextElementSibling.style.display = 'flex'
-                "
-              />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-100 hidden"
-              >
-                <span
-                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
-                  >🌳</span
-                >
-              </div>
-            </div>
+        <div class="ocard">
+          <div class="ocard-head">
+            <div class="ocard-title">🌳 bin-tree-org</div>
+            <span class="ostars">★ 103</span>
           </div>
-          <div class="p-5">
-            <h3
-              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
-            >
-              <span class="text-xl">🌳</span>
-              bin-tree-org
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span
-                class="px-2 py-1 bg-emerald-50 text-emerald-700 text-xs rounded-md font-medium"
-                >Vue2</span
-              >
-            </div>
-            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-              一个基于 Vue2 的组织树组件
-            </p>
-            <div class="flex gap-2">
-              <a
-                href="https://github.com/wangbin3162/bin-tree-org"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://wangbin3162.github.io/bin-tree-org"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                演示
-              </a>
-            </div>
+          <div class="ocard-tags"><span class="otag otag-green">Vue2</span></div>
+          <div class="ocard-desc">一个基于 Vue2 的组织树组件</div>
+          <div class="ocard-footer">
+            <a class="obtn obtn-gh" href="https://github.com/wangbin3162/bin-tree-org" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+            <a class="obtn obtn-demo" href="https://wangbin3162.github.io/bin-tree-org" target="_blank" rel="noopener"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Preview</a>
           </div>
         </div>
-
-        <!-- bin-animation -->
-        <div
-          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
-        >
-          <div class="p-3 bg-white border-b border-gray-100">
-            <div
-              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
-            >
-              <img
-                src="images/bin-animation.png"
-                alt="bin-animation"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                onerror="
-                  this.style.display = 'none'
-                  this.nextElementSibling.style.display = 'flex'
-                "
-              />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-yellow-50 to-amber-100 hidden"
-              >
-                <span
-                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
-                  >✨</span
-                >
-              </div>
-            </div>
+        <div class="ocard">
+          <div class="ocard-head">
+            <div class="ocard-title">✨ bin-animation</div>
+            <span class="ostars">★ 22</span>
           </div>
-          <div class="p-5">
-            <h3
-              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
-            >
-              <span class="text-xl">✨</span>
-              bin-animation
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span
-                class="px-2 py-1 bg-yellow-50 text-yellow-700 text-xs rounded-md font-medium"
-                >Vue</span
-              >
-            </div>
-            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-              基于vue，结合transition钩子函数配合的css3动画库
-            </p>
-            <div class="flex gap-2">
-              <a
-                href="https://github.com/wangbin3162/bin-animation"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://wangbin3162.github.io/bin-animation"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                演示
-              </a>
-            </div>
+          <div class="ocard-tags"><span class="otag otag-yellow">Vue</span></div>
+          <div class="ocard-desc">基于vue，结合transition钩子函数配合的css3动画库</div>
+          <div class="ocard-footer">
+            <a class="obtn obtn-gh" href="https://github.com/wangbin3162/bin-animation" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+            <a class="obtn obtn-demo" href="https://wangbin3162.github.io/bin-animation" target="_blank" rel="noopener"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Preview</a>
           </div>
         </div>
-
-        <!-- bin-keyframe-animation -->
-        <div
-          class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
-        >
-          <div class="p-3 bg-white border-b border-gray-100">
-            <div
-              class="aspect-video rounded-lg overflow-hidden shadow-sm relative group"
-            >
-              <img
-                src="images/bin-keyframe-animation.png"
-                alt="bin-keyframe-animation"
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                onerror="
-                  this.style.display = 'none'
-                  this.nextElementSibling.style.display = 'flex'
-                "
-              />
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-red-50 to-rose-100 hidden"
-              >
-                <span
-                  class="text-6xl transition-transform duration-300 group-hover:scale-110"
-                  >🎬</span
-                >
-              </div>
-            </div>
+        <div class="ocard">
+          <div class="ocard-head">
+            <div class="ocard-title">🎬 bin-keyframe-animation</div>
+            <span class="ostars">★ 8</span>
           </div>
-          <div class="p-5">
-            <h3
-              class="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2"
-            >
-              <span class="text-xl">🎬</span>
-              bin-keyframe-animation
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span
-                class="px-2 py-1 bg-red-50 text-red-700 text-xs rounded-md font-medium"
-                >JavaScript</span
-              >
-            </div>
-            <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-              js关键帧动画库
-            </p>
-            <div class="flex gap-2">
-              <a
-                href="https://github.com/wangbin3162/bin-keyframe-animation"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors"
-              >
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://wangbin3162.github.io/bin-keyframe-animation"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-                演示
-              </a>
-            </div>
+          <div class="ocard-tags"><span class="otag otag-red">JavaScript</span></div>
+          <div class="ocard-desc">js关键帧动画库</div>
+          <div class="ocard-footer">
+            <a class="obtn obtn-gh" href="https://github.com/wangbin3162/bin-keyframe-animation" target="_blank" rel="noopener"><svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+            <a class="obtn obtn-demo" href="https://wangbin3162.github.io/bin-keyframe-animation" target="_blank" rel="noopener"><svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>Preview</a>
+          </div>
+        </div>
+        <!-- Total -->
+        <a class="ocard ocard-total" href="github-demo.html" target="_blank" rel="noopener">
+          <div style="font-size:32px">🌟</div>
+          <div style="font-size:12px;color:var(--text-muted);letter-spacing:1px">GitHub Stars 总计</div>
+          <div class="ocard-total-n">682</div>
+          <div style="font-size:12px;color:var(--accent);margin-top:2px">查看所有项目 →</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9: Tech Stack -->
+  <div class="slide" id="s8">
+    <div class="tech-wrap">
+      <p class="sec-label r">Skills</p>
+      <h2 class="slide-title r">技术栈</h2>
+      <div class="divider r"></div>
+      <div class="tech-grid r">
+        <div class="tcategory">
+          <div class="tcat-title">核心语言</div>
+          <div class="titems">
+            <span class="titem e">Vue3 / Vue2</span>
+            <span class="titem e">TypeScript</span>
+            <span class="titem e">JavaScript</span>
+            <span class="titem p">React</span>
+            <span class="titem p">Next.js</span>
+          </div>
+        </div>
+        <div class="tcategory">
+          <div class="tcat-title">可视化</div>
+          <div class="titems">
+            <span class="titem e">ECharts</span>
+            <span class="titem e">Three.js</span>
+            <span class="titem e">D3.js</span>
+            <span class="titem p">WebGL</span>
+            <span class="titem p">Canvas</span>
+            <span class="titem p">AntV G6</span>
+          </div>
+        </div>
+        <div class="tcategory">
+          <div class="tcat-title">工程化</div>
+          <div class="titems">
+            <span class="titem e">Vite</span>
+            <span class="titem e">Webpack</span>
+            <span class="titem p">Rollup</span>
+            <span class="titem p">Monorepo</span>
+            <span class="titem p">CI/CD</span>
+          </div>
+        </div>
+        <div class="tcategory">
+          <div class="tcat-title">移动端 · 跨端</div>
+          <div class="titems">
+            <span class="titem e">微信小程序</span>
+            <span class="titem p">uni-app</span>
+            <span class="titem f">React Native</span>
+            <span class="titem f">Electron</span>
+          </div>
+        </div>
+        <div class="tcategory">
+          <div class="tcat-title">AI 工具链</div>
+          <div class="titems">
+            <span class="titem e">Claude Code</span>
+            <span class="titem e">Copilot</span>
+            <span class="titem e">Cursor</span>
+            <span class="titem p">LangChain</span>
+            <span class="titem p">CopilotKit</span>
+          </div>
+        </div>
+        <div class="tcategory">
+          <div class="tcat-title">其他</div>
+          <div class="titems">
+            <span class="titem p">Node.js</span>
+            <span class="titem p">Unity3D</span>
+            <span class="titem f">Elasticsearch</span>
+            <span class="titem f">C#</span>
           </div>
         </div>
       </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-gray-200 mt-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <p class="text-center text-gray-500 text-sm">
-          &copy; 2024 Open Source Components. All rights reserved.
-        </p>
+      <div class="tech-legend r">
+        <span><span class="titem e" style="padding:3px 10px">■</span> 精通</span>
+        <span><span class="titem p" style="padding:3px 10px">■</span> 熟练</span>
+        <span><span class="titem f" style="padding:3px 10px">■</span> 掌握</span>
       </div>
-    </footer>
-  </body>
+    </div>
+  </div>
+
+  <!-- 10: Advantages -->
+  <div class="slide" id="s9">
+    <div class="adv-wrap">
+      <p class="sec-label r">Strengths</p>
+      <h2 class="slide-title r">核心优势</h2>
+      <div class="divider r"></div>
+      <div class="adv-grid r">
+        <div class="acard">
+          <div class="aicon">⚡</div>
+          <div class="atitle">技术管理双栖</div>
+          <div class="adesc">从0到1搭建8人技术团队，建立完整研发流程（需求→设计→开发→测试→发布→运维）。部门效率提升 60%，同时保持极强技术执行力。</div>
+        </div>
+        <div class="acard">
+          <div class="aicon">🎯</div>
+          <div class="atitle">组件库专家</div>
+          <div class="adesc">主导企业级组件库，50+ 组件覆盖全业务场景，服务 50+ 项目。单元测试+E2E+视觉回归，覆盖率 85%，设计团队评审效率提升 50%。</div>
+        </div>
+        <div class="acard">
+          <div class="aicon">📊</div>
+          <div class="atitle">数据可视化专家</div>
+          <div class="adesc">将 Unity3D 3D 可视化能力融入前端开发，精通 ECharts / Three.js / D3.js / WebGL，实现 20+ 大屏，支持百图表同时流畅运行。</div>
+        </div>
+        <div class="acard">
+          <div class="aicon">🤖</div>
+          <div class="atitle">AI 时代生产力</div>
+          <div class="adesc">熟练使用 Cursor、Copilot、Claude Code 等 AI 编程工具并在团队推广，开发 AI 智能体平台、RAG 知识库等创新产品，开发效率提升 50%。</div>
+        </div>
+        <div class="acard">
+          <div class="aicon">🌐</div>
+          <div class="atitle">全端开发能力</div>
+          <div class="adesc">精通 Web、微信小程序（日活 10万+）、Electron 桌面端多平台开发，具备从技术选型、架构设计到落地实施的全流程把控。</div>
+        </div>
+        <div class="acard">
+          <div class="aicon">🔓</div>
+          <div class="atitle">开源贡献者</div>
+          <div class="adesc">维护 11 个高质量开源组件库，GitHub Stars 682+。专注解决企业级实际问题，多个库被实际业务场景验证，获用户广泛认可。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11: Contact -->
+  <div class="slide" id="s10">
+    <div class="contact-wrap">
+      <p class="sec-label r">Connect</p>
+      <h2 class="slide-title r">联系方式</h2>
+      <div class="divider r" style="margin:14px auto 20px;"></div>
+      <p class="r" style="color:var(--text-muted);font-size:14px;">欢迎就技术合作、职业机会或开源项目进行交流</p>
+      <div class="contact-links r">
+        <a href="tel:17625160896" class="clink">
+          <span class="cicon">📱</span>
+          <div><div class="clabel">手机</div><div class="cval">176 2516 0896</div></div>
+        </a>
+        <a href="mailto:316281400@qq.com" class="clink">
+          <span class="cicon">✉️</span>
+          <div><div class="clabel">邮箱</div><div class="cval">316281400@qq.com</div></div>
+        </a>
+        <a href="https://github.com/wangbin3162" target="_blank" class="clink">
+          <span class="cicon"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></span>
+          <div><div class="clabel">GitHub</div><div class="cval">github.com/wangbin3162</div></div>
+        </a>
+        <a href="https://juejin.cn/user/4230576475747928/posts" target="_blank" class="clink">
+          <span class="cicon">✍️</span>
+          <div><div class="clabel">掘金博客</div><div class="cval">juejin.cn · 技术分享</div></div>
+        </a>
+        <a href="https://wangbin3162.github.io/" target="_blank" class="clink">
+          <span class="cicon">🌐</span>
+          <div><div class="clabel">个人网站</div><div class="cval">wangbin3162.github.io</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<a href="https://deerflow.tech" target="_blank" id="deerflow">✦ Deerflow</a>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let current = 0, animating = false;
+
+  document.getElementById('tot').textContent = total;
+
+  const dotsEl = document.getElementById('dots');
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  });
+
+  function updateUI() {
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    document.getElementById('progress-bar').style.width = ((current + 1) / total * 100) + '%';
+    document.getElementById('prev-btn').disabled = current === 0;
+    document.getElementById('next-btn').disabled = current === total - 1;
+    document.getElementById('cur').textContent = current + 1;
+  }
+
+  function goTo(idx) {
+    if (animating || idx === current || idx < 0 || idx >= total) return;
+    animating = true;
+    const dir = idx > current ? 1 : -1;
+    const from = slides[current], to = slides[idx];
+    to.style.transition = 'none';
+    to.style.opacity = '0';
+    to.style.transform = `translateX(${dir * 70}px)`;
+    to.offsetHeight;
+    from.style.transition = 'opacity .5s cubic-bezier(.4,0,.2,1), transform .5s cubic-bezier(.4,0,.2,1)';
+    from.style.opacity = '0';
+    from.style.transform = `translateX(${-dir * 70}px)`;
+    from.classList.remove('active');
+    to.style.transition = 'opacity .5s cubic-bezier(.4,0,.2,1), transform .5s cubic-bezier(.4,0,.2,1)';
+    to.style.opacity = '';
+    to.style.transform = '';
+    to.classList.add('active');
+    current = idx;
+    updateUI();
+    setTimeout(() => { from.style.transition = ''; from.style.transform = ''; from.style.opacity = ''; animating = false; }, 540);
+  }
+
+  function nav(dir) { goTo(current + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)) { e.preventDefault(); nav(1); }
+    else if (['ArrowLeft','ArrowUp','PageUp'].includes(e.key)) { e.preventDefault(); nav(-1); }
+    else if (e.key === 'Home') goTo(0);
+    else if (e.key === 'End') goTo(total - 1);
+  });
+
+  let tx = 0;
+  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) nav(dx < 0 ? 1 : -1); });
+
+  let wCool = false;
+  document.addEventListener('wheel', e => {
+    if (wCool) return;
+    wCool = true;
+    nav(e.deltaY > 0 ? 1 : -1);
+    setTimeout(() => wCool = false, 900);
+  }, { passive: true });
+
+  updateUI();
+
+  // Particle network
+  const canvas = document.getElementById('canvas-bg');
+  const ctx = canvas.getContext('2d');
+  let pts = [];
+
+  function resize() { canvas.width = innerWidth; canvas.height = innerHeight; initPts(); }
+
+  function initPts() {
+    pts = [];
+    const n = Math.floor((canvas.width * canvas.height) / 14000);
+    for (let i = 0; i < n; i++) {
+      pts.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random()-.5)*.38, vy: (Math.random()-.5)*.38, r: Math.random()*1.4+.4, a: Math.random()*.5+.15 });
+    }
+  }
+
+  (function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pts.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(0,229,255,${p.a})`; ctx.fill();
+    });
+    for (let i = 0; i < pts.length; i++) for (let j = i+1; j < pts.length; j++) {
+      const dx = pts[i].x-pts[j].x, dy = pts[i].y-pts[j].y, d = Math.sqrt(dx*dx+dy*dy);
+      if (d < 115) { ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.strokeStyle=`rgba(0,229,255,${.12*(1-d/115)})`; ctx.lineWidth=.5; ctx.stroke(); }
+    }
+    requestAnimationFrame(animate);
+  })();
+
+  resize();
+  window.addEventListener('resize', resize);
+</script>
+</body>
 </html>
