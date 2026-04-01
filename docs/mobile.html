@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>王彬 - 个人简历</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #060d1a;
+            --accent: #00e5ff;
+            --accent2: #7b61ff;
+            --gold: #ffd60a;
+            --success: #00ff88;
+            --text: #e8f4fd;
+            --text-muted: #5a7fa0;
+            --text-dim: #8aa5c0;
+            --glass: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 简化的背景效果 */
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        /* 主内容区域 */
+        .main-content {
+            height: calc(100vh - 60px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .main-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .main-content::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* 页面容器 */
+        .page {
+            min-height: calc(100vh - 60px);
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            display: none;
+        }
+
+        .page.active {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+
+        /* 底部导航栏 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(6, 13, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--accent);
+        }
+
+        .nav-item i {
+            font-size: 20px;
+        }
+
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        /* 公共样式 */
+        .sec-label {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .divider {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            margin: 12px 0;
+        }
+
+        /* 首页样式 */
+        .cover {
+            text-align: center;
+            max-width: 400px;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--bg);
+            margin: 0 auto 20px;
+        }
+
+        .cover-name {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            line-height: 1;
+            background: linear-gradient(120deg, #fff 40%, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .cover-role {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .cover-stats {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 24px;
+            background: var(--glass);
+            border-radius: 16px;
+            padding: 16px 8px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .cstat {
+            padding: 0 16px;
+            border-right: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .cstat:last-child {
+            border-right: none;
+        }
+
+        .cstat-n {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .cstat-l {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .cover-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .ctag {
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        /* 个人简介页 */
+        .bio-section {
+            background: var(--glass);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .bio-text {
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .bio-text strong {
+            color: var(--accent);
+        }
+
+        .bio-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .bio-stat {
+            text-align: center;
+            padding: 12px;
+            background: rgba(0, 229, 255, 0.05);
+            border: 1px solid rgba(0, 229, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        .bio-stat-n {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .bio-stat-l {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* 工作经历页 */
+        .timeline-item {
+            background: var(--glass);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .timeline-period {
+            font-size: 12px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .timeline-company {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .timeline-role {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .timeline-points {
+            list-style: none;
+        }
+
+        .timeline-points li {
+            margin-bottom: 8px;
+            padding-left: 16px;
+            position: relative;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .timeline-points li::before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+        }
+
+        /* 项目页 */
+        .project-card {
+            background: var(--glass);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .project-header {
+            margin-bottom: 12px;
+        }
+
+        .project-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .tech-tag {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            background: rgba(123, 97, 255, 0.1);
+            color: #b8a7ff;
+            border: 1px solid rgba(123, 97, 255, 0.2);
+        }
+
+        .tech-tag.frontend {
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        .tech-tag.other {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-muted);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* 技能页 */
+        .skill-section {
+            margin-bottom: 24px;
+        }
+
+        .skill-category {
+            background: var(--glass);
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 16px;
+        }
+
+        .skill-category-title {
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-tag {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        /* 联系方式页 */
+        .contact-section {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--glass);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.2s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 229, 255, 0.05);
+            transform: translateX(4px);
+        }
+
+        .contact-icon {
+            width: 24px;
+            text-align: center;
+        }
+
+        .contact-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .contact-value {
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        /* 项目展示页 */
+        .project-header {
+            margin-bottom: 12px;
+        }
+
+        .project-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .project-desc {
+            font-size: 14px;
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .tech-tag {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            background: rgba(123, 97, 255, 0.1);
+            color: #b8a7ff;
+            border: 1px solid rgba(123, 97, 255, 0.2);
+        }
+
+        .tech-tag.frontend {
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        .tech-tag.other {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-muted);
+            border: 1px solid var(--glass-border);
+        }
+
+        .presult {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--success);
+        }
+
+        /* 开源库样式 */
+        .oss-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ocard {
+            background: var(--glass);
+            border-radius: 14px;
+            padding: 16px;
+            border: 1px solid var(--glass-border);
+            transition: border-color 0.3s;
+        }
+
+        .ocard:hover {
+            border-color: rgba(0, 229, 255, 0.2);
+        }
+
+        .ocard-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .ocard-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .ostars {
+            font-size: 12px;
+            color: var(--gold);
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        .ocard-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .otag {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .otag-blue {
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        .otag-purple {
+            background: rgba(123, 97, 255, 0.1);
+            color: #b8a7ff;
+            border: 1px solid rgba(123, 97, 255, 0.2);
+        }
+
+        .otag-green {
+            background: rgba(76, 175, 80, 0.1);
+            color: #81c784;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+
+        .otag-cyan {
+            background: rgba(0, 188, 212, 0.1);
+            color: #4dd0e1;
+            border: 1px solid rgba(0, 188, 212, 0.2);
+        }
+
+        .otag-lime {
+            background: rgba(139, 195, 74, 0.1);
+            color: #aed581;
+            border: 1px solid rgba(139, 195, 74, 0.2);
+        }
+
+        .otag-teal {
+            background: rgba(0, 150, 136, 0.1);
+            color: #4db6ac;
+            border: 1px solid rgba(0, 150, 136, 0.2);
+        }
+
+        .otag-orange {
+            background: rgba(255, 152, 0, 0.1);
+            color: #ffb74d;
+            border: 1px solid rgba(255, 152, 0, 0.2);
+        }
+
+        .otag-pink {
+            background: rgba(233, 30, 99, 0.1);
+            color: #f06292;
+            border: 1px solid rgba(233, 30, 99, 0.2);
+        }
+
+        .ocard-desc {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+        }
+
+        .ocard-footer {
+            display: flex;
+            gap: 8px;
+        }
+
+        .obtn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        .obtn-gh {
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--text);
+            border: 1px solid var(--glass-border);
+        }
+
+        .obtn-gh:hover {
+            background: rgba(0, 0, 0, 0.4);
+            border-color: var(--accent);
+        }
+
+        .obtn-demo {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            border: 1px solid var(--glass-border);
+        }
+
+        .obtn-demo:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* 个人优势样式 */
+        .adv-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .acard {
+            padding: 16px;
+            background: var(--glass);
+            border-radius: 14px;
+            border: 1px solid var(--glass-border);
+            transition: border-color 0.3s;
+        }
+
+        .acard:hover {
+            border-color: rgba(0, 229, 255, 0.2);
+        }
+
+        .aicon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .atitle {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .adesc {
+            font-size: 12px;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* Deerflow branding */
+        .deerflow-badge {
+            position: fixed;
+            bottom: 70px;
+            right: 12px;
+            font-size: 11px;
+            color: var(--text-muted);
+            opacity: 0.4;
+            text-decoration: none;
+            z-index: 101;
+            transition: opacity 0.2s ease;
+        }
+
+        .deerflow-badge:hover {
+            opacity: 0.8;
+        }
+
+        /* 滑动手势提示 */
+        .swipe-hint {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .swipe-hint.show {
+            opacity: 0.6;
+        }
+
+        .swipe-hint-text {
+            color: var(--text-muted);
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.4;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 375px) {
+            .page {
+                padding: 16px;
+            }
+
+            .page-title {
+                font-size: 24px;
+            }
+
+            .cover-name {
+                font-size: 32px;
+            }
+
+            .cover-stats {
+                padding: 12px 4px;
+            }
+
+            .cstat {
+                padding: 0 12px;
+            }
+
+            .cstat-n {
+                font-size: 20px;
+            }
+        }
+
+        /* 动画类 */
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas-bg"></canvas>
+
+    <div class="main-content">
+        <!-- 首页 -->
+        <div class="page active" id="page-home">
+            <div class="cover">
+                <div class="avatar fade-in">WB</div>
+                <div class="cover-name fade-in">王 彬</div>
+                <div class="cover-role fade-in">Frontend Lead · 前端研发组长</div>
+
+                <div class="cover-stats fade-in">
+                    <div class="cstat">
+                        <div class="cstat-n">12</div>
+                        <div class="cstat-l">年从业经验</div>
+                    </div>
+                    <div class="cstat">
+                        <div class="cstat-n">8</div>
+                        <div class="cstat-l">人技术团队</div>
+                    </div>
+                    <div class="cstat">
+                        <div class="cstat-n">12</div>
+                        <div class="cstat-l">个开源库</div>
+                    </div>
+                    <div class="cstat">
+                        <div class="cstat-n">50+</div>
+                        <div class="cstat-l">核心项目</div>
+                    </div>
+                </div>
+
+                <div class="cover-tags fade-in">
+                    <span class="ctag">Vue3 专家</span>
+                    <span class="ctag">数据可视化</span>
+                    <span class="ctag">AI 应用开发</span>
+                    <span class="ctag">组件库设计</span>
+                    <span class="ctag">开源贡献者</span>
+                    <span class="ctag">全端开发</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 个人简介 -->
+        <div class="page" id="page-bio">
+            <p class="sec-label">About Me</p>
+            <h2 class="page-title">个人简介</h2>
+            <div class="divider"></div>
+
+            <div class="bio-section fade-in">
+                <p class="bio-text">
+                    12年前端研发经验，现任<strong>前端研发组长</strong>，带领<strong>8人技术团队</strong>直接向研发总监汇报。精通<strong>Vue3 生态</strong>与工程化体系，主导企业级组件库、数据可视化平台、低代码平台及<strong>AI 智能体</strong>等多个大型项目从0到1落地。具备全端开发能力（Web / 小程序 / 桌面端），维护<strong>12个开源组件库</strong>，兼顾技术深度与团队管理，擅长在政务、金融、企业信息化领域构建复杂系统解决方案。
+                </p>
+
+                <div class="bio-stats">
+                    <div class="bio-stat">
+                        <div class="bio-stat-n">12+</div>
+                        <div class="bio-stat-l">年前端经验</div>
+                    </div>
+                    <div class="bio-stat">
+                        <div class="bio-stat-n">8</div>
+                        <div class="bio-stat-l">人团队规模</div>
+                    </div>
+                    <div class="bio-stat">
+                        <div class="bio-stat-n">20+</div>
+                        <div class="bio-stat-l">核心项目</div>
+                    </div>
+                    <div class="bio-stat">
+                        <div class="bio-stat-n">70%</div>
+                        <div class="bio-stat-l">构建速度提升</div>
+                    </div>
+                    <div class="bio-stat">
+                        <div class="bio-stat-n">80+</div>
+                        <div class="bio-stat-l">封装组件数</div>
+                    </div>
+                    <div class="bio-stat">
+                        <div class="bio-stat-n">12+</div>
+                        <div class="bio-stat-l">开源组件</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 工作经历 -->
+        <div class="page" id="page-work">
+            <p class="sec-label">Career</p>
+            <h2 class="page-title">工作经历</h2>
+            <div class="divider"></div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-period">2018.02 — 至今</div>
+                <div class="timeline-company">徐州新蝶科技有限公司</div>
+                <div class="timeline-role">前端研发组长 · 部门管理</div>
+                <ul class="timeline-points">
+                    <li>带领8人技术团队（前端/后端/UI/运维），直接向研发总监汇报，制定技术选型与研发流程规范</li>
+                    <li>主导企业级 Vue3 组件库建设，封装 50+ 通用组件，服务全公司核心项目，减少重复开发 60%</li>
+                    <li>推动工程化升级 Webpack → Vite，构建速度提升 70%；搭建性能监控，首屏加载优化 50%</li>
+                    <li>主导数据可视化大屏平台，实现 50+ 块大屏，覆盖智慧城市/智慧工厂/信用体系等核心业务</li>
+                    <li>带队开发 AI 智能体平台、智能知识库、OCR 识别平台等创新项目，推动公司数字化转型</li>
+                    <li>建立 CI/CD 流水线，发布效率提升 80%，故障率降低 40%</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-period">2015 — 2017</div>
+                <div class="timeline-company">上海迪尔希科技有限公司</div>
+                <div class="timeline-role">Unity 开发工程师</div>
+                <ul class="timeline-points">
+                    <li>使用 Unity3D + C# 开发互动游戏项目，负责渲染管线优化、内存管理、帧率提升</li>
+                    <li>跨平台开发，确保游戏在 iOS / Android / PC 多平台稳定运行</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 项目展示 -->
+        <div class="page" id="page-projects">
+            <p class="sec-label">Projects</p>
+            <h2 class="page-title">项目展示</h2>
+            <div class="divider"></div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title">企业级 Vue3 组件库</div>
+                    <div class="project-desc">
+                        封装50+通用组件，提供完整的设计系统和解决方案，服务全公司核心项目
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag frontend">Vue3</span>
+                        <span class="tech-tag frontend">TypeScript</span>
+                        <span class="tech-tag frontend">Vite</span>
+                        <span class="tech-tag frontend">Storybook</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title">数据可视化大屏平台</div>
+                    <div class="project-desc">
+                        实现50+块大屏，覆盖智慧城市、智慧工厂、信用体系等核心业务场景
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag frontend">ECharts</span>
+                        <span class="tech-tag frontend">D3.js</span>
+                        <span class="tech-tag">WebSocket</span>
+                        <span class="tech-tag other">Canvas</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title">AI 智能体平台</div>
+                    <div class="project-desc">
+                        基于大语言模型开发的企业级AI助手，支持多场景应用和知识库管理
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag frontend">Vue3</span>
+                        <span class="tech-tag">OpenAI API</span>
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag other">RAG</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 技能专长 -->
+        <div class="page" id="page-skills">
+            <p class="sec-label">Skills</p>
+            <h2 class="page-title">技能专长</h2>
+            <div class="divider"></div>
+
+            <div class="skill-section">
+                <div class="skill-category fade-in">
+                    <div class="skill-category-title">前端技术</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Vue3</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Vite</span>
+                        <span class="skill-tag">Webpack</span>
+                        <span class="skill-tag">Pinia/Vuex</span>
+                        <span class="skill-tag">React Router</span>
+                        <span class="skill-tag">Element Plus</span>
+                        <span class="skill-tag">Ant Design</span>
+                        <span class="skill-tag">ECharts</span>
+                        <span class="skill-tag">D3.js</span>
+                        <span class="skill-tag">Three.js</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <div class="skill-category-title">后端技术</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">Koa</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Redis</span>
+                        <span class="skill-tag">WebSocket</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <div class="skill-category-title">开发工具</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Nginx</span>
+                        <span class="skill-tag">PM2</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <div class="skill-category-title">AI 相关</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">OpenAI</span>
+                        <span class="skill-tag">RAG</span>
+                        <span class="skill-tag">向量数据库</span>
+                        <span class="skill-tag">OCR</span>
+                        <span class="skill-tag">大模型应用开发</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 开源贡献 -->
+        <div class="page" id="page-open">
+            <p class="sec-label">Open Source</p>
+            <h2 class="page-title">开源贡献</h2>
+            <div class="divider"></div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title">Vue3 Admin Pro</div>
+                    <div class="project-desc">
+                        企业级中后台管理系统，开箱即用，支持多主题配置和国际化
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag frontend">Vue3</span>
+                        <span class="tech-tag frontend">TypeScript</span>
+                        <span class="tech-tag frontend">Vite</span>
+                        <span class="tech-tag">6000+ Stars</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title">React Chart Pro</div>
+                    <div class="project-desc">
+                        企业级图表组件库，支持多种图表类型和自定义配置
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag frontend">React</span>
+                        <span class="tech-tag frontend">D3.js</span>
+                        <span class="tech-tag">4000+ Stars</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title">UI Component Lib</div>
+                    <div class="project-desc">
+                        基于Vue3的UI组件库，提供50+高质量组件，支持按需引入
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag frontend">Vue3</span>
+                        <span class="tech-tag frontend">TypeScript</span>
+                        <span class="tech-tag">2000+ Stars</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 联系方式 -->
+        <div class="page" id="page-contact">
+            <p class="sec-label">Contact</p>
+            <h2 class="page-title">联系方式</h2>
+            <div class="divider"></div>
+
+            <div class="contact-section">
+                <div class="contact-links">
+                    <a href="mailto:wangbin@example.com" class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-label">邮箱</div>
+                            <div class="contact-value">wangbin@example.com</div>
+                        </div>
+                    </a>
+
+                    <a href="tel:+8613800138000" class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-label">电话</div>
+                            <div class="contact-value">138-0013-8000</div>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/wangbin3162" target="_blank" class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-label">GitHub</div>
+                            <div class="contact-value">wangbin3162</div>
+                        </div>
+                    </a>
+
+                    <a href="https://wangbin3162.github.io" target="_blank" class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-label">个人网站</div>
+                            <div class="contact-value">wangbin3162.github.io</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目展示 II -->
+        <div class="page" id="page-projects2">
+            <p class="sec-label">Projects · 02</p>
+            <h2 class="page-title">业务平台项目</h2>
+            <div class="divider"></div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title">AI 智能问数平台</div>
+                    <div class="project-desc">
+                        自然语言驱动财务数据查询与报告生成。CopilotKit 流式交互，ECharts 可视化，一键 PDF 导出。
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">CopilotKit</span>
+                        <span class="tech-tag">ECharts</span>
+                    </div>
+                    <div class="presult">✦ 月报制作 2天→2小时，效率提升 75%</div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title">数据治理平台</div>
+                    <div class="project-desc">
+                        数据血缘分析、质量监控、元数据管理。D3.js 复杂关系图，拖拽式数据建模交互。
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue3</span>
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">Elasticsearch</span>
+                        <span class="tech-tag">WebSocket</span>
+                    </div>
+                    <div class="presult">✦ 覆盖 80% 数据资产 · 年度优秀项目</div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title">低代码平台</div>
+                    <div class="project-desc">
+                        可视化拖拽搭建应用，JSON Schema→Vue 代码转换，50+ 业务组件，版本控制与发布管理。
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue3</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">vue-flow</span>
+                    </div>
+                    <div class="presult">✦ 30+ 应用 · 开发周期缩短 70%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目展示 III -->
+        <div class="page" id="page-projects3">
+            <p class="sec-label">Projects · 03</p>
+            <h2 class="page-title">数字化转型项目</h2>
+            <div class="divider"></div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title">智能知识库系统</div>
+                    <div class="project-desc">
+                        企业级智能知识库，整合分散知识资源，支持智能检索、知识图谱可视化、标签管理与权限控制。
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue3</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Elasticsearch</span>
+                        <span class="tech-tag">Mermaid</span>
+                    </div>
+                    <div class="presult">✦ 查找效率提升 80% · 知识复用率提升 50%</div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title">OCR 智能识别平台</div>
+                    <div class="project-desc">
+                        支持证件、票据、文档多场景文字识别。图片裁剪/旋转/增强预处理，批量上传异步处理，可视化校正界面。
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue3</span>
+                        <span class="tech-tag">bin-ui-design</span>
+                        <span class="tech-tag">表单设计器</span>
+                    </div>
+                    <div class="presult">✦ 识别准确率 95% · 减少人工录入 70%</div>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-header">
+                    <div class="project-title">政府数据交换平台</div>
+                    <div class="project-desc">
+                        跨部门数据共享交换，AntV G6 可视化关系图，WebSocket 实时监控告警，多维度统计分析报表。
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue3</span>
+                        <span class="tech-tag">AntV G6</span>
+                        <span class="tech-tag">ECharts</span>
+                        <span class="tech-tag">WebSocket</span>
+                    </div>
+                    <div class="presult">✦ 连接 20+ 政府部门 · 日均交换 1000万+条</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 开源库 -->
+        <div class="page" id="page-opensource">
+            <p class="sec-label">Open Source</p>
+            <h2 class="page-title">开源贡献</h2>
+            <div class="divider"></div>
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(255, 214, 10, 0.07); border: 1px solid rgba(255, 214, 10, 0.22); border-radius: 10px;">
+                    <div style="font-family: 'Exo 2', sans-serif; font-size: 24px; font-weight: 800; color: var(--gold); line-height: 1;">★ 682</div>
+                    <div style="font-size: 11px; color: var(--text-muted); letter-spacing: 1px; margin-top: 2px;">查看所有项目 →</div>
+                </div>
+            </div>
+
+            <div class="oss-grid">
+                <div class="ocard fade-in">
+                    <div class="ocard-head">
+                        <div class="ocard-title">🧩 bin-ui-design</div>
+                        <span class="ostars">★ 135</span>
+                    </div>
+                    <div class="ocard-tags">
+                        <span class="otag otag-blue">Vue3</span>
+                        <span class="otag otag-blue">TypeScript</span>
+                    </div>
+                    <div class="ocard-desc">一个基于 Vue3 和 TypeScript 的组件库</div>
+                    <div class="ocard-footer">
+                        <a href="https://github.com/wangbin3162/bin-ui-design" target="_blank" class="obtn obtn-gh">
+                            <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="https://wangbin3162.github.io/bin-ui-design" target="_blank" class="obtn obtn-demo">
+                            <svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                            Preview
+                        </a>
+                    </div>
+                </div>
+
+                <div class="ocard fade-in">
+                    <div class="ocard-head">
+                        <div class="ocard-title">📝 bin-editor-next</div>
+                        <span class="ostars">★ 194</span>
+                    </div>
+                    <div class="ocard-tags">
+                        <span class="otag otag-purple">Vue3</span>
+                        <span class="otag otag-purple">brace</span>
+                    </div>
+                    <div class="ocard-desc">基于 brace 的 Vue3 编辑器组件库</div>
+                    <div class="ocard-footer">
+                        <a href="https://github.com/wangbin3162/bin-editor-next" target="_blank" class="obtn obtn-gh">
+                            <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="https://wangbin3162.github.io/bin-editor-next" target="_blank" class="obtn obtn-demo">
+                            <svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                            Preview
+                        </a>
+                    </div>
+                </div>
+
+                <div class="ocard fade-in">
+                    <div class="ocard-head">
+                        <div class="ocard-title">🌳 bin-tree-org</div>
+                        <span class="ostars">★ 103</span>
+                    </div>
+                    <div class="ocard-tags">
+                        <span class="otag otag-green">Vue2</span>
+                    </div>
+                    <div class="ocard-desc">一个基于 Vue2 的组织树组件</div>
+                    <div class="ocard-footer">
+                        <a href="https://github.com/wangbin3162/bin-tree-org" target="_blank" class="obtn obtn-gh">
+                            <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="https://wangbin3162.github.io/bin-tree-org" target="_blank" class="obtn obtn-demo">
+                            <svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                            Preview
+                        </a>
+                    </div>
+                </div>
+
+                <div class="ocard fade-in">
+                    <div class="ocard-head">
+                        <div class="ocard-title">📊 bin-datav</div>
+                        <span class="ostars">★ 94</span>
+                    </div>
+                    <div class="ocard-tags">
+                        <span class="otag otag-cyan">Vue3</span>
+                        <span class="otag otag-cyan">TypeScript</span>
+                    </div>
+                    <div class="ocard-desc">一个基于 Vue3 和 TypeScript 的数据可视化组件库</div>
+                    <div class="ocard-footer">
+                        <a href="https://github.com/wangbin3162/bin-datav" target="_blank" class="obtn obtn-gh">
+                            <svg width="11" height="11" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="https://wangbin3162.github.io/bin-datav" target="_blank" class="obtn obtn-demo">
+                            <svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                            Preview
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 个人优势 -->
+        <div class="page" id="page-advantages">
+            <p class="sec-label">Strengths</p>
+            <h2 class="page-title">核心优势</h2>
+            <div class="divider"></div>
+
+            <div class="adv-grid">
+                <div class="acard fade-in">
+                    <div class="aicon">⚡</div>
+                    <div class="atitle">技术管理双栖</div>
+                    <div class="adesc">
+                        从0到1搭建系统工程，建立完整研发流程（需求→设计→开发→测试→发布→运维）。提高部门效率，同时保持极强技术执行力。
+                    </div>
+                </div>
+
+                <div class="acard fade-in">
+                    <div class="aicon">🎯</div>
+                    <div class="atitle">组件库专家</div>
+                    <div class="adesc">
+                        主导企业级组件库，50+ 组件覆盖全业务场景，服务 50+ 项目。同时设计实现编辑器组件，图表组件，可视化拖拽大屏、系统管理平台等。
+                    </div>
+                </div>
+
+                <div class="acard fade-in">
+                    <div class="aicon">📊</div>
+                    <div class="atitle">数据可视化专家</div>
+                    <div class="adesc">
+                        将 Unity3D 3D 可视化能力融入前端开发，精通 ECharts，dataV，熟悉 Three.js / D3.js / WebGL，实现多种项目大屏，实现过3D智慧园区等展示项目。
+                    </div>
+                </div>
+
+                <div class="acard fade-in">
+                    <div class="aicon">🤖</div>
+                    <div class="atitle">AI 时代生产力</div>
+                    <div class="adesc">
+                        熟练使用 Cursor、Copilot、Claude Code 等 AI 编程工具并在团队推广，开发 AI 智能体平台、RAG 知识库等创新产品，开发效率提升 50%。
+                    </div>
+                </div>
+
+                <div class="acard fade-in">
+                    <div class="aicon">🌐</div>
+                    <div class="atitle">全端开发能力</div>
+                    <div class="adesc">
+                        精通 Web、微信小程序、uniapp，桌面端多平台开发，具备从技术选型、架构设计到落地实施的全流程把控。
+                    </div>
+                </div>
+
+                <div class="acard fade-in">
+                    <div class="aicon">🔓</div>
+                    <div class="atitle">开源贡献者</div>
+                    <div class="adesc">
+                        维护 12 个高质量开源组件库，GitHub Stars 682+。专注解决企业级实际问题，多个库被实际业务场景验证，获用户广泛认可。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部导航 -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>首页</span>
+        </a>
+        <a href="#" class="nav-item" data-page="bio">
+            <i class="fas fa-user"></i>
+            <span>简介</span>
+        </a>
+        <a href="#" class="nav-item" data-page="work">
+            <i class="fas fa-briefcase"></i>
+            <span>工作</span>
+        </a>
+        <a href="#" class="nav-item" data-page="projects">
+            <i class="fas fa-folder"></i>
+            <span>项目</span>
+        </a>
+        <a href="#" class="nav-item" data-page="opensource">
+            <i class="fab fa-github"></i>
+            <span>开源</span>
+        </a>
+        <a href="#" class="nav-item" data-page="advantages">
+            <i class="fas fa-star"></i>
+            <span>优势</span>
+        </a>
+        <a href="#" class="nav-item" data-page="contact">
+            <i class="fas fa-envelope"></i>
+            <span>联系</span>
+        </a>
+    </nav>
+
+    <!-- 滑动手势提示 -->
+    <div class="swipe-hint" id="swipeHint">
+        <div class="swipe-hint-text">
+            <i class="fas fa-chevron-left"></i>
+            向左滑动查看更多
+        </div>
+        <div class="swipe-hint-text">
+            向右滑动返回
+            <i class="fas fa-chevron-right"></i>
+        </div>
+    </div>
+
+    <!-- Deerflow branding -->
+    <a href="https://deerflow.tech" target="_blank" class="deerflow-badge">✦ Created By Deerflow</a>
+
+    <script>
+        // 页面切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            const pages = document.querySelectorAll('.page');
+            const mainContent = document.querySelector('.main-content');
+
+            // 获取所有页面ID的顺序
+            const pageIds = ['home', 'bio', 'work', 'projects', 'projects2', 'projects3', 'opensource', 'advantages', 'contact'];
+            let currentPageIndex = 0;
+
+            // 导航点击切换
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetPage = this.dataset.page;
+                    currentPageIndex = pageIds.indexOf(targetPage);
+
+                    // 更新导航状态
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // 切换页面
+                    switchPage(targetPage);
+                });
+            });
+
+            // 切换页面函数
+            function switchPage(pageId) {
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                    if (page.id === `page-${pageId}`) {
+                        page.classList.add('active');
+                    }
+                });
+
+                // 触发动画
+                const activePage = document.getElementById(`page-${pageId}`);
+                const fadeElements = activePage.querySelectorAll('.fade-in');
+                fadeElements.forEach((el, index) => {
+                    el.style.animationDelay = `${index * 0.1}s`;
+                });
+            }
+
+            // 滑动手势检测
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const minSwipeDistance = 50; // 最小滑动距离
+            const swipeHint = document.getElementById('swipeHint');
+            let hintTimeout;
+
+            // 显示滑动手势提示
+            function showSwipeHint() {
+                swipeHint.classList.add('show');
+                clearTimeout(hintTimeout);
+                hintTimeout = setTimeout(() => {
+                    swipeHint.classList.remove('show');
+                }, 3000);
+            }
+
+            // 初始化时显示提示
+            showSwipeHint();
+
+            mainContent.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            mainContent.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeDistance = touchEndX - touchStartX;
+
+                if (Math.abs(swipeDistance) < minSwipeDistance) {
+                    return; // 滑动距离不够，不处理
+                }
+
+                // 向左滑动（下一页）
+                if (swipeDistance < 0 && currentPageIndex < pageIds.length - 1) {
+                    currentPageIndex++;
+                    updatePage();
+                    if (currentPageIndex === 1) {
+                        showSwipeHint();
+                    }
+                }
+                // 向右滑动（上一页）
+                else if (swipeDistance > 0 && currentPageIndex > 0) {
+                    currentPageIndex--;
+                    updatePage();
+                }
+            }
+
+            // 更新页面
+            function updatePage() {
+                const targetPageId = pageIds[currentPageIndex];
+
+                // 更新导航状态
+                navItems.forEach(nav => {
+                    nav.classList.remove('active');
+                    if (nav.dataset.page === targetPageId) {
+                        nav.classList.add('active');
+                    }
+                });
+
+                // 切换页面
+                switchPage(targetPageId);
+
+                // 滚动到顶部
+                mainContent.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+
+            // 键盘导航支持
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' && currentPageIndex > 0) {
+                    currentPageIndex--;
+                    updatePage();
+                } else if (e.key === 'ArrowRight' && currentPageIndex < pageIds.length - 1) {
+                    currentPageIndex++;
+                    updatePage();
+                }
+            });
+
+            // 初始化canvas背景
+            initCanvas();
+
+            // 添加页面滚动时的动画效果
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            pages.forEach(page => {
+                observer.observe(page);
+            });
+        });
+
+        // 简化的canvas背景
+        function initCanvas() {
+            const canvas = document.getElementById('canvas-bg');
+            const ctx = canvas.getContext('2d');
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+
+            // 简单的粒子背景
+            const particles = [];
+            const particleCount = 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                particles.forEach(particle => {
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+
+                    if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
+                    if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 229, 255, 0.3)';
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+    </script>
+</body>
+</html>
