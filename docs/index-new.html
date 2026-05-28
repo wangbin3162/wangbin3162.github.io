@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>王彬 — 前端开发者 · 开源爱好者</title>
+  <link rel="icon" href="public/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-start: #f0f4ff;
+      --bg-end: #f5f0ff;
+      --accent: #6366f1;
+      --accent2: #a855f7;
+      --accent-light: rgba(99,102,241,0.1);
+      --accent2-light: rgba(168,85,247,0.1);
+      --neon-blue: #818cf8;
+      --neon-purple: #c084fc;
+      --neon-pink: #f472b6;
+      --glass-bg: rgba(255,255,255,0.7);
+      --glass-border: rgba(255,255,255,0.5);
+      --glass-blur: 12px;
+      --text-primary: #1e1b4b;
+      --text-secondary: #4338ca;
+      --text-muted: #6b7280;
+      --text-dim: #9ca3af;
+      --radius: 16px;
+      --radius-sm: 8px;
+      --container-max: 1200px;
+      --nav-height: 72px;
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'Noto Sans SC', sans-serif;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-height);
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      min-height: 100vh;
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── Glassmorphism Card ─── */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(99,102,241,0.1);
+    }
+
+    /* ─── Section Headers ─── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+      margin: 0 auto;
+    }
+
+    /* ─── Scroll Reveal ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+    .reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.08s; }
+    .reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.16s; }
+    .reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.24s; }
+    .reveal-stagger > .reveal:nth-child(5) { transition-delay: 0.32s; }
+    .reveal-stagger > .reveal:nth-child(6) { transition-delay: 0.4s; }
+    .reveal-stagger > .reveal:nth-child(7) { transition-delay: 0.48s; }
+    .reveal-stagger > .reveal:nth-child(8) { transition-delay: 0.56s; }
+    .reveal-stagger > .reveal:nth-child(9) { transition-delay: 0.64s; }
+
+    /* ─── NAVBAR ─── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-height);
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      z-index: 1000;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    #navbar.scrolled {
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+    }
+
+    .nav-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+    }
+
+    .nav-logo span {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 4px;
+    }
+
+    .nav-link {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      position: relative;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      position: absolute;
+      left: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-toggle span:nth-child(1) { top: 8px; }
+    .menu-toggle span:nth-child(2) { top: 15px; }
+    .menu-toggle span:nth-child(3) { top: 22px; }
+
+    .menu-toggle.open span:nth-child(1) { top: 15px; transform: rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { top: 15px; transform: rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-height);
+      left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 999;
+      padding: 24px;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-menu .nav-link {
+      font-size: 18px;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      padding-top: calc(var(--nav-height) + 60px);
+      padding-bottom: 80px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-greeting {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .hero-role {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .hero-stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-tag {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+    }
+
+    .hero-avatar-wrapper {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .hero-avatar-ring {
+      width: clamp(200px, 22vw, 300px);
+      height: clamp(200px, 22vw, 300px);
+      border-radius: 50%;
+      padding: 5px;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+      box-shadow: 0 0 40px rgba(129,140,248,0.3), 0 0 80px rgba(192,132,252,0.15);
+    }
+
+    .hero-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .floating-bubble {
+      position: absolute;
+      padding: 6px 14px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      pointer-events: none;
+      animation: float 6s ease-in-out infinite;
+      box-shadow: 0 2px 12px rgba(99,102,241,0.1);
+    }
+
+    .floating-bubble:nth-child(2) { animation-delay: -1s; animation-duration: 7s; }
+    .floating-bubble:nth-child(3) { animation-delay: -2.5s; animation-duration: 5.5s; }
+    .floating-bubble:nth-child(4) { animation-delay: -0.5s; animation-duration: 6.5s; }
+    .floating-bubble:nth-child(5) { animation-delay: -3s; animation-duration: 8s; }
+    .floating-bubble:nth-child(6) { animation-delay: -1.8s; animation-duration: 5s; }
+
+    .bubble-1 { top: -10px; right: -20px; }
+    .bubble-2 { top: 20%; left: -60px; }
+    .bubble-3 { bottom: 20%; right: -50px; }
+    .bubble-4 { bottom: -10px; left: -30px; }
+    .bubble-5 { top: 50%; right: -70px; }
+    .bubble-6 { top: 10%; left: -80px; }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(8px, -12px); }
+      50% { transform: translate(-6px, -8px); }
+      75% { transform: translate(10px, 6px); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 40px;
+      }
+      .hero-stats { justify-content: center; }
+      .hero-tags { justify-content: center; }
+      .floating-bubble { display: none; }
+      .hero-avatar-ring {
+        width: 180px;
+        height: 180px;
+      }
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      padding: 100px 0;
+    }
+
+    .about-text {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.9;
+      max-width: 800px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .about-text strong {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .stat-card {
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .stat-card-num {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .stat-card-label {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ─── NEON TIMELINE ─── */
+    .neon-timeline {
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .neon-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+      border-radius: 2px;
+      box-shadow: 0 0 12px var(--neon-blue), 0 0 24px rgba(129,140,248,0.2);
+    }
+
+    .timeline-entry {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .timeline-entry:last-child { margin-bottom: 0; }
+
+    .timeline-entry:nth-child(odd) {
+      flex-direction: row;
+      padding-right: calc(50% + 36px);
+      text-align: right;
+    }
+
+    .timeline-entry:nth-child(even) {
+      flex-direction: row-reverse;
+      padding-left: calc(50% + 36px);
+      text-align: left;
+    }
+
+    .timeline-node {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 24px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid #fff;
+      z-index: 2;
+      box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(99,102,241,0.4);
+      animation: nodePulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes nodePulse {
+      0%, 100% { box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(99,102,241,0.4); }
+      50% { box-shadow: 0 0 20px var(--accent), 0 0 40px rgba(99,102,241,0.6); }
+    }
+
+    .timeline-card {
+      padding: 28px;
+      width: 100%;
+    }
+
+    .timeline-period {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-company {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .timeline-role {
+      font-size: 14px;
+      color: var(--accent2);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .timeline-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .timeline-list li {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+
+    .timeline-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    @media (max-width: 1023px) {
+      .neon-timeline::before {
+        left: 20px;
+        transform: none;
+      }
+      .timeline-entry:nth-child(odd),
+      .timeline-entry:nth-child(even) {
+        flex-direction: row;
+        padding-right: 0;
+        padding-left: 56px;
+        text-align: left;
+      }
+      .timeline-node {
+        left: 20px;
+      }
+    }
+
+    /* ─── PROJECT GROUP LABEL ─── */
+    .project-group {
+      margin-bottom: 64px;
+    }
+
+    .project-group:last-child { margin-bottom: 0; }
+
+    .project-group-label {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .project-group-label span {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 8px 24px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--accent-light), var(--accent2-light));
+      color: var(--accent);
+      border: 1px solid rgba(99,102,241,0.15);
+    }
+
+    .project-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .project-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .project-techs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .project-techs.right { justify-content: flex-end; }
+
+    .tech-chip {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 12px;
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    .project-result {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent2);
+    }
+
+    /* ─── PROJECTS SECTION ─── */
+    #projects {
+      padding: 100px 0;
+    }
+
+    #experience {
+      padding: 100px 0;
+    }
+
+    /* ─── OPEN SOURCE SCROLL WALL ─── */
+    #opensource {
+      padding: 100px 0;
+      overflow: hidden;
+    }
+
+    .oss-stars-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: #f59e0b;
+      background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.2);
+      padding: 8px 20px;
+      border-radius: 24px;
+      margin-bottom: 48px;
+    }
+
+    .scroll-wall-container {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      padding: 20px 0;
+    }
+
+    .scroll-wall-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: scrollWall 80s linear infinite;
+      will-change: transform;
+    }
+
+    .scroll-wall-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scrollWall {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .oss-card {
+      width: 300px;
+      flex-shrink: 0;
+      padding: 0;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .oss-card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      background: linear-gradient(135deg, var(--accent-light), var(--accent2-light));
+    }
+
+    .oss-card-body {
+      padding: 16px;
+    }
+
+    .oss-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .oss-card-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .oss-card-stars {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      color: #f59e0b;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .oss-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .oss-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .oss-card-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .oss-link {
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 4px 12px;
+      border-radius: 12px;
+      transition: all 0.2s;
+    }
+
+    .oss-link-gh {
+      background: var(--text-primary);
+      color: #fff;
+    }
+
+    .oss-link-gh:hover { background: var(--accent); }
+
+    .oss-link-demo {
+      background: var(--accent-light);
+      color: var(--accent);
+      border: 1px solid rgba(99,102,241,0.2);
+    }
+
+    .oss-link-demo:hover { background: var(--accent); color: #fff; }
+
+    .oss-card-emoji-fallback {
+      width: 100%;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      background: linear-gradient(135deg, var(--accent-light), var(--accent2-light));
+    }
+
+    @media (max-width: 768px) {
+      .oss-card { width: 260px; }
+      .scroll-wall-track { animation-duration: 60s; }
+    }
+
+    /* ─── TECH STACK ─── */
+    #skills {
+      padding: 100px 0;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .skill-category {
+      padding: 28px;
+    }
+
+    .skill-category-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-category-title .cat-icon {
+      font-size: 20px;
+    }
+
+    .skill-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .skill-name {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .skill-level {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 10px;
+    }
+
+    .level-expert {
+      background: rgba(99,102,241,0.12);
+      color: var(--accent);
+      border: 1px solid rgba(99,102,241,0.25);
+    }
+
+    .level-proficient {
+      background: rgba(168,85,247,0.1);
+      color: var(--accent2);
+      border: 1px solid rgba(168,85,247,0.2);
+    }
+
+    .level-familiar {
+      background: rgba(107,114,128,0.08);
+      color: var(--text-muted);
+      border: 1px solid rgba(107,114,128,0.15);
+    }
+
+    .skills-legend {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 32px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .skills-legend span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    @media (max-width: 1023px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── STRENGTHS ─── */
+    #strengths {
+      padding: 100px 0;
+    }
+
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .strength-card {
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .strength-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .strength-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .strength-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    @media (max-width: 1023px) {
+      .strengths-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .strengths-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      padding: 100px 0;
+    }
+
+    .contact-subtitle {
+      text-align: center;
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      margin-top: -40px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      padding: 24px;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(99,102,241,0.15);
+    }
+
+    .contact-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .contact-label {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .contact-value {
+      font-size: 15px;
+      color: var(--text-primary);
+      font-weight: 500;
+      word-break: break-all;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 40px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(99,102,241,0.1);
+    }
+
+    .footer-icp {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
+    .footer-icp a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-icp a:hover { color: var(--accent); }
+
+    .footer-brand {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .footer-brand a {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+      font-family: var(--font-display);
+      font-weight: 500;
+    }
+
+    .footer-brand a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <img src="public/b-logo.png" alt="Logo">
+        <span>王彬</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link active">首页</a></li>
+        <li><a href="#about" class="nav-link">关于</a></li>
+        <li><a href="#experience" class="nav-link">轨迹</a></li>
+        <li><a href="#projects" class="nav-link">项目</a></li>
+        <li><a href="#opensource" class="nav-link">开源</a></li>
+        <li><a href="#skills" class="nav-link">技术</a></li>
+        <li><a href="#strengths" class="nav-link">擅长</a></li>
+        <li><a href="#contact" class="nav-link">联系</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#hero" class="nav-link">首页</a>
+      <a href="#about" class="nav-link">关于</a>
+      <a href="#experience" class="nav-link">轨迹</a>
+      <a href="#projects" class="nav-link">项目</a>
+      <a href="#opensource" class="nav-link">开源</a>
+      <a href="#skills" class="nav-link">技术</a>
+      <a href="#strengths" class="nav-link">擅长</a>
+      <a href="#contact" class="nav-link">联系</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ═══ HERO ═══ -->
+    <section id="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <p class="hero-greeting reveal">你好，我是</p>
+            <h1 class="hero-name reveal">王 彬</h1>
+            <p class="hero-role reveal">前端开发者 · 开源爱好者 · 可视化玩家</p>
+            <div class="hero-stats reveal">
+              <div class="hero-stat">
+                <div class="hero-stat-num">12</div>
+                <div class="hero-stat-label">年写代码</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-num">12</div>
+                <div class="hero-stat-label">个开源库</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-num">682+</div>
+                <div class="hero-stat-label">GitHub Stars</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-num">50+</div>
+                <div class="hero-stat-label">个项目经历</div>
+              </div>
+            </div>
+            <div class="hero-tags reveal">
+              <span class="hero-tag">Vue3 生态</span>
+              <span class="hero-tag">数据可视化</span>
+              <span class="hero-tag">AI 应用</span>
+              <span class="hero-tag">组件库</span>
+              <span class="hero-tag">开源</span>
+              <span class="hero-tag">全端开发</span>
+            </div>
+          </div>
+          <div class="hero-avatar-wrapper reveal">
+            <div class="hero-avatar-ring">
+              <img src="public/avatar.png" alt="王彬" class="hero-avatar">
+            </div>
+            <span class="floating-bubble bubble-1">Vue3</span>
+            <span class="floating-bubble bubble-2">ECharts</span>
+            <span class="floating-bubble bubble-3">AI</span>
+            <span class="floating-bubble bubble-4">TypeScript</span>
+            <span class="floating-bubble bubble-5">682★</span>
+            <span class="floating-bubble bubble-6">Three.js</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ ABOUT ═══ -->
+    <section id="about">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">About Me</span>
+          <h2 class="section-title">关于我</h2>
+          <div class="section-divider"></div>
+        </div>
+        <p class="about-text reveal">
+          写了 12 年前端，从 Unity3D 游戏开发转到 Web，一路折腾过<strong>组件库、数据可视化大屏、低代码平台、AI 智能体</strong>，什么有意思就去琢磨什么。平时喜欢把工作中反复造的轮子抽成开源库，目前维护着 <strong>12 个 Vue 生态的开源项目</strong>。对 Vue3 生态和工程化比较熟，也爱玩 ECharts、Three.js 这些可视化的东西。最近在探索 AI + 前端的结合，用 LangChain 和大模型做了一些好玩的应用。
+        </p>
+        <div class="stats-grid reveal-stagger">
+          <div class="stat-card glass-card reveal">
+            <div class="stat-card-num">12+</div>
+            <div class="stat-card-label">年写代码</div>
+          </div>
+          <div class="stat-card glass-card reveal">
+            <div class="stat-card-num">50+</div>
+            <div class="stat-card-label">个项目经历</div>
+          </div>
+          <div class="stat-card glass-card reveal">
+            <div class="stat-card-num">12</div>
+            <div class="stat-card-label">个开源项目</div>
+          </div>
+          <div class="stat-card glass-card reveal">
+            <div class="stat-card-num">682+</div>
+            <div class="stat-card-label">GitHub Stars</div>
+          </div>
+          <div class="stat-card glass-card reveal">
+            <div class="stat-card-num">80+</div>
+            <div class="stat-card-label">封装过的组件</div>
+          </div>
+          <div class="stat-card glass-card reveal">
+            <div class="stat-card-num">3</div>
+            <div class="stat-card-label">个平台（Web/小程序/桌面）</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ EXPERIENCE ═══ -->
+    <section id="experience">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Journey</span>
+          <h2 class="section-title">成长轨迹</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="neon-timeline">
+          <!-- Job 1 -->
+          <div class="timeline-entry reveal">
+            <div class="timeline-node"></div>
+            <div class="timeline-card glass-card">
+              <div class="timeline-period">2018 — 至今</div>
+              <div class="timeline-company">深耕前端 · 全栈探索</div>
+              <div class="timeline-role">Vue 生态 → 可视化 → AI 应用</div>
+              <ul class="timeline-list">
+                <li>从零搭建了一套 Vue3 组件库（bin-ui-design），封装 50+ 组件，自己和团队的项目都在用</li>
+                <li>折腾工程化，把项目从 Webpack 迁到 Vite，构建速度快了好几倍</li>
+                <li>做了不少数据可视化大屏，智慧城市、智慧工厂那种，Three.js 3D 场景也玩了不少</li>
+                <li>最近在做 AI 相关的东西 —— 智能体平台、RAG 知识库、OCR 识别，挺有意思</li>
+                <li>搭了一套 CI/CD 流程，从提交代码到部署上线基本自动化了</li>
+              </ul>
+            </div>
+          </div>
+          <!-- Job 2 -->
+          <div class="timeline-entry reveal">
+            <div class="timeline-node"></div>
+            <div class="timeline-card glass-card">
+              <div class="timeline-period">2015 — 2017</div>
+              <div class="timeline-company">入行 · Unity3D 游戏开发</div>
+              <div class="timeline-role">C# + 3D 渲染 → 跨平台游戏</div>
+              <ul class="timeline-list">
+                <li>最早用 Unity3D + C# 做游戏，搞过渲染管线优化和多平台适配</li>
+                <li>这段经历让我对 3D 可视化和性能优化有了底子，后来转前端也用上了</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ PROJECTS ═══ -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Projects</span>
+          <h2 class="section-title">做过的东西</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <!-- Group 1: Infrastructure -->
+        <div class="project-group">
+          <div class="project-group-label reveal"><span>🏗️ 基础工具</span></div>
+          <div class="neon-timeline">
+            <div class="timeline-entry reveal">
+              <div class="timeline-node"></div>
+              <div class="timeline-card glass-card">
+                <span class="project-icon">🧩</span>
+                <div class="timeline-period">2021 — 至今</div>
+                <div class="project-name">bin-ui-design — Vue3 组件库</div>
+                <p class="project-desc">自己从零搭的组件库，Monorepo 架构，Vitest + Cypress 测试覆盖 85%，自己项目和团队项目都在用。</p>
+                <div class="project-techs">
+                  <span class="tech-chip">Vue3</span>
+                  <span class="tech-chip">TypeScript</span>
+                  <span class="tech-chip">Vite</span>
+                  <span class="tech-chip">Tailwind</span>
+                </div>
+                <div class="project-result">✦ 50+ 个项目在用 · 开源在 GitHub</div>
+              </div>
+            </div>
+            <div class="timeline-entry reveal">
+              <div class="timeline-node"></div>
+              <div class="timeline-card glass-card">
+                <span class="project-icon">🖥️</span>
+                <div class="timeline-period">2022 — 至今</div>
+                <div class="project-name">数据可视化大屏平台</div>
+                <p class="project-desc">拖拽式布局编辑器，Three.js 做 3D 场景，ECharts 跑上百个图表也不卡，支持多屏自适应。</p>
+                <div class="project-techs right">
+                  <span class="tech-chip">Vue3</span>
+                  <span class="tech-chip">ECharts</span>
+                  <span class="tech-chip">Three.js</span>
+                  <span class="tech-chip">WebGL</span>
+                </div>
+                <div class="project-result">✦ 做了 20+ 块大屏 · 智慧城市 / 智慧工厂 / 信用体系</div>
+              </div>
+            </div>
+            <div class="timeline-entry reveal">
+              <div class="timeline-node"></div>
+              <div class="timeline-card glass-card">
+                <span class="project-icon">🤖</span>
+                <div class="timeline-period">2025 — 至今</div>
+                <div class="project-name">AI 智能体平台</div>
+                <p class="project-desc">接入大模型做的 AI 平台，支持 RAG 检索增强、多轮对话、工具调用、流式响应，可以用插件扩展。</p>
+                <div class="project-techs">
+                  <span class="tech-chip">Vue3</span>
+                  <span class="tech-chip">LangChain</span>
+                  <span class="tech-chip">OpenAI</span>
+                  <span class="tech-chip">WebSocket</span>
+                </div>
+                <div class="project-result">✦ 团队日常都在用 · 效率提升明显</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group 2: Business Platforms -->
+        <div class="project-group">
+          <div class="project-group-label reveal"><span>💼 业务应用</span></div>
+          <div class="neon-timeline">
+            <div class="timeline-entry reveal">
+              <div class="timeline-node"></div>
+              <div class="timeline-card glass-card">
+                <span class="project-icon">📊</span>
+                <div class="timeline-period">2024 — 至今</div>
+                <div class="project-name">AI 智能问数平台</div>
+                <p class="project-desc">用自然语言查数据、生成报告，CopilotKit 做流式交互，ECharts 做图表可视化，还能一键导出 PDF。</p>
+                <div class="project-techs">
+                  <span class="tech-chip">React</span>
+                  <span class="tech-chip">Next.js</span>
+                  <span class="tech-chip">CopilotKit</span>
+                  <span class="tech-chip">ECharts</span>
+                </div>
+                <div class="project-result">✦ 原来做月报要 2 天，现在 2 小时搞定</div>
+              </div>
+            </div>
+            <div class="timeline-entry reveal">
+              <div class="timeline-node"></div>
+              <div class="timeline-card glass-card">
+                <span class="project-icon">🗄️</span>
+                <div class="timeline-period">2020 — 2025</div>
+                <div class="project-name">数据治理平台</div>
+                <p class="project-desc">做数据血缘分析和元数据管理的平台，D3.js 画复杂关系图，支持拖拽式数据建模。</p>
+                <div class="project-techs right">
+                  <span class="tech-chip">Vue3</span>
+                  <span class="tech-chip">D3.js</span>
+                  <span class="tech-chip">ECharts</span>
+                  <span class="tech-chip">AntV</span>
+                </div>
+                <div class="project-result">✦ 管理了大部分数据资产 · 做了好几年的长期项目</div>
+              </div>
+            </div>
+            <div class="timeline-entry reveal">
+              <div class="timeline-node"></div>
+              <div class="timeline-card glass-card">
+                <span class="project-icon">🔧</span>
+                <div class="timeline-period">2021 — 2023</div>
+                <div class="project-name">低代码平台</div>
+                <p class="project-desc">拖拽搭建应用的平台，JSON Schema 转 Vue 代码，内置 50+ 业务组件，带版本控制和发布管理。</p>
+                <div class="project-techs">
+                  <span class="tech-chip">Vue3</span>
+                  <span class="tech-chip">TypeScript</span>
+                  <span class="tech-chip">vue-flow</span>
+                </div>
+                <div class="project-result">✦ 用它搭了 30+ 个应用 · 省了不少开发时间</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group 3: Digital Transformation -->
+        <div class="project-group">
+          <div class="project-group-label reveal"><span>🚀 创新探索</span></div>
+          <div class="neon-timeline">
+            <div class="timeline-entry reveal">
+              <div class="timeline-node"></div>
+              <div class="timeline-card glass-card">
+                <span class="project-icon">📚</span>
+                <div class="timeline-period">2025 — 至今</div>
+                <div class="project-name">智能知识库系统</div>
+                <p class="project-desc">把分散的知识整合到一起，支持智能检索、知识图谱可视化、标签分类，方便团队查找和复用。</p>
+                <div class="project-techs">
+                  <span class="tech-chip">Vue3</span>
+                  <span class="tech-chip">TypeScript</span>
+                  <span class="tech-chip">Elasticsearch</span>
+                  <span class="tech-chip">Mermaid</span>
+                </div>
+                <div class="project-result">✦ 找资料比以前快多了 · 知识终于不散落各处了</div>
+              </div>
+            </div>
+            <div class="timeline-entry reveal">
+              <div class="timeline-node"></div>
+              <div class="timeline-card glass-card">
+                <span class="project-icon">🔍</span>
+                <div class="timeline-period">2023 — 至今</div>
+                <div class="project-name">OCR 智能识别平台</div>
+                <p class="project-desc">证件、票据、文档都能识别的 OCR 平台。支持图片预处理、批量上传、可视化校正，挺实用的工具。</p>
+                <div class="project-techs right">
+                  <span class="tech-chip">Vue3</span>
+                  <span class="tech-chip">bin-ui-design</span>
+                  <span class="tech-chip">表单设计器</span>
+                </div>
+                <div class="project-result">✦ 准确率 95% · 省掉了大量手动录入的活</div>
+              </div>
+            </div>
+            <div class="timeline-entry reveal">
+              <div class="timeline-node"></div>
+              <div class="timeline-card glass-card">
+                <span class="project-icon">🔄</span>
+                <div class="timeline-period">2023 — 至今</div>
+                <div class="project-name">数据交换平台</div>
+                <p class="project-desc">跨部门数据共享交换，AntV G6 画关系图，WebSocket 做实时监控和告警，还有多维度的统计报表。</p>
+                <div class="project-techs">
+                  <span class="tech-chip">Vue3</span>
+                  <span class="tech-chip">AntV G6</span>
+                  <span class="tech-chip">ECharts</span>
+                  <span class="tech-chip">WebSocket</span>
+                </div>
+                <div class="project-result">✦ 连接了 20+ 个部门 · 每天跑千万级数据</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ OPEN SOURCE ═══ -->
+    <section id="opensource">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Open Source</span>
+          <h2 class="section-title">开源作品</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div style="text-align:center" class="reveal">
+          <span class="oss-stars-badge">⭐ GitHub Stars 682+</span>
+        </div>
+      </div>
+      <div class="scroll-wall-container reveal">
+        <div class="scroll-wall-track" id="scroll-wall">
+          <!-- First copy -->
+          <div class="oss-card glass-card">
+            <img src="images/bin-ui-design.png" alt="bin-ui-design" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>🧩</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">🧩 bin-ui-design</span>
+                <span class="oss-card-stars">⭐ 135</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue3 和 TypeScript 的组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">TypeScript</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-ui-design" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-ui-design" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-admin-pro.png" alt="bin-admin-pro" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>⚙️</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">⚙️ bin-admin-pro</span>
+                <span class="oss-card-stars">⭐ 71</span>
+              </div>
+              <p class="oss-card-desc">基于 bin-ui 的后端管理系统</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3 全家桶</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-admin-pro" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-admin-pro" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-editor-next.png" alt="bin-editor-next" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>📝</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">📝 bin-editor-next</span>
+                <span class="oss-card-stars">⭐ 194</span>
+              </div>
+              <p class="oss-card-desc">基于 brace 的 Vue3 编辑器组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">brace</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-editor-next" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-editor-next" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-datav.png" alt="bin-datav" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>📊</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">📊 bin-datav</span>
+                <span class="oss-card-stars">⭐ 94</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue3 和 TypeScript 的数据可视化组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">TypeScript</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-datav" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-datav" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-datav-schema.png" alt="bin-datav-schema" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>🖥️</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">🖥️ bin-datav-schema</span>
+                <span class="oss-card-stars">⭐</span>
+              </div>
+              <p class="oss-card-desc">vite + vue3 数据可视化大屏框架</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">TypeScript</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-datav-schema" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-datav-schema" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-grid-layout.png" alt="bin-grid-layout" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>⬜</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">⬜ bin-grid-layout</span>
+                <span class="oss-card-stars">⭐ 18</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue3 和 TypeScript 的网格布局组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">TypeScript</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-grid-layout" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-grid-layout" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-charts-next.png" alt="bin-charts-next" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>📈</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">📈 bin-charts-next</span>
+                <span class="oss-card-stars">⭐ 24</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue3 和 echarts 的图表组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">echarts</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-charts-next" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-charts-next" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-form-maker.png" alt="bin-form-maker" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>📋</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">📋 bin-form-maker</span>
+                <span class="oss-card-stars">⭐ 7</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue3 和 TypeScript 的表单生成器组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">TypeScript</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-form-maker" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-form-maker" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-excel-pro.png" alt="bin-excel-pro" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>📑</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">📑 bin-excel-pro</span>
+                <span class="oss-card-stars">⭐ 6</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue3 和 univer 的 Excel 表格组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">univer</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-excel-pro" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-excel-pro" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-tree-org.png" alt="bin-tree-org" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>🌳</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">🌳 bin-tree-org</span>
+                <span class="oss-card-stars">⭐ 103</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue2 的组织树组件</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue2</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-tree-org" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-tree-org" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-animation.png" alt="bin-animation" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>✨</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">✨ bin-animation</span>
+                <span class="oss-card-stars">⭐ 22</span>
+              </div>
+              <p class="oss-card-desc">基于vue，结合transition钩子函数配合的css3动画库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-animation" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-animation" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-keyframe-animation.png" alt="bin-keyframe-animation" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>🎬</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">🎬 bin-keyframe-animation</span>
+                <span class="oss-card-stars">⭐ 8</span>
+              </div>
+              <p class="oss-card-desc">js关键帧动画库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">JavaScript</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-keyframe-animation" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-keyframe-animation" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <!-- Second copy for infinite scroll -->
+          <div class="oss-card glass-card">
+            <img src="images/bin-ui-design.png" alt="bin-ui-design" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>🧩</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">🧩 bin-ui-design</span>
+                <span class="oss-card-stars">⭐ 135</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue3 和 TypeScript 的组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">TypeScript</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-ui-design" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-ui-design" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-admin-pro.png" alt="bin-admin-pro" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>⚙️</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">⚙️ bin-admin-pro</span>
+                <span class="oss-card-stars">⭐ 71</span>
+              </div>
+              <p class="oss-card-desc">基于 bin-ui 的后端管理系统</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3 全家桶</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-admin-pro" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-admin-pro" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-editor-next.png" alt="bin-editor-next" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>📝</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">📝 bin-editor-next</span>
+                <span class="oss-card-stars">⭐ 194</span>
+              </div>
+              <p class="oss-card-desc">基于 brace 的 Vue3 编辑器组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">brace</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-editor-next" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-editor-next" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-datav.png" alt="bin-datav" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>📊</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">📊 bin-datav</span>
+                <span class="oss-card-stars">⭐ 94</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue3 和 TypeScript 的数据可视化组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">TypeScript</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-datav" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-datav" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-datav-schema.png" alt="bin-datav-schema" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>🖥️</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">🖥️ bin-datav-schema</span>
+                <span class="oss-card-stars">⭐</span>
+              </div>
+              <p class="oss-card-desc">vite + vue3 数据可视化大屏框架</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">TypeScript</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-datav-schema" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-datav-schema" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-grid-layout.png" alt="bin-grid-layout" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>⬜</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">⬜ bin-grid-layout</span>
+                <span class="oss-card-stars">⭐ 18</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue3 和 TypeScript 的网格布局组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">TypeScript</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-grid-layout" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-grid-layout" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-charts-next.png" alt="bin-charts-next" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>📈</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">📈 bin-charts-next</span>
+                <span class="oss-card-stars">⭐ 24</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue3 和 echarts 的图表组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">echarts</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-charts-next" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-charts-next" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-form-maker.png" alt="bin-form-maker" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>📋</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">📋 bin-form-maker</span>
+                <span class="oss-card-stars">⭐ 7</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue3 和 TypeScript 的表单生成器组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">TypeScript</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-form-maker" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-form-maker" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-excel-pro.png" alt="bin-excel-pro" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>📑</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">📑 bin-excel-pro</span>
+                <span class="oss-card-stars">⭐ 6</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue3 和 univer 的 Excel 表格组件库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue3</span><span class="tech-chip">univer</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-excel-pro" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-excel-pro" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-tree-org.png" alt="bin-tree-org" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>🌳</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">🌳 bin-tree-org</span>
+                <span class="oss-card-stars">⭐ 103</span>
+              </div>
+              <p class="oss-card-desc">一个基于 Vue2 的组织树组件</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue2</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-tree-org" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-tree-org" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-animation.png" alt="bin-animation" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>✨</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">✨ bin-animation</span>
+                <span class="oss-card-stars">⭐ 22</span>
+              </div>
+              <p class="oss-card-desc">基于vue，结合transition钩子函数配合的css3动画库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">Vue</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-animation" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-animation" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="oss-card glass-card">
+            <img src="images/bin-keyframe-animation.png" alt="bin-keyframe-animation" class="oss-card-img" loading="lazy" onerror="this.outerHTML='<div class=oss-card-emoji-fallback>🎬</div>'">
+            <div class="oss-card-body">
+              <div class="oss-card-header">
+                <span class="oss-card-name">🎬 bin-keyframe-animation</span>
+                <span class="oss-card-stars">⭐ 8</span>
+              </div>
+              <p class="oss-card-desc">js关键帧动画库</p>
+              <div class="oss-card-tags">
+                <span class="tech-chip">JavaScript</span>
+              </div>
+              <div class="oss-card-links">
+                <a href="https://github.com/wangbin3162/bin-keyframe-animation" target="_blank" class="oss-link oss-link-gh">GitHub</a>
+                <a href="https://wangbin3162.github.io/bin-keyframe-animation" target="_blank" class="oss-link oss-link-demo">Demo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TECH STACK ═══ -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Skills</span>
+          <h2 class="section-title">技术栈</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="skills-grid reveal-stagger">
+          <!-- Core Languages -->
+          <div class="skill-category glass-card reveal">
+            <div class="skill-category-title"><span class="cat-icon">💻</span> 核心语言</div>
+            <div class="skill-items">
+              <div class="skill-item"><span class="skill-name">Vue3 / Vue2</span><span class="skill-level level-expert">精通</span></div>
+              <div class="skill-item"><span class="skill-name">TypeScript</span><span class="skill-level level-expert">精通</span></div>
+              <div class="skill-item"><span class="skill-name">JavaScript</span><span class="skill-level level-expert">精通</span></div>
+              <div class="skill-item"><span class="skill-name">React</span><span class="skill-level level-proficient">熟练</span></div>
+              <div class="skill-item"><span class="skill-name">Next.js</span><span class="skill-level level-proficient">熟练</span></div>
+            </div>
+          </div>
+          <!-- Data Visualization -->
+          <div class="skill-category glass-card reveal">
+            <div class="skill-category-title"><span class="cat-icon">📊</span> 可视化</div>
+            <div class="skill-items">
+              <div class="skill-item"><span class="skill-name">ECharts</span><span class="skill-level level-expert">精通</span></div>
+              <div class="skill-item"><span class="skill-name">Three.js</span><span class="skill-level level-expert">精通</span></div>
+              <div class="skill-item"><span class="skill-name">D3.js</span><span class="skill-level level-expert">精通</span></div>
+              <div class="skill-item"><span class="skill-name">WebGL</span><span class="skill-level level-proficient">熟练</span></div>
+              <div class="skill-item"><span class="skill-name">Canvas</span><span class="skill-level level-proficient">熟练</span></div>
+              <div class="skill-item"><span class="skill-name">AntV G6</span><span class="skill-level level-proficient">熟练</span></div>
+            </div>
+          </div>
+          <!-- Engineering -->
+          <div class="skill-category glass-card reveal">
+            <div class="skill-category-title"><span class="cat-icon">⚙️</span> 工程化</div>
+            <div class="skill-items">
+              <div class="skill-item"><span class="skill-name">Vite</span><span class="skill-level level-expert">精通</span></div>
+              <div class="skill-item"><span class="skill-name">Webpack</span><span class="skill-level level-expert">精通</span></div>
+              <div class="skill-item"><span class="skill-name">Rollup</span><span class="skill-level level-proficient">熟练</span></div>
+              <div class="skill-item"><span class="skill-name">Monorepo</span><span class="skill-level level-proficient">熟练</span></div>
+              <div class="skill-item"><span class="skill-name">CI/CD</span><span class="skill-level level-proficient">熟练</span></div>
+            </div>
+          </div>
+          <!-- Mobile & Cross-platform -->
+          <div class="skill-category glass-card reveal">
+            <div class="skill-category-title"><span class="cat-icon">📱</span> 移动端 · 跨端</div>
+            <div class="skill-items">
+              <div class="skill-item"><span class="skill-name">微信小程序</span><span class="skill-level level-expert">精通</span></div>
+              <div class="skill-item"><span class="skill-name">uni-app</span><span class="skill-level level-proficient">熟练</span></div>
+              <div class="skill-item"><span class="skill-name">React Native</span><span class="skill-level level-familiar">掌握</span></div>
+              <div class="skill-item"><span class="skill-name">Electron</span><span class="skill-level level-familiar">掌握</span></div>
+            </div>
+          </div>
+          <!-- AI Toolchain -->
+          <div class="skill-category glass-card reveal">
+            <div class="skill-category-title"><span class="cat-icon">🤖</span> AI 工具链</div>
+            <div class="skill-items">
+              <div class="skill-item"><span class="skill-name">Claude Code</span><span class="skill-level level-expert">精通</span></div>
+              <div class="skill-item"><span class="skill-name">Copilot</span><span class="skill-level level-expert">精通</span></div>
+              <div class="skill-item"><span class="skill-name">Cursor</span><span class="skill-level level-expert">精通</span></div>
+              <div class="skill-item"><span class="skill-name">LangChain</span><span class="skill-level level-proficient">熟练</span></div>
+              <div class="skill-item"><span class="skill-name">CopilotKit</span><span class="skill-level level-proficient">熟练</span></div>
+            </div>
+          </div>
+          <!-- Others -->
+          <div class="skill-category glass-card reveal">
+            <div class="skill-category-title"><span class="cat-icon">🔗</span> 其他</div>
+            <div class="skill-items">
+              <div class="skill-item"><span class="skill-name">Node.js</span><span class="skill-level level-proficient">熟练</span></div>
+              <div class="skill-item"><span class="skill-name">Unity3D</span><span class="skill-level level-proficient">熟练</span></div>
+              <div class="skill-item"><span class="skill-name">Elasticsearch</span><span class="skill-level level-familiar">掌握</span></div>
+              <div class="skill-item"><span class="skill-name">C#</span><span class="skill-level level-familiar">掌握</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="skills-legend reveal">
+          <span><span class="legend-dot" style="background:var(--accent)"></span> 精通</span>
+          <span><span class="legend-dot" style="background:var(--accent2)"></span> 熟练</span>
+          <span><span class="legend-dot" style="background:var(--text-muted)"></span> 掌握</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ STRENGTHS ═══ -->
+    <section id="strengths">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">What I Do Best</span>
+          <h2 class="section-title">擅长的事</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="strengths-grid reveal-stagger">
+          <div class="strength-card glass-card reveal">
+            <span class="strength-icon">⚡</span>
+            <div class="strength-title">从零开始造东西</div>
+            <p class="strength-desc">喜欢从一个想法开始，把整套系统搭起来。从设计到开发再到上线运维，享受把事情做完整的过程。</p>
+          </div>
+          <div class="strength-card glass-card reveal">
+            <span class="strength-icon">🎯</span>
+            <div class="strength-title">组件库狂热爱好者</div>
+            <p class="strength-desc">造了 50 多个组件，从编辑器、图表到拖拽大屏都写过。最开心的事就是封装一个好用的组件，然后看到别人真的在用。</p>
+          </div>
+          <div class="strength-card glass-card reveal">
+            <span class="strength-icon">📊</span>
+            <div class="strength-title">数据可视化玩家</div>
+            <p class="strength-desc">最早写 Unity3D 做 3D 可视化，后来转到前端继续折腾。ECharts、Three.js、WebGL 都玩过，做过不少数据大屏和 3D 智慧园区之类的酷炫项目。</p>
+          </div>
+          <div class="strength-card glass-card reveal">
+            <span class="strength-icon">🤖</span>
+            <div class="strength-title">AI 编程重度用户</div>
+            <p class="strength-desc">Cursor、Copilot、Claude Code 都是我的日常工具。也自己折腾过 AI 智能体和 RAG 知识库，觉得 AI 辅助编程是真的爽。</p>
+          </div>
+          <div class="strength-card glass-card reveal">
+            <span class="strength-icon">🌐</span>
+            <div class="strength-title">什么端都能写</div>
+            <p class="strength-desc">Web、小程序、uniapp、桌面端都做过。喜欢尝试不同平台，享受在不同环境下解决问题的乐趣。</p>
+          </div>
+          <div class="strength-card glass-card reveal">
+            <span class="strength-icon">🔓</span>
+            <div class="strength-title">开源爱好者</div>
+            <p class="strength-desc">GitHub 上维护了 12 个开源库，收获 682+ Stars。写开源项目是因为自己需要，能帮到别人就更开心了。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CONTACT ═══ -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Connect</span>
+          <h2 class="section-title">联系方式</h2>
+          <div class="section-divider"></div>
+        </div>
+        <p class="contact-subtitle reveal">有趣的项目、技术交流、或者单纯想聊聊，都欢迎找我</p>
+        <div class="contact-grid reveal-stagger">
+          <a href="tel:17625160896" class="contact-card glass-card reveal">
+            <span class="contact-icon">📱</span>
+            <div class="contact-label">手机</div>
+            <div class="contact-value">176 2516 0896</div>
+          </a>
+          <a href="mailto:316281400@qq.com" class="contact-card glass-card reveal">
+            <span class="contact-icon">✉️</span>
+            <div class="contact-label">邮箱</div>
+            <div class="contact-value">316281400@qq.com</div>
+          </a>
+          <a href="https://github.com/wangbin3162" target="_blank" class="contact-card glass-card reveal">
+            <span class="contact-icon">💻</span>
+            <div class="contact-label">GitHub</div>
+            <div class="contact-value">github.com/wangbin3162</div>
+          </a>
+          <a href="https://juejin.cn/user/4230576475747928/posts" target="_blank" class="contact-card glass-card reveal">
+            <span class="contact-icon">✍️</span>
+            <div class="contact-label">掘金博客</div>
+            <div class="contact-value">juejin.cn · 技术分享</div>
+          </a>
+          <a href="https://wangbin3162.github.io/" target="_blank" class="contact-card glass-card reveal">
+            <span class="contact-icon">🌐</span>
+            <div class="contact-label">个人网站</div>
+            <div class="contact-value">wangbin3162.github.io</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="footer-icp">
+      <a href="https://beian.miit.gov.cn/" target="_blank">苏ICP备2026033414号</a>
+    </div>
+    <div class="footer-brand">
+      <a href="https://deerflow.tech" target="_blank">✦ Created By Deerflow</a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // ─── Scroll Reveal ───
+      const revealEls = document.querySelectorAll('.reveal')
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+            revealObserver.unobserve(entry.target)
+          }
+        })
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
+
+      revealEls.forEach(el => revealObserver.observe(el))
+
+      // ─── Navbar scroll state ───
+      const navbar = document.getElementById('navbar')
+      const sections = document.querySelectorAll('main > section')
+      const navLinks = document.querySelectorAll('.nav-links .nav-link, .mobile-menu .nav-link')
+
+      function onScroll() {
+        const sy = window.scrollY
+        navbar.classList.toggle('scrolled', sy > 50)
+
+        let current = ''
+        sections.forEach(sec => {
+          if (sy >= sec.offsetTop - 120) current = sec.id
+        })
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + current)
+        })
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true })
+      onScroll()
+
+      // ─── Hamburger menu ───
+      const toggle = document.getElementById('menu-toggle')
+      const mobileMenu = document.getElementById('mobile-menu')
+
+      toggle.addEventListener('click', () => {
+        toggle.classList.toggle('open')
+        mobileMenu.classList.toggle('open')
+        document.body.classList.toggle('menu-open')
+      })
+
+      mobileMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          toggle.classList.remove('open')
+          mobileMenu.classList.remove('open')
+          document.body.classList.remove('menu-open')
+        })
+      })
+
+      // ─── Scroll wall touch support ───
+      const scrollTrack = document.getElementById('scroll-wall')
+      if (scrollTrack) {
+        scrollTrack.addEventListener('touchstart', () => {
+          scrollTrack.style.animationPlayState = 'paused'
+        }, { passive: true })
+        scrollTrack.addEventListener('touchend', () => {
+          scrollTrack.style.animationPlayState = 'running'
+        }, { passive: true })
+      }
+    })
+  </script>
+</body>
+</html>
