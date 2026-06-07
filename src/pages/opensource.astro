@@ -1,0 +1,77 @@
+---
+import BaseHead from '../components/BaseHead.astro'
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import OpenSourceCard from '../components/OpenSourceCard.astro'
+import SectionHeader from '../components/SectionHeader.astro'
+import { openSourceItems, openSourceTotalStars } from '../data/opensource'
+import { SITE_DESCRIPTION, SITE_TITLE_ZH } from '../consts'
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={`开源 | ${SITE_TITLE_ZH}`} description={SITE_DESCRIPTION} image={openSourceItems[0].image} />
+    <style>
+      .opensource-page {
+        display: grid;
+        gap: 2rem;
+      }
+      .opensource-hero {
+        padding: 2rem;
+      }
+      .opensource-summary {
+        max-width: 42rem;
+        color: var(--text-muted);
+      }
+      .opensource-badge {
+        display: inline-flex;
+        align-items: center;
+        margin-top: 1.25rem;
+        padding: 0.55rem 0.95rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.86);
+        color: var(--accent-strong);
+        font-family: var(--font-display);
+        font-weight: 700;
+        box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
+      }
+      .opensource-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      @media (max-width: 1080px) {
+        .opensource-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 720px) {
+        .opensource-hero {
+          padding: 1.35rem;
+        }
+        .opensource-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="opensource-page">
+        <section class="opensource-hero glass-card">
+          <SectionHeader tag="Open Source" title="开源作品" align="left" />
+          <p class="opensource-summary">
+            这里集中展示我维护的组件库和工具项目。内容以 Vue3 生态、数据可视化和工程化工具为主，保留旧版页面里的核心信息，但改成更适合工程化维护的卡片列表。
+          </p>
+          <span class="opensource-badge">⭐ GitHub Stars {openSourceTotalStars}</span>
+        </section>
+        <section class="opensource-grid">
+          {openSourceItems.map((item) => <OpenSourceCard item={item} />)}
+        </section>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

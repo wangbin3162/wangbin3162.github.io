@@ -1051,6 +1051,10 @@
     }
 
     .footer-icp {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
       font-size: 13px;
       color: var(--text-dim);
       margin-bottom: 12px;
@@ -1063,6 +1067,18 @@
     }
 
     .footer-icp a:hover { color: var(--accent); }
+
+    .footer-gongan {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-gongan-icon {
+      width: 18px;
+      height: 20px;
+      flex: 0 0 auto;
+    }
 
     .footer-brand {
       font-size: 12px;
@@ -2001,15 +2017,10 @@
             <div class="contact-label">GitHub</div>
             <div class="contact-value">github.com/wangbin3162</div>
           </a>
-          <a href="https://juejin.cn/user/4230576475747928/posts" target="_blank" class="contact-card glass-card reveal">
-            <span class="contact-icon">✍️</span>
-            <div class="contact-label">掘金博客</div>
-            <div class="contact-value">juejin.cn · 技术分享</div>
-          </a>
-          <a href="https://wangbin3162.github.io/" target="_blank" class="contact-card glass-card reveal">
+          <a href="https://wangbinai.top" target="_blank" class="contact-card glass-card reveal">
             <span class="contact-icon">🌐</span>
             <div class="contact-label">个人网站</div>
-            <div class="contact-value">wangbin3162.github.io</div>
+            <div class="contact-value">wangbinai.top</div>
           </a>
         </div>
       </div>
@@ -2020,6 +2031,15 @@
   <footer>
     <div class="footer-icp">
       <a href="https://beian.miit.gov.cn/" target="_blank">苏ICP备2026033414号</a>
+      <a
+        class="footer-gongan"
+        href="https://beian.mps.gov.cn/#/query/webSearch?code=32030302308165"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img class="footer-gongan-icon" src="images/beian.png" alt="" aria-hidden="true">
+        <span>苏公网安备32030302308165号</span>
+      </a>
     </div>
     <div class="footer-brand">
       <a href="https://deerflow.tech" target="_blank">✦ Created By Deerflow</a>

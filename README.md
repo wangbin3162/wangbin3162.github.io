@@ -1,196 +1,121 @@
-# 开源组件库合集
+# 彬的编程实验室
 
-> 基于 Vue3 生态的数据可视化与组件库解决方案
+基于 Astro 搭建的个人技术站点，包含首页、博客、关于我、开源作品等页面。
 
-[![GitHub](https://img.shields.io/badge/GitHub-wangbin3162-181717?logo=github)](https://github.com/wangbin3162)
-[![Vue3](https://img.shields.io/badge/Vue3-4FC08D?logo=vue.js&logoColor=white)](https://vuejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+## 项目定位
 
+- 站点名称：`彬的编程实验室`
+- 英文名称：`Bin's Coding Lab`
+- 技术栈：`Astro + Markdown/MDX + Astro Content Collections`
+- 产物类型：静态站点
+- 当前构建输出目录：`dist/`
+
+## 目录结构
+
+```text
+src/
+  assets/                # 站点图片、开源项目截图、图标等素材
+  components/            # 公共组件
+  content/
+    blog/                # 博客 Markdown / MDX 内容
+  data/                  # 页面展示数据
+  layouts/               # 文章布局
+  pages/                 # 路由页面
+  styles/                # 全局样式
+
+static/                  # 旧资料、简历、清单类原始文件
+dist/                    # 构建产物
+guides/                  # 开发与部署说明文档
+```
+
+## 本地开发
+
+安装依赖：
+
+```bash
+npm install
+```
+
+启动开发环境：
+
+```bash
+npm run dev
+```
+
+常用命令：
+
+```bash
+npm run dev      # 本地开发
+npm run build    # 构建静态产物到 dist/
+npm run preview  # 本地预览构建结果
+```
+
+## 博客内容如何开发
+
+博客内容统一放在：
+
+```text
+src/content/blog/
+```
+
+支持两种格式：
+
+- `*.md`
+- `*.mdx`
+
+前置要求：
+
+- 每篇文章都要带 frontmatter
+- frontmatter 结构受 [src/content.config.ts](/Users/wangbin/workspace/my-projects/wangbin3162.github.io/src/content.config.ts) 约束
+
+最小 frontmatter 示例：
+
+```md
 ---
-
-## 📦 组件库列表
-
-### 1. bin-ui-design
-
-一个基于 Vue3 和 TypeScript 的组件库
-
-| 项目 | 链接 |
-|------|------|
-| 🌐 在线预览 | https://wangbin3162.github.io/bin-ui-design |
-| 💻 GitHub | https://github.com/wangbin3162/bin-ui-design |
-| 📖 技术栈 | Vue3 + TypeScript |
-
-![bin-ui-design](./docs/images/bin-ui-design.png)
-
+title: '文章标题'
+description: '文章摘要'
+pubDate: '2026-06-07'
+heroImage: '../../assets/your-image.jpg'
 ---
+```
 
-### 2. bin-admin-pro
+可选字段：
 
-基于 bin-ui 的后端管理系统
+- `updatedDate`
+- `heroImage`
 
-| 项目 | 链接 |
-|------|------|
-| 🌐 在线预览 | https://wangbin3162.github.io/bin-admin-pro |
-| 💻 GitHub | https://github.com/wangbin3162/bin-admin-pro |
-| 📖 技术栈 | Vue3 全家桶 |
+详细写法、命名建议、配图方式、发布前检查，见：
 
-![bin-admin-pro](./docs/images/bin-admin-pro.png)
+- [博客开发说明](</Users/wangbin/workspace/my-projects/wangbin3162.github.io/guides/博客开发说明.md>)
 
----
+## 打包与部署
 
-### 3. bin-editor-next
+当前工程执行：
 
-基于 brace 的 Vue3 编辑器组件库
+```bash
+npm run build
+```
 
-| 项目 | 链接 |
-|------|------|
-| 🌐 在线预览 | https://wangbin3162.github.io/bin-editor-next |
-| 💻 GitHub | https://github.com/wangbin3162/bin-editor-next |
-| 📖 技术栈 | Vue3 + brace |
+会生成静态产物到：
 
-![bin-editor-next](./docs/images/bin-editor-next.png)
+```text
+dist/
+```
 
----
+部署时以 `dist/` 为准，不再依赖旧版 `docs/` 目录。
 
-### 4. bin-datav
+完整部署流程、发布检查清单、常见问题处理，见：
 
-一个基于 Vue3 和 TypeScript 的数据可视化组件库
+- [部署说明](</Users/wangbin/workspace/my-projects/wangbin3162.github.io/guides/部署说明.md>)
 
-| 项目 | 链接 |
-|------|------|
-| 🌐 在线预览 | https://wangbin3162.github.io/bin-datav |
-| 💻 GitHub | https://github.com/wangbin3162/bin-datav |
-| 📖 技术栈 | Vue3 + TypeScript |
+## 当前约束
 
-![bin-datav](./docs/images/bin-datav.png)
+- 页面素材优先放 `src/assets/`
+- 博客正文统一走 `src/content/blog/`
+- 页面展示数据优先拆到 `src/data/`
+- 不要再新增对 `docs/` 目录的运行时依赖
 
----
+## 相关文档
 
-### 5. bin-datav-schema
-
-vite + vue3 + bin-ui-design + bin-datav 的数据可视化大屏框架
-
-| 项目 | 链接 |
-|------|------|
-| 🌐 在线预览 | https://wangbin3162.github.io/bin-datav-schema |
-| 💻 GitHub | https://github.com/wangbin3162/bin-datav-schema |
-| 📖 技术栈 | Vue3 + TypeScript |
-
-![bin-datav-schema](./docs/images/bin-datav-schema.png)
-
----
-
-### 6. bin-grid-layout
-
-一个基于 Vue3 和 TypeScript 的网格布局组件库
-
-| 项目 | 链接 |
-|------|------|
-| 🌐 在线预览 | https://wangbin3162.github.io/bin-grid-layout |
-| 💻 GitHub | https://github.com/wangbin3162/bin-grid-layout |
-| 📖 技术栈 | Vue3 + TypeScript |
-
-![bin-grid-layout](./docs/images/bin-grid-layout.png)
-
----
-
-### 7. bin-charts-next
-
-一个基于 Vue3 和 echarts 的图表组件库
-
-| 项目 | 链接 |
-|------|------|
-| 🌐 在线预览 | https://wangbin3162.github.io/bin-charts-next |
-| 💻 GitHub | https://github.com/wangbin3162/bin-charts-next |
-| 📖 技术栈 | Vue3 + ECharts |
-
-![bin-charts-next](./docs/images/bin-charts-next.png)
-
----
-
-### 8. bin-form-maker
-
-一个基于 Vue3 和 TypeScript 的表单生成器组件库
-
-| 项目 | 链接 |
-|------|------|
-| 🌐 在线预览 | https://wangbin3162.github.io/bin-form-maker |
-| 💻 GitHub | https://github.com/wangbin3162/bin-form-maker |
-| 📖 技术栈 | Vue3 + TypeScript |
-
-![bin-form-maker](./docs/images/bin-form-maker.png)
-
----
-
-### 9. bin-excel-pro
-
-一个基于 Vue3 和 univer 的 Excel 表格组件库
-
-| 项目 | 链接 |
-|------|------|
-| 🌐 在线预览 | https://wangbin3162.github.io/bin-excel-pro |
-| 💻 GitHub | https://github.com/wangbin3162/bin-excel-pro |
-| 📖 技术栈 | Vue3 + Univer |
-
-![bin-excel-pro](./docs/images/bin-excel-pro.png)
-
----
-
-### 10. bin-tree-org
-
-一个基于 Vue2 的组织树组件
-
-| 项目 | 链接 |
-|------|------|
-| 🌐 在线预览 | https://wangbin3162.github.io/bin-tree-org |
-| 💻 GitHub | https://github.com/wangbin3162/bin-tree-org |
-| 📖 技术栈 | Vue2 |
-
-![bin-tree-org](./docs/images/bin-tree-org.png)
-
----
-
-### 11. bin-animation
-
-基于 vue，结合 transition 钩子函数配合的 css3 动画库
-
-| 项目 | 链接 |
-|------|------|
-| 🌐 在线预览 | https://wangbin3162.github.io/bin-animation |
-| 💻 GitHub | https://github.com/wangbin3162/bin-animation |
-| 📖 技术栈 | Vue |
-
-![bin-animation](./docs/images/bin-animation.png)
-
----
-
-### 12. bin-keyframe-animation
-
-js 关键帧动画库
-
-| 项目 | 链接 |
-|------|------|
-| 🌐 在线预览 | https://wangbin3162.github.io/bin-keyframe-animation |
-| 💻 GitHub | https://github.com/wangbin3162/bin-keyframe-animation |
-| 📖 技术栈 | JavaScript |
-
-![bin-keyframe-animation](./docs/images/bin-keyframe-animation.png)
-
----
-
-## 🔗 快速链接
-
-| 名称 | 地址 |
-|------|------|
-| 🏠 主页 | https://wangbin3162.github.io |
-| 📚 组件库文档 | https://wangbin3162.github.io/bin-ui-design |
-
----
-
-## 📄 许可证
-
-[MIT](https://github.com/wangbin3162/bin-ui-design/blob/master/LICENSE)
-
----
-
-> 💡 **提示**: 点击上方预览图或链接即可访问对应项目的在线演示和源码。
+- [博客开发说明](</Users/wangbin/workspace/my-projects/wangbin3162.github.io/guides/博客开发说明.md>)
+- [部署说明](</Users/wangbin/workspace/my-projects/wangbin3162.github.io/guides/部署说明.md>)

@@ -1,0 +1,136 @@
+---
+import { Image } from 'astro:assets'
+import logo from '../assets/site/b-logo.png'
+import { SITE_TITLE, SITE_TITLE_ZH } from '../consts'
+import HeaderLink from './HeaderLink.astro'
+---
+
+<header id="site-header">
+  <nav>
+    <a class="brand" href="/" aria-label={SITE_TITLE_ZH}>
+      <Image src={logo} alt={SITE_TITLE_ZH} widths={[72]} sizes="36px" />
+      <span class="brand-copy">
+        <strong>{SITE_TITLE_ZH}</strong>
+        <small>{SITE_TITLE}</small>
+      </span>
+    </a>
+    <div class="internal-links">
+      <HeaderLink href="/">首页</HeaderLink>
+      <HeaderLink href="/blog">博客</HeaderLink>
+      <HeaderLink href="/about">关于我</HeaderLink>
+      <HeaderLink href="/opensource">开源</HeaderLink>
+    </div>
+  </nav>
+</header>
+<style>
+  header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 1000;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  header.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 30px rgba(30, 27, 75, 0.08);
+  }
+  nav {
+    width: min(var(--container-max), calc(100% - 48px));
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .brand :global(img) {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0;
+  }
+  .brand-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+  }
+  .brand-copy strong {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    line-height: 1.1;
+    color: var(--text-primary);
+  }
+  .brand-copy small {
+    font-size: 0.76rem;
+    line-height: 1.1;
+    color: var(--text-muted);
+  }
+  .internal-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .internal-links::-webkit-scrollbar {
+    display: none;
+  }
+  .internal-links a {
+    flex: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .internal-links a:hover,
+  .internal-links a.active {
+    color: var(--accent);
+    background: var(--accent-light);
+  }
+  @media (max-width: 820px) {
+    nav {
+      width: calc(100% - 32px);
+      gap: 0.75rem;
+    }
+    .brand-copy small {
+      display: none;
+    }
+  }
+  @media (max-width: 640px) {
+    nav {
+      width: calc(100% - 24px);
+    }
+    .brand-copy strong {
+      font-size: 0.95rem;
+    }
+    .internal-links a {
+      padding: 0.45rem 0.8rem;
+      font-size: 0.86rem;
+    }
+  }
+</style>
+<script>
+  const syncHeaderState = () => {
+    const header = document.getElementById('site-header')
+    if (!header) return
+    header.classList.toggle('scrolled', window.scrollY > 50)
+  }
+
+  syncHeaderState()
+  window.addEventListener('scroll', syncHeaderState, { passive: true })
+</script>

@@ -1,0 +1,190 @@
+---
+import { Image } from 'astro:assets'
+import avatar from '../assets/site/avatar.png'
+import BaseHead from '../components/BaseHead.astro'
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import { heroBubbles, heroContent, heroStats, heroTags } from '../data/profile'
+import { SITE_DESCRIPTION, SITE_TITLE_FULL } from '../consts'
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={SITE_TITLE_FULL} description={SITE_DESCRIPTION} image={avatar} />
+    <style>
+      .hero-shell {
+        min-height: calc(100vh - var(--nav-height));
+        display: flex;
+        align-items: center;
+        padding: 3.5rem 0 4rem;
+      }
+      .hero {
+        display: flex;
+        align-items: center;
+        gap: 3.75rem;
+        width: 100%;
+      }
+      .hero-copy {
+        flex: 1;
+      }
+      .hero-greeting {
+        margin-bottom: 0.5rem;
+        color: var(--accent);
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+      }
+      .hero-copy h1 {
+        margin-bottom: 0.75rem;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero-role {
+        margin-bottom: 1.5rem;
+        font-family: var(--font-display);
+        color: var(--text-muted);
+        font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+      }
+      .hero-stats {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 1.75rem;
+        flex-wrap: wrap;
+      }
+      .hero-stat {
+        text-align: center;
+      }
+      .hero-stat-value {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+      .hero-stat-label {
+        color: var(--text-muted);
+        font-size: 0.82rem;
+      }
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+      }
+      .hero-visual {
+        position: relative;
+        flex-shrink: 0;
+        min-width: 320px;
+        min-height: 340px;
+      }
+      .hero-avatar-ring {
+        width: clamp(220px, 22vw, 300px);
+        height: clamp(220px, 22vw, 300px);
+        padding: 5px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #818cf8, #c084fc, #f472b6);
+        box-shadow:
+          0 0 40px rgba(129, 140, 248, 0.3),
+          0 0 80px rgba(192, 132, 252, 0.15);
+      }
+      .hero-avatar-ring :global(img) {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .floating-bubble {
+        position: absolute;
+        padding: 0.38rem 0.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.58);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--text-secondary);
+        font-family: var(--font-display);
+        font-size: 0.75rem;
+        font-weight: 500;
+        white-space: nowrap;
+        pointer-events: none;
+        box-shadow: 0 2px 12px rgba(99, 102, 241, 0.1);
+        animation: float 6s ease-in-out infinite;
+      }
+      .floating-bubble:nth-child(2) { animation-delay: -1s; animation-duration: 7s; }
+      .floating-bubble:nth-child(3) { animation-delay: -2.5s; animation-duration: 5.5s; }
+      .floating-bubble:nth-child(4) { animation-delay: -0.5s; animation-duration: 6.5s; }
+      .floating-bubble:nth-child(5) { animation-delay: -3s; animation-duration: 8s; }
+      .floating-bubble:nth-child(6) { animation-delay: -1.8s; animation-duration: 5s; }
+      .bubble-1 { top: -10px; right: -20px; }
+      .bubble-2 { top: 20%; left: -60px; }
+      .bubble-3 { bottom: 20%; right: -50px; }
+      .bubble-4 { bottom: -10px; left: -30px; }
+      .bubble-5 { top: 50%; right: -70px; }
+      .bubble-6 { top: 10%; left: -80px; }
+      @keyframes float {
+        0%, 100% { transform: translate(0, 0); }
+        25% { transform: translate(8px, -12px); }
+        50% { transform: translate(-6px, -8px); }
+        75% { transform: translate(10px, 6px); }
+      }
+      @media (max-width: 960px) {
+        .hero {
+          flex-direction: column-reverse;
+          text-align: center;
+          gap: 2.5rem;
+        }
+        .hero-shell {
+          min-height: auto;
+          padding-top: 2.5rem;
+        }
+        .hero-visual {
+          min-width: 0;
+          min-height: auto;
+        }
+        .hero-stats,
+        .hero-tags {
+          justify-content: center;
+        }
+      }
+      @media (max-width: 768px) {
+        .floating-bubble {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="hero-shell">
+        <div class="hero">
+          <div class="hero-copy">
+            <p class="hero-greeting">{heroContent.greeting}</p>
+            <h1>{heroContent.name}</h1>
+            <p class="hero-role">{heroContent.role}</p>
+            <div class="hero-stats">
+              {
+                heroStats.map((item) => (
+                  <article class="hero-stat">
+                    <div class="hero-stat-value">{item.value}</div>
+                    <div class="hero-stat-label">{item.label}</div>
+                  </article>
+                ))
+              }
+            </div>
+            <div class="hero-tags">
+              {heroTags.map((tag) => <span class="tech-chip">{tag}</span>)}
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-avatar-ring">
+              <Image src={avatar} alt="王彬" widths={[720]} sizes="(max-width: 640px) 280px, 360px" />
+            </div>
+            {heroBubbles.map((item) => <span class:list={['floating-bubble', item.className]}>{item.text}</span>)}
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,123 @@
+---
+import { Image } from 'astro:assets'
+import beianIcon from '../assets/site/beian.png'
+import { footerContacts, filingInfo } from '../data/profile'
+const today = new Date()
+---
+
+<footer>
+  <div class="footer-inner">
+    <section class="footer-contact">
+      <p class="footer-title">联系我</p>
+      <div class="footer-contact-links">
+        {
+          footerContacts.map((item) => (
+            <a
+              href={item.href}
+              target={item.href.startsWith('http') ? '_blank' : undefined}
+              rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+            >
+              <span>{item.icon}</span>
+              <span>{item.label}：</span>
+              <strong>{item.value}</strong>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+    <section class="footer-filing">
+      <div class="footer-records">
+        <a href={filingInfo.icpHref} target="_blank" rel="noreferrer">{filingInfo.icpLabel}</a>
+        <a class="footer-gongan" href={filingInfo.gonganHref} target="_blank" rel="noreferrer">
+          <Image src={beianIcon} alt="" widths={[32]} sizes="16px" />
+          <span>{filingInfo.gonganLabel}</span>
+        </a>
+      </div>
+      <p class="footer-copy">&copy; {today.getFullYear()} 彬的编程实验室</p>
+    </section>
+  </div>
+</footer>
+<style>
+  footer {
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    border-top: 1px solid rgba(99, 102, 241, 0.1);
+  }
+  .footer-inner {
+    width: min(var(--container-max), calc(100% - 48px));
+    margin: 0 auto;
+    display: grid;
+    gap: 0.9rem;
+  }
+  .footer-title,
+  .footer-copy {
+    margin: 0;
+  }
+  .footer-title {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .footer-contact-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.65rem;
+  }
+  .footer-contact-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: color 0.2s ease;
+  }
+  .footer-contact-links a:hover {
+    color: var(--accent);
+  }
+  .footer-contact-links strong {
+    color: currentColor;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+  .footer-filing {
+    display: grid;
+    gap: 0.55rem;
+    justify-items: center;
+  }
+  .footer-records {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+  .footer-records a,
+  .footer-copy {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+  }
+  .footer-gongan {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .footer-gongan :global(img) {
+    width: 0.95rem;
+    height: 1rem;
+  }
+  @media (max-width: 640px) {
+    footer {
+      padding: 2rem 1rem;
+    }
+    .footer-inner {
+      width: calc(100% - 24px);
+    }
+  }
+</style>

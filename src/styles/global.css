@@ -1,0 +1,214 @@
+:root {
+  --bg-start: #f0f4ff;
+  --bg-end: #f5f0ff;
+  --accent: #6366f1;
+  --accent-strong: #4338ca;
+  --accent2: #a855f7;
+  --accent-light: rgba(99, 102, 241, 0.1);
+  --accent2-light: rgba(168, 85, 247, 0.12);
+  --text-primary: #1e1b4b;
+  --text-secondary: #4338ca;
+  --text-muted: #6b7280;
+  --text-dim: #94a3b8;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --container-max: 1200px;
+  --nav-height: 72px;
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.72);
+  --glass-shadow: 0 12px 40px rgba(99, 102, 241, 0.1);
+  --black: 30, 27, 75;
+  --gray: 107, 114, 128;
+  --gray-light: 226, 232, 240;
+  --gray-dark: 51, 65, 85;
+  --gray-gradient: rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0);
+  --font-display: 'Outfit', 'Avenir Next', 'Segoe UI', sans-serif;
+  --font-body: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 24px);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  padding-top: var(--nav-height);
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  font-family: var(--font-body);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  color: var(--text-primary);
+  font-size: 18px;
+  line-height: 1.7;
+}
+main {
+  width: min(var(--container-max), calc(100% - 48px));
+  margin: auto;
+  padding: 3rem 0 5rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+h1 {
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+}
+h2 {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+}
+h3 {
+  font-size: 1.4rem;
+}
+h4 {
+  font-size: 1.15rem;
+}
+h5 {
+  font-size: 1rem;
+}
+strong,
+b {
+  font-weight: 700;
+}
+a {
+  color: var(--accent-strong);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent);
+}
+p {
+  margin: 0;
+  color: var(--text-primary);
+}
+textarea {
+  width: 100%;
+  font-size: 16px;
+}
+input {
+  font-size: 16px;
+}
+table {
+  width: 100%;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+code {
+  padding: 2px 5px;
+  background-color: rgba(99, 102, 241, 0.1);
+  border-radius: 2px;
+}
+pre {
+  padding: 1.5em;
+  border-radius: 8px;
+}
+pre > code {
+  all: unset;
+}
+blockquote {
+  border-left: 4px solid var(--accent);
+  padding: 0 0 0 20px;
+  margin: 0;
+  font-size: 1.15rem;
+}
+hr {
+  border: none;
+  border-top: 1px solid rgba(var(--gray-light), 0.8);
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--glass-shadow);
+}
+
+.section-header {
+  margin-bottom: 2.5rem;
+}
+
+.section-header.align-center {
+  text-align: center;
+}
+
+.section-tag {
+  display: inline-block;
+  margin-bottom: 0.85rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  margin-bottom: 0.85rem;
+}
+
+.section-divider {
+  width: 60px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+
+.section-header.align-center .section-divider {
+  margin: 0 auto;
+}
+
+.tech-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.42rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.08);
+}
+@media (max-width: 720px) {
+  body {
+    font-size: 18px;
+  }
+  main {
+    width: calc(100% - 24px);
+    padding: 2rem 0 4rem;
+  }
+}
+
+.sr-only {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+  clip: rect(1px 1px 1px 1px);
+  /* maybe deprecated but we need to support legacy browsers */
+  clip: rect(1px, 1px, 1px, 1px);
+  /* modern browsers, clip-path works inwards from each corner */
+  clip-path: inset(50%);
+  /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
+  white-space: nowrap;
+}
