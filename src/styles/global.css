@@ -2,10 +2,10 @@
 
 :root {
   /* Background */
-  --bg-primary: #000000;
-  --bg-secondary: #0a0a0a;
-  --bg-start: #000000;
-  --bg-end: #0a0a0a;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-start: #ffffff;
+  --bg-end: #f5f5f5;
 
   /* Accent (red series) */
   --accent: #d14836;
@@ -14,16 +14,16 @@
   --accent2: #ff6b4a;
   --accent2-light: rgba(209, 72, 54, 0.08);
 
-  /* Text (white scale) */
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.6);
-  --text-muted: rgba(255, 255, 255, 0.35);
-  --text-dim: rgba(255, 255, 255, 0.35);
+  /* Text (black scale) */
+  --text-primary: #000000;
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --text-muted: rgba(0, 0, 0, 0.35);
+  --text-dim: rgba(0, 0, 0, 0.35);
 
   /* Border / glass */
-  --border: rgba(255, 255, 255, 0.08);
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --border: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(0, 0, 0, 0.05);
+  --glass-border: rgba(0, 0, 0, 0.08);
   --glass-shadow: none;
 
   /* Typography */
@@ -78,11 +78,11 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* Legacy aliases kept for old pages/components */
-  --black: 255, 255, 255;
-  --gray: 255, 255, 255;
-  --gray-light: 255, 255, 255;
-  --gray-dark: 255, 255, 255;
-  --gray-gradient: rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0);
+  --black: 0, 0, 0;
+  --gray: 100, 100, 100;
+  --gray-light: 230, 230, 230;
+  --gray-dark: 50, 50, 50;
+  --gray-gradient: rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0);
 }
 
 html {
@@ -182,7 +182,7 @@ img {
 
 code {
   padding: 2px 5px;
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(0, 0, 0, 0.06);
   border-radius: 2px;
   font-family: var(--font-mono);
 }
@@ -190,7 +190,7 @@ code {
 pre {
   padding: 1.5em;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 pre > code {
@@ -264,7 +264,7 @@ hr {
   align-items: center;
   padding: 0.42rem 0.8rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.06);
   border: 1px solid var(--border);
   color: var(--text-secondary);
   font-family: var(--font-mono);
