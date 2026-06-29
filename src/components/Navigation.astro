@@ -1,0 +1,88 @@
+---
+import { Image } from 'astro:assets'
+import logo from '../assets/site/b-logo.png'
+import { SITE_TITLE_ZH } from '../consts'
+import HeaderLink from './HeaderLink.astro'
+---
+
+<header id="site-navigation">
+  <nav aria-label="主导航">
+    <a class="brand" href="/" aria-label={SITE_TITLE_ZH}>
+      <Image src={logo} alt="" widths={[72]} sizes="36px" />
+      <span class="brand-name">{SITE_TITLE_ZH}</span>
+    </a>
+    <div class="nav-links">
+      <HeaderLink class="nav-link" href="/">Home</HeaderLink>
+      <HeaderLink class="nav-link" href="/project">Project</HeaderLink>
+      <HeaderLink class="nav-link" href="/about">About</HeaderLink>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 1000;
+    height: var(--nav-height);
+    background: transparent;
+  }
+  nav {
+    width: min(var(--container-max), calc(100% - 48px));
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .brand :global(img) {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: var(--ls-tag);
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .nav-links :global(.nav-link) {
+    flex: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: var(--ls-nav);
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    transition: color 0.2s var(--ease-in-out);
+  }
+  .nav-links :global(.nav-link:hover) {
+    color: var(--text-primary);
+  }
+  .nav-links :global(.nav-link.active) {
+    color: var(--accent);
+  }
+  @media (max-width: 640px) {
+    nav {
+      width: calc(100% - 24px);
+    }
+    .nav-links :global(.nav-link) {
+      padding: 0.45rem 0.7rem;
+      font-size: 0.8rem;
+    }
+  }
+</style>

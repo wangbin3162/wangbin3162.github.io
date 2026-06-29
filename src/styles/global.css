@@ -1,31 +1,88 @@
 @import 'tailwindcss';
 
 :root {
-  --bg-start: #f0f4ff;
-  --bg-end: #f5f0ff;
-  --accent: #6366f1;
-  --accent-strong: #4338ca;
-  --accent2: #a855f7;
-  --accent-light: rgba(99, 102, 241, 0.1);
-  --accent2-light: rgba(168, 85, 247, 0.12);
-  --text-primary: #1e1b4b;
-  --text-secondary: #4338ca;
-  --text-muted: #6b7280;
-  --text-dim: #94a3b8;
-  --radius: 16px;
-  --radius-sm: 8px;
+  /* Background */
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-start: #000000;
+  --bg-end: #0a0a0a;
+
+  /* Accent (red series) */
+  --accent: #d14836;
+  --accent-strong: #d14836;
+  --accent-light: rgba(209, 72, 54, 0.12);
+  --accent2: #ff6b4a;
+  --accent2-light: rgba(209, 72, 54, 0.08);
+
+  /* Text (white scale) */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-muted: rgba(255, 255, 255, 0.35);
+  --text-dim: rgba(255, 255, 255, 0.35);
+
+  /* Border / glass */
+  --border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: none;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', 'Outfit', sans-serif;
+  --font-body: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Type scale */
+  --text-hero-xl: clamp(48px, 8vw, 96px);
+  --text-hero-lg: clamp(32px, 5vw, 64px);
+  --text-h1: clamp(28px, 4vw, 48px);
+  --text-h2: clamp(24px, 3vw, 36px);
+  --text-h3: 20px;
+  --text-body: 16px;
+  --text-small: 14px;
+  --text-caption: 12px;
+
+  /* Letter spacing */
+  --ls-display: 0.35em;
+  --ls-number: 0.2em;
+  --ls-nav: 0.08em;
+  --ls-tag: 0.05em;
+
+  /* Spacing */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 48px;
+  --space-xl: 72px;
+  --space-2xl: 120px;
+
+  /* Layout */
   --container-max: 1200px;
   --nav-height: 72px;
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.72);
-  --glass-shadow: 0 12px 40px rgba(99, 102, 241, 0.1);
-  --black: 30, 27, 75;
-  --gray: 107, 114, 128;
-  --gray-light: 226, 232, 240;
-  --gray-dark: 51, 65, 85;
-  --gray-gradient: rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0);
-  --font-display: 'Outfit', 'Avenir Next', 'Segoe UI', sans-serif;
-  --font-body: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+
+  /* Radius */
+  --radius: 16px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 999px;
+  --border-width: 0.5px;
+
+  /* Shadows */
+  --shadow-none: none;
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+  /* Easing */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Legacy aliases kept for old pages/components */
+  --black: 255, 255, 255;
+  --gray: 255, 255, 255;
+  --gray-light: 255, 255, 255;
+  --gray-dark: 255, 255, 255;
+  --gray-gradient: rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0);
 }
 
 html {
@@ -38,19 +95,21 @@ body {
   margin: 0;
   padding: 0;
   padding-top: var(--nav-height);
-  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  background: var(--bg-primary);
   font-family: var(--font-body);
   word-wrap: break-word;
   overflow-wrap: break-word;
   color: var(--text-primary);
-  font-size: 18px;
-  line-height: 1.7;
+  font-size: var(--text-body);
+  line-height: 1.6;
 }
+
 main {
   width: min(var(--container-max), calc(100% - 48px));
   margin: auto;
   padding: 3rem 0 5rem;
 }
+
 h1,
 h2,
 h3,
@@ -62,72 +121,92 @@ h6 {
   font-family: var(--font-display);
   line-height: 1.2;
 }
+
 h1 {
-  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  font-size: var(--text-h1);
 }
+
 h2 {
-  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-size: var(--text-h2);
 }
+
 h3 {
-  font-size: 1.4rem;
+  font-size: var(--text-h3);
 }
+
 h4 {
   font-size: 1.15rem;
 }
+
 h5 {
   font-size: 1rem;
 }
+
 strong,
 b {
   font-weight: 700;
 }
+
 a {
-  color: var(--accent-strong);
+  color: var(--accent);
   text-decoration: none;
 }
+
 a:hover {
-  color: var(--accent);
+  color: var(--accent2);
 }
+
 p {
   margin: 0;
   color: var(--text-primary);
 }
+
 textarea {
   width: 100%;
   font-size: 16px;
 }
+
 input {
   font-size: 16px;
 }
+
 table {
   width: 100%;
 }
+
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
+
 code {
   padding: 2px 5px;
-  background-color: rgba(99, 102, 241, 0.1);
+  background-color: rgba(255, 255, 255, 0.08);
   border-radius: 2px;
+  font-family: var(--font-mono);
 }
+
 pre {
   padding: 1.5em;
   border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
 }
+
 pre > code {
   all: unset;
 }
+
 blockquote {
   border-left: 4px solid var(--accent);
   padding: 0 0 0 20px;
   margin: 0;
   font-size: 1.15rem;
 }
+
 hr {
   border: none;
-  border-top: 1px solid rgba(var(--gray-light), 0.8);
+  border-top: 1px solid var(--border);
 }
 
 .glass-card {
@@ -135,8 +214,7 @@ hr {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
-  border-radius: var(--radius);
-  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius-md);
 }
 
 .section-header {
@@ -151,24 +229,29 @@ hr {
   display: inline-block;
   margin-bottom: 0.85rem;
   padding: 0.35rem 0.9rem;
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   background: var(--accent-light);
   color: var(--accent);
   font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-size: var(--text-caption);
+  font-weight: 500;
+  letter-spacing: var(--ls-tag);
   text-transform: uppercase;
 }
 
 .section-title {
   margin-bottom: 0.85rem;
+  font-family: var(--font-display);
+  font-size: var(--text-hero-lg);
+  font-weight: 500;
+  letter-spacing: var(--ls-display);
+  text-transform: uppercase;
 }
 
 .section-divider {
   width: 60px;
   height: 3px;
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   background: linear-gradient(90deg, var(--accent), var(--accent2));
 }
 
@@ -180,20 +263,26 @@ hr {
   display: inline-flex;
   align-items: center;
   padding: 0.42rem 0.8rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.88);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
   color: var(--text-secondary);
-  font-size: 0.84rem;
-  font-weight: 600;
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.08);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  font-weight: 500;
+  letter-spacing: var(--ls-tag);
 }
+
 @media (max-width: 720px) {
   body {
-    font-size: 18px;
+    font-size: var(--text-body);
   }
   main {
     width: calc(100% - 24px);
     padding: 2rem 0 4rem;
+  }
+  .section-title {
+    letter-spacing: 0.2em;
   }
 }
 
@@ -205,12 +294,8 @@ hr {
   height: 1px;
   width: 1px;
   overflow: hidden;
-  /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
   clip: rect(1px 1px 1px 1px);
-  /* maybe deprecated but we need to support legacy browsers */
   clip: rect(1px, 1px, 1px, 1px);
-  /* modern browsers, clip-path works inwards from each corner */
   clip-path: inset(50%);
-  /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
   white-space: nowrap;
 }

@@ -1,0 +1,36 @@
+---
+import type { ImageMetadata } from 'astro'
+import BaseHead from '../components/BaseHead.astro'
+import Footer from '../components/Footer.astro'
+import Navigation from '../components/Navigation.astro'
+
+interface Props {
+  title: string
+  description: string
+  image?: ImageMetadata
+  barbaNamespace?: string
+}
+
+const { title, description, image, barbaNamespace = 'page' } = Astro.props
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={title} description={description} image={image} />
+  </head>
+  <body data-barba="wrapper">
+    <Navigation />
+    <main data-barba="container" data-barba-namespace={barbaNamespace}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+  }
+</style>
