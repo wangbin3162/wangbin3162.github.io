@@ -1,0 +1,145 @@
+---
+import { Image } from 'astro:assets'
+import { openSourceItems } from '../../data/opensource'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { SITE_TITLE_ZH } from '../../consts'
+
+export function getStaticPaths() {
+  return openSourceItems.map((item) => ({
+    params: { slug: item.name },
+    props: { item }
+  }))
+}
+
+const { item } = Astro.props
+const pageTitle = `${item.name} — ${SITE_TITLE_ZH}`
+const pageDescription = item.description
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  image={item.image}
+  barbaNamespace="project-detail"
+>
+  <style>
+    :global(main) {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+      margin: 0;
+    }
+    .project-detail {
+      padding: calc(var(--nav-height) + var(--space-xl)) 0 var(--space-2xl);
+    }
+    .container {
+      width: min(var(--container-max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+    .project-name {
+      margin-bottom: var(--space-xl);
+      font-family: var(--font-display);
+      font-size: var(--text-hero-lg);
+      font-weight: 700;
+      line-height: 1.1;
+      word-break: break-word;
+    }
+    .project-info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-xl);
+      border-bottom: 1px solid var(--border);
+    }
+    .project-info-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .project-info-label {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      letter-spacing: var(--ls-tag);
+    }
+    .project-info-value {
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      font-weight: 500;
+    }
+    .project-info-value a {
+      margin-right: var(--space-md);
+    }
+    .project-description {
+      max-width: 700px;
+      margin-bottom: var(--space-lg);
+      color: var(--text-secondary);
+      font-size: var(--text-h2);
+      line-height: 1.6;
+    }
+    .project-techs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+    .project-image {
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+    }
+    .project-image :global(img) {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .project-info-grid {
+        grid-template-columns: 1fr;
+      }
+      .project-name {
+        font-size: var(--text-h1);
+      }
+      .project-description {
+        font-size: var(--text-body);
+      }
+    }
+  </style>
+
+  <section class="project-detail">
+    <div class="container">
+      <h1 class="project-name">{item.name}</h1>
+      <div class="project-info-grid">
+        <div class="project-info-row">
+          <span class="project-info-label">YEAR</span>
+          <span class="project-info-value">{item.year}</span>
+        </div>
+        <div class="project-info-row">
+          <span class="project-info-label">CATEGORY</span>
+          <span class="project-info-value">{item.category}</span>
+        </div>
+        <div class="project-info-row">
+          <span class="project-info-label">STARS</span>
+          <span class="project-info-value">⭐ {item.stars}</span>
+        </div>
+        <div class="project-info-row">
+          <span class="project-info-label">LINK</span>
+          <span class="project-info-value">
+            <a href={item.github} target="_blank" rel="noreferrer">GitHub</a>
+            {item.demo && <a href={item.demo} target="_blank" rel="noreferrer">Demo</a>}
+          </span>
+        </div>
+      </div>
+      <p class="project-description">{item.description}</p>
+      <div class="project-techs">
+        {item.techs.map((tech) => <span class="tech-chip">{tech}</span>)}
+      </div>
+      <div class="project-image">
+        <Image src={item.image} alt={item.name} widths={[1200]} sizes="100vw" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

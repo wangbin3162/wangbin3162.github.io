@@ -1,0 +1,153 @@
+---
+import { Image } from 'astro:assets'
+import SectionHeader from '../components/SectionHeader.astro'
+import { openSourceItems } from '../data/opensource'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { SITE_DESCRIPTION, SITE_TITLE_ZH } from '../consts'
+
+function splitProjectName(name: string) {
+  const parts = name.split('-')
+  if (parts.length <= 1) return [name]
+  const head = parts.slice(0, -1).join('-')
+  const tail = parts[parts.length - 1]
+  return [head, tail]
+}
+
+const pageTitle = `Projects — ${SITE_TITLE_ZH}`
+---
+
+<BaseLayout title={pageTitle} description={SITE_DESCRIPTION} barbaNamespace="project">
+  <style>
+    :global(main) {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+      margin: 0;
+    }
+    .project-page {
+      padding: calc(var(--nav-height) + var(--space-xl)) 0 var(--space-2xl);
+    }
+    .container {
+      width: min(var(--container-max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+    .project-list {
+      display: grid;
+      margin-top: var(--space-xl);
+    }
+    .project-item {
+      position: relative;
+      display: block;
+      padding: var(--space-lg) 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+    }
+    .project-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+    .project-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-sm);
+    }
+    .project-number {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      letter-spacing: var(--ls-number);
+    }
+    .project-year {
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-size: var(--text-small);
+      font-weight: 500;
+    }
+    .project-title {
+      margin-bottom: var(--space-md);
+      font-family: var(--font-display);
+      font-size: var(--text-h1);
+      font-weight: 500;
+      line-height: 1.1;
+      color: var(--text-primary);
+      transition: color 0.2s var(--ease-in-out);
+    }
+    .project-item:hover .project-title {
+      color: var(--accent);
+    }
+    .project-techs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+    .project-hover-image {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%) translateX(20px);
+      width: 280px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s var(--ease-in-out), transform 0.3s var(--ease-in-out);
+      z-index: 10;
+    }
+    .project-hover-image :global(img) {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+    }
+    .project-item:hover .project-hover-image {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+    @media (max-width: 768px) {
+      .project-title {
+        font-size: var(--text-h2);
+      }
+      .project-hover-image {
+        position: static;
+        transform: none;
+        width: 100%;
+        opacity: 1;
+        margin-top: var(--space-sm);
+      }
+      .project-item:hover .project-hover-image {
+        transform: none;
+      }
+    }
+  </style>
+
+  <section class="project-page">
+    <div class="container">
+      <SectionHeader tag="Open Source" title="P R O J E C T S" />
+      <div class="project-list">
+        {
+          openSourceItems.map((item, index) => {
+            const [nameHead, nameTail] = splitProjectName(item.name)
+            const num = String(index + 1).padStart(2, '0')
+            return (
+              <a href={`/project/${item.name}`} class="project-item">
+                <div class="project-meta">
+                  <span class="project-number">( {num} )</span>
+                  <span class="project-year">{item.year}</span>
+                </div>
+                <h2 class="project-title">
+                  <span>{nameHead}</span>
+                  <br />
+                  <span>{nameTail}</span>
+                </h2>
+                <div class="project-techs">
+                  {item.techs.map((tech) => <span class="tech-chip">{tech}</span>)}
+                </div>
+                <div class="project-hover-image">
+                  <Image src={item.image} alt={item.name} widths={[400]} sizes="280px" />
+                </div>
+              </a>
+            )
+          })
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

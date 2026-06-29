@@ -22,6 +22,8 @@ export interface OpenSourceItem {
   github: string
   demo: string
   image: ImageMetadata
+  year: number
+  category: '组件库' | '可视化' | '工具类'
 }
 
 export const openSourceTotalStars = '682+'
@@ -35,7 +37,9 @@ export const openSourceItems: OpenSourceItem[] = [
     techs: ['Vue3', 'TypeScript'],
     github: 'https://github.com/wangbin3162/bin-ui-design',
     demo: 'https://wangbin3162.github.io/bin-ui-design',
-    image: binUiDesign
+    image: binUiDesign,
+    year: 2024,
+    category: '组件库'
   },
   {
     name: 'bin-admin-pro',
@@ -45,7 +49,9 @@ export const openSourceItems: OpenSourceItem[] = [
     techs: ['Vue3 全家桶'],
     github: 'https://github.com/wangbin3162/bin-admin-pro',
     demo: 'https://wangbin3162.github.io/bin-admin-pro',
-    image: binAdminPro
+    image: binAdminPro,
+    year: 2024,
+    category: '组件库'
   },
   {
     name: 'bin-editor-next',
@@ -55,7 +61,9 @@ export const openSourceItems: OpenSourceItem[] = [
     techs: ['Vue3', 'brace'],
     github: 'https://github.com/wangbin3162/bin-editor-next',
     demo: 'https://wangbin3162.github.io/bin-editor-next',
-    image: binEditorNext
+    image: binEditorNext,
+    year: 2022,
+    category: '组件库'
   },
   {
     name: 'bin-datav',
@@ -65,7 +73,9 @@ export const openSourceItems: OpenSourceItem[] = [
     techs: ['Vue3', 'TypeScript'],
     github: 'https://github.com/wangbin3162/bin-datav',
     demo: 'https://wangbin3162.github.io/bin-datav',
-    image: binDatav
+    image: binDatav,
+    year: 2024,
+    category: '可视化'
   },
   {
     name: 'bin-datav-schema',
@@ -75,7 +85,9 @@ export const openSourceItems: OpenSourceItem[] = [
     techs: ['Vue3', 'TypeScript'],
     github: 'https://github.com/wangbin3162/bin-datav-schema',
     demo: 'https://wangbin3162.github.io/bin-datav-schema',
-    image: binDatavSchema
+    image: binDatavSchema,
+    year: 2024,
+    category: '可视化'
   },
   {
     name: 'bin-grid-layout',
@@ -85,7 +97,9 @@ export const openSourceItems: OpenSourceItem[] = [
     techs: ['Vue3', 'TypeScript'],
     github: 'https://github.com/wangbin3162/bin-grid-layout',
     demo: 'https://wangbin3162.github.io/bin-grid-layout',
-    image: binGridLayout
+    image: binGridLayout,
+    year: 2023,
+    category: '组件库'
   },
   {
     name: 'bin-charts-next',
@@ -95,7 +109,9 @@ export const openSourceItems: OpenSourceItem[] = [
     techs: ['Vue3', 'ECharts'],
     github: 'https://github.com/wangbin3162/bin-charts-next',
     demo: 'https://wangbin3162.github.io/bin-charts-next',
-    image: binChartsNext
+    image: binChartsNext,
+    year: 2023,
+    category: '可视化'
   },
   {
     name: 'bin-form-maker',
@@ -105,7 +121,9 @@ export const openSourceItems: OpenSourceItem[] = [
     techs: ['Vue3', 'TypeScript'],
     github: 'https://github.com/wangbin3162/bin-form-maker',
     demo: 'https://wangbin3162.github.io/bin-form-maker',
-    image: binFormMaker
+    image: binFormMaker,
+    year: 2023,
+    category: '组件库'
   },
   {
     name: 'bin-excel-pro',
@@ -115,7 +133,9 @@ export const openSourceItems: OpenSourceItem[] = [
     techs: ['Vue3', 'Univer'],
     github: 'https://github.com/wangbin3162/bin-excel-pro',
     demo: 'https://wangbin3162.github.io/bin-excel-pro',
-    image: binExcelPro
+    image: binExcelPro,
+    year: 2024,
+    category: '组件库'
   },
   {
     name: 'bin-tree-org',
@@ -125,7 +145,9 @@ export const openSourceItems: OpenSourceItem[] = [
     techs: ['Vue2'],
     github: 'https://github.com/wangbin3162/bin-tree-org',
     demo: 'https://wangbin3162.github.io/bin-tree-org',
-    image: binTreeOrg
+    image: binTreeOrg,
+    year: 2021,
+    category: '组件库'
   },
   {
     name: 'bin-animation',
@@ -135,7 +157,9 @@ export const openSourceItems: OpenSourceItem[] = [
     techs: ['Vue'],
     github: 'https://github.com/wangbin3162/bin-animation',
     demo: 'https://wangbin3162.github.io/bin-animation',
-    image: binAnimation
+    image: binAnimation,
+    year: 2022,
+    category: '工具类'
   },
   {
     name: 'bin-keyframe-animation',
@@ -145,6 +169,8 @@ export const openSourceItems: OpenSourceItem[] = [
     techs: ['JavaScript'],
     github: 'https://github.com/wangbin3162/bin-keyframe-animation',
     demo: 'https://wangbin3162.github.io/bin-keyframe-animation',
-    image: binKeyframeAnimation
+    image: binKeyframeAnimation,
+    year: 2023,
+    category: '工具类'
   }
 ]

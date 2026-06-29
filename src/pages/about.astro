@@ -1,419 +1,417 @@
 ---
-import BaseHead from '../components/BaseHead.astro'
-import Footer from '../components/Footer.astro'
-import Header from '../components/Header.astro'
 import SectionHeader from '../components/SectionHeader.astro'
 import {
   aboutIntro,
-  aboutSectionLinks,
-  aboutStats,
+  contactLinks,
   experienceEntries,
+  heroContent,
   projectGroups,
   skillGroups,
   strengths
 } from '../data/profile'
+import BaseLayout from '../layouts/BaseLayout.astro'
 import { SITE_DESCRIPTION, SITE_TITLE_ZH } from '../consts'
+
+const pageTitle = `About — ${SITE_TITLE_ZH}`
 ---
 
-<!doctype html>
-<html lang="zh-CN">
-  <head>
-    <BaseHead title={`关于我 | ${SITE_TITLE_ZH}`} description={SITE_DESCRIPTION} />
-    <style>
-      .about-layout {
-        display: grid;
-        grid-template-columns: 220px minmax(0, 1fr);
-        gap: 2rem;
-        align-items: start;
-      }
-      .about-nav {
-        position: sticky;
-        top: calc(var(--nav-height) + 24px);
-        padding: 1rem;
-      }
-      .about-nav-links {
-        display: grid;
-        gap: 0.45rem;
-      }
-      .about-nav-links a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 0.7rem 0.9rem;
-        border-radius: 12px;
-        color: var(--text-muted);
-        font-family: var(--font-display);
-        font-size: 0.92rem;
-        transition: color 0.2s ease, background 0.2s ease;
-      }
-      .about-nav-links a.active,
-      .about-nav-links a:hover {
-        color: var(--accent);
-        background: var(--accent-light);
-      }
-      .about-content {
-        display: grid;
-        gap: 1.5rem;
-      }
-      .about-panel {
-        padding: 2rem;
-      }
-      .about-intro {
-        font-size: 1.02rem;
-        color: var(--text-primary);
-      }
-      .about-stats {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0.9rem;
-        margin-top: 1.5rem;
-      }
-      .about-stat {
-        padding: 1rem 1.1rem;
-        background: rgba(255, 255, 255, 0.82);
-        border-radius: 14px;
-      }
-      .about-stat strong {
-        display: block;
-        font-family: var(--font-display);
-        font-size: 1.6rem;
-        color: var(--accent-strong);
-      }
-      .about-stat span {
-        color: var(--text-muted);
-        font-size: 0.9rem;
-      }
-      .timeline {
-        position: relative;
-        display: grid;
-        gap: 1rem;
-      }
-      .timeline::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0.55rem;
-        width: 2px;
-        background: linear-gradient(180deg, rgba(99, 102, 241, 0.3), rgba(168, 85, 247, 0.3));
-      }
-      .timeline-item {
-        position: relative;
-        padding-left: 2rem;
-      }
-      .timeline-item::before {
-        content: '';
-        position: absolute;
-        top: 1.2rem;
-        left: 0;
-        width: 1.1rem;
-        height: 1.1rem;
-        border: 3px solid rgba(99, 102, 241, 0.45);
-        border-radius: 50%;
-        background: #fff;
-      }
-      .timeline-card {
-        padding: 1.5rem;
-      }
-      .timeline-period,
-      .project-period {
-        color: var(--accent);
-        font-family: var(--font-display);
-        font-size: 0.85rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-      .timeline-company,
-      .project-name {
-        margin-top: 0.4rem;
-        font-family: var(--font-display);
-        font-size: 1.2rem;
-        font-weight: 700;
-      }
-      .timeline-role {
-        margin-top: 0.2rem;
-        color: var(--text-secondary);
-        font-weight: 600;
-      }
-      .timeline-list {
-        margin: 1rem 0 0;
-        padding-left: 1.2rem;
-        color: var(--text-primary);
-      }
-      .timeline-list li + li {
-        margin-top: 0.55rem;
-      }
-      .project-groups {
-        display: grid;
-        gap: 1.5rem;
-      }
-      .project-group-title {
-        margin-bottom: 0.9rem;
-        font-family: var(--font-display);
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--text-secondary);
-      }
-      .project-grid {
-        display: grid;
-        gap: 1rem;
-      }
-      .project-card {
-        padding: 1.5rem;
-      }
-      .project-head {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-      .project-icon {
-        font-size: 1.4rem;
-      }
-      .project-description {
-        margin-top: 0.85rem;
-        color: var(--text-primary);
-      }
-      .project-techs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.65rem;
-        margin-top: 1rem;
-      }
-      .project-result {
-        margin-top: 1rem;
-        color: var(--text-secondary);
-        font-weight: 600;
-      }
+<BaseLayout title={pageTitle} description={SITE_DESCRIPTION} barbaNamespace="about">
+  <style>
+    :global(main) {
+      width: 100%;
+      max-width: none;
+      padding: 0;
+      margin: 0;
+    }
+    .about-section {
+      padding: var(--space-2xl) 0;
+    }
+    .container {
+      width: min(var(--container-max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+    /* Intro */
+    .about-intro {
+      max-width: 900px;
+      color: var(--text-secondary);
+      font-size: var(--text-h2);
+      line-height: 1.6;
+    }
+    .about-intro :global(strong) {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+    /* Team */
+    .team-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: center;
+      padding: var(--space-xl);
+    }
+    .team-name {
+      margin-bottom: var(--space-sm);
+      font-family: var(--font-display);
+      font-size: var(--text-hero-lg);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .team-role {
+      margin-bottom: var(--space-md);
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+    }
+    .team-bio {
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+    .team-bio :global(strong) {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+    .team-location {
+      margin-top: var(--space-md);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: var(--text-small);
+    }
+    /* Experience */
+    .timeline {
+      display: grid;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+    .timeline-item {
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-period {
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-size: var(--text-small);
+      font-weight: 600;
+      letter-spacing: var(--ls-tag);
+    }
+    .timeline-company {
+      margin: var(--space-xs) 0;
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      font-weight: 600;
+    }
+    .timeline-role {
+      color: var(--text-secondary);
+      margin-bottom: var(--space-sm);
+    }
+    .timeline-list {
+      padding-left: 1.2rem;
+      color: var(--text-muted);
+    }
+    .timeline-list li {
+      margin-bottom: var(--space-xs);
+    }
+    .project-group {
+      margin-bottom: var(--space-xl);
+    }
+    .project-group-label {
+      margin-bottom: var(--space-md);
+      color: var(--text-secondary);
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      font-weight: 600;
+    }
+    .project-grid {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .project-card {
+      padding: var(--space-md);
+    }
+    .project-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .project-card-name {
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      font-weight: 600;
+    }
+    .project-card-period {
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: var(--text-small);
+    }
+    .project-card-desc {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: var(--space-sm);
+    }
+    .project-card-techs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+    .project-card-result {
+      color: var(--text-muted);
+      font-size: var(--text-small);
+      font-weight: 500;
+    }
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+    .skill-card {
+      padding: var(--space-md);
+    }
+    .skill-card-title {
+      margin-bottom: var(--space-md);
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      font-weight: 600;
+    }
+    .skill-items {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .skill-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .skill-name {
+      color: var(--text-primary);
+    }
+    .skill-level {
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-full);
+      font-size: var(--text-caption);
+      font-weight: 600;
+    }
+    .skill-level.expert {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+    .skill-level.proficient {
+      background: rgba(59, 130, 246, 0.12);
+      color: #3b82f6;
+    }
+    .skill-level.familiar {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+    }
+    /* Strengths */
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+    .strength-card {
+      padding: var(--space-lg);
+      text-align: center;
+    }
+    .strength-icon {
+      font-size: 2.25rem;
+      margin-bottom: var(--space-sm);
+      display: block;
+    }
+    .strength-title {
+      margin-bottom: var(--space-sm);
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      font-weight: 600;
+    }
+    .strength-desc {
+      color: var(--text-secondary);
+      font-size: var(--text-small);
+      line-height: 1.7;
+    }
+    /* Contact */
+    .contact-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: border-color 0.2s var(--ease-in-out);
+    }
+    .contact-link:hover {
+      border-color: var(--accent);
+    }
+    .contact-icon {
+      font-size: 1.75rem;
+    }
+    .contact-label {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      letter-spacing: var(--ls-tag);
+    }
+    .contact-value {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    @media (max-width: 1024px) {
       .skills-grid,
       .strengths-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(2, 1fr);
       }
-      .skill-card,
-      .strength-card {
-        padding: 1.4rem;
+      .team-card {
+        grid-template-columns: 1fr;
       }
-      .skill-card-title,
-      .strength-title {
-        margin-bottom: 0.9rem;
-        font-family: var(--font-display);
-        font-size: 1.1rem;
-        font-weight: 700;
+    }
+    @media (max-width: 768px) {
+      .about-intro {
+        font-size: var(--text-body);
       }
-      .skill-items {
-        display: grid;
-        gap: 0.7rem;
+      .skills-grid,
+      .strengths-grid,
+      .contact-links {
+        grid-template-columns: 1fr;
       }
-      .skill-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
+      .team-name {
+        font-size: var(--text-h1);
       }
-      .skill-level {
-        padding: 0.2rem 0.65rem;
-        border-radius: 999px;
-        font-size: 0.8rem;
-        font-weight: 700;
-      }
-      .skill-level.expert {
-        background: rgba(99, 102, 241, 0.16);
-        color: var(--accent-strong);
-      }
-      .skill-level.proficient {
-        background: rgba(168, 85, 247, 0.14);
-        color: #7e22ce;
-      }
-      .skill-level.familiar {
-        background: rgba(148, 163, 184, 0.16);
-        color: #475569;
-      }
-      .strength-icon {
-        display: inline-flex;
-        margin-bottom: 0.8rem;
-        font-size: 1.5rem;
-      }
-      .strength-desc {
-        color: var(--text-primary);
-      }
-      @media (max-width: 1100px) {
-        .about-layout {
-          grid-template-columns: 1fr;
-        }
-        .about-nav {
-          top: calc(var(--nav-height) + 12px);
-          z-index: 20;
-          overflow-x: auto;
-        }
-        .about-nav-links {
-          display: flex;
-          width: max-content;
-          min-width: 100%;
-        }
-      }
-      @media (max-width: 780px) {
-        .about-panel {
-          padding: 1.35rem;
-        }
-        .about-stats,
-        .skills-grid,
-        .strengths-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
-    <main>
-      <div class="about-layout">
-        <aside class="about-nav glass-card" aria-label="关于我目录">
-          <nav class="about-nav-links">
-            {aboutSectionLinks.map((item) => <a href={`#${item.id}`} data-about-link={item.id}>{item.label}</a>)}
-          </nav>
-        </aside>
-        <div class="about-content">
-          <section id="about" class="about-panel glass-card">
-            <SectionHeader tag="About Me" title="关于我" align="left" />
-            <p class="about-intro" set:html={aboutIntro}></p>
-            <div class="about-stats">
-              {
-                aboutStats.map((item) => (
-                  <article class="about-stat">
-                    <strong>{item.value}</strong>
-                    <span>{item.label}</span>
-                  </article>
-                ))
-              }
-            </div>
-          </section>
+    }
+  </style>
 
-          <section id="experience" class="about-panel glass-card">
-            <SectionHeader tag="Journey" title="成长轨迹" align="left" />
-            <div class="timeline">
-              {
-                experienceEntries.map((item) => (
-                  <article class="timeline-item">
-                    <div class="timeline-card glass-card">
-                      <div class="timeline-period">{item.period}</div>
-                      <div class="timeline-company">{item.company}</div>
-                      <div class="timeline-role">{item.role}</div>
-                      <ul class="timeline-list">
-                        {item.items.map((entry) => <li>{entry}</li>)}
-                      </ul>
-                    </div>
-                  </article>
-                ))
-              }
-            </div>
-          </section>
+  <section class="about-section" id="intro">
+    <div class="container">
+      <SectionHeader tag="About" title="A B O U T" />
+      <p class="about-intro" set:html={aboutIntro} />
+    </div>
+  </section>
 
-          <section id="projects" class="about-panel glass-card">
-            <SectionHeader tag="Projects" title="做过的东西" align="left" />
-            <div class="project-groups">
-              {
-                projectGroups.map((group) => (
-                  <div>
-                    <div class="project-group-title">{group.label}</div>
-                    <div class="project-grid">
-                      {group.items.map((item) => (
-                        <article class="project-card glass-card">
-                          <div class="project-head">
-                            <div>
-                              <div class="project-period">{item.period}</div>
-                              <div class="project-name">{item.name}</div>
-                            </div>
-                            <span class="project-icon">{item.icon}</span>
-                          </div>
-                          <p class="project-description">{item.description}</p>
-                          <div class="project-techs">
-                            {item.techs.map((tech) => <span class="tech-chip">{tech}</span>)}
-                          </div>
-                          <p class="project-result">{item.result}</p>
-                        </article>
-                      ))}
-                    </div>
-                  </div>
-                ))
-              }
-            </div>
-          </section>
-
-          <section id="skills" class="about-panel glass-card">
-            <SectionHeader tag="Skills" title="技术栈" align="left" />
-            <div class="skills-grid">
-              {
-                skillGroups.map((group) => (
-                  <article class="skill-card glass-card">
-                    <div class="skill-card-title">{group.title}</div>
-                    <div class="skill-items">
-                      {group.items.map((item) => (
-                        <div class="skill-item">
-                          <span>{item.name}</span>
-                          <span class:list={['skill-level', item.tone]}>{item.level}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </article>
-                ))
-              }
-            </div>
-          </section>
-
-          <section id="strengths" class="about-panel glass-card">
-            <SectionHeader tag="What I Do Best" title="擅长的事" align="left" />
-            <div class="strengths-grid">
-              {
-                strengths.map((item) => (
-                  <article class="strength-card glass-card">
-                    <span class="strength-icon">{item.icon}</span>
-                    <div class="strength-title">{item.title}</div>
-                    <p class="strength-desc">{item.description}</p>
-                  </article>
-                ))
-              }
-            </div>
-          </section>
+  <section class="about-section" id="team">
+    <div class="container">
+      <SectionHeader tag="Team" title="T E A M" />
+      <div class="team-card glass-card">
+        <div>
+          <h2 class="team-name">{heroContent.name}</h2>
+          <p class="team-role">{heroContent.role}</p>
+          <p class="team-location">Lives in 徐州</p>
         </div>
+        <p class="team-bio" set:html={aboutIntro} />
       </div>
-    </main>
-    <Footer />
-    <script>
-      const links = Array.from(document.querySelectorAll('[data-about-link]'))
-      const sections = links
-        .map((link) => document.getElementById(link.getAttribute('data-about-link')))
-        .filter(Boolean)
+    </div>
+  </section>
 
-      const setActive = (id) => {
-        links.forEach((link) => {
-          link.classList.toggle('active', link.getAttribute('data-about-link') === id)
-        })
-      }
-
-      if (sections.length > 0) {
-        setActive(sections[0].id)
-      }
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const visible = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-
-          if (visible) {
-            setActive(visible.target.id)
-          }
-        },
+  <section class="about-section" id="experience">
+    <div class="container">
+      <SectionHeader tag="Experience" title="E X P E R I E N C E" />
+      <div class="timeline">
         {
-          threshold: [0.25, 0.45, 0.7],
-          rootMargin: '-15% 0px -55% 0px'
+          experienceEntries.map((entry) => (
+            <div class="timeline-item">
+              <div class="timeline-period">{entry.period}</div>
+              <h3 class="timeline-company">{entry.company}</h3>
+              <p class="timeline-role">{entry.role}</p>
+              <ul class="timeline-list">
+                {entry.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          ))
         }
-      )
+      </div>
+      {
+        projectGroups.map((group) => (
+          <div class="project-group">
+            <div class="project-group-label">{group.label}</div>
+            <div class="project-grid">
+              {group.items.map((item) => (
+                <div class="project-card glass-card">
+                  <div class="project-card-head">
+                    <h4 class="project-card-name">{item.icon} {item.name}</h4>
+                    <span class="project-card-period">{item.period}</span>
+                  </div>
+                  <p class="project-card-desc">{item.description}</p>
+                  <div class="project-card-techs">
+                    {item.techs.map((tech) => <span class="tech-chip">{tech}</span>)}
+                  </div>
+                  <p class="project-card-result">{item.result}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
 
-      sections.forEach((section) => observer.observe(section))
-    </script>
-  </body>
-</html>
+  <section class="about-section" id="skills">
+    <div class="container">
+      <SectionHeader tag="Skills" title="S K I L L S" />
+      <div class="skills-grid">
+        {
+          skillGroups.map((group) => (
+            <div class="skill-card glass-card">
+              <h3 class="skill-card-title">{group.title}</h3>
+              <div class="skill-items">
+                {group.items.map((item) => (
+                  <div class="skill-item">
+                    <span class="skill-name">{item.name}</span>
+                    <span class:list={['skill-level', item.tone]}>{item.level}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="strengths">
+    <div class="container">
+      <SectionHeader tag="Strengths" title="S T R E N G T H S" />
+      <div class="strengths-grid">
+        {
+          strengths.map((item) => (
+            <div class="strength-card glass-card">
+              <span class="strength-icon">{item.icon}</span>
+              <h3 class="strength-title">{item.title}</h3>
+              <p class="strength-desc">{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="contact">
+    <div class="container">
+      <SectionHeader tag="Contact" title="C O N T A C T" />
+      <div class="contact-links">
+        {
+          contactLinks.map((link) => (
+            <a
+              href={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+              class="contact-link"
+            >
+              <span class="contact-icon">{link.icon}</span>
+              <div>
+                <div class="contact-label">{link.label}</div>
+                <div class="contact-value">{link.value}</div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
