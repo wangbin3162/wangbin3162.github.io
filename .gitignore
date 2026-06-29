@@ -27,6 +27,9 @@ src/.vitepress/cache
 .vscode/*
 !.vscode/extensions.json
 .idea
+.claude
+.workbuddy
+.astro
 *.suo
 *.ntvs*
 *.njsproj
