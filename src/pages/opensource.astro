@@ -1,7 +1,5 @@
 ---
 import BaseHead from '../components/BaseHead.astro'
-import Footer from '../components/Footer.astro'
-import Header from '../components/Header.astro'
 import OpenSourceCard from '../components/OpenSourceCard.astro'
 import SectionHeader from '../components/SectionHeader.astro'
 import { openSourceItems, openSourceTotalStars } from '../data/opensource'
@@ -57,7 +55,6 @@ import { SITE_DESCRIPTION, SITE_TITLE_ZH } from '../consts'
     </style>
   </head>
   <body>
-    <Header />
     <main>
       <div class="opensource-page">
         <section class="opensource-hero glass-card">
@@ -72,6 +69,5 @@ import { SITE_DESCRIPTION, SITE_TITLE_ZH } from '../consts'
         </section>
       </div>
     </main>
-    <Footer />
   </body>
 </html>

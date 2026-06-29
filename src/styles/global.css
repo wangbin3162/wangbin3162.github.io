@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 :root {
   --bg-start: #f0f4ff;
   --bg-end: #f5f0ff;

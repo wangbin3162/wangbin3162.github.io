@@ -262,6 +262,33 @@ export const strengths = [
   }
 ]
 
+export const contactLinks = [
+  {
+    icon: '📱',
+    label: '手机',
+    value: '176 2516 0896',
+    href: 'tel:17625160896'
+  },
+  {
+    icon: '✉️',
+    label: '邮箱',
+    value: '316281400@qq.com',
+    href: 'mailto:316281400@qq.com'
+  },
+  {
+    icon: '💻',
+    label: 'GitHub',
+    value: 'github.com/wangbin3162',
+    href: 'https://github.com/wangbin3162'
+  },
+  {
+    icon: '🌐',
+    label: '个人网站',
+    value: 'wangbinai.top',
+    href: 'https://wangbinai.top'
+  }
+]
+
 export const footerContacts = [
   {
     icon: '✉️',
