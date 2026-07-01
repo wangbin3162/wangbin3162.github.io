@@ -8,10 +8,10 @@ interface Props {
   title: string
   description: string
   image?: ImageMetadata
-  barbaNamespace?: string
+  pageKey?: string
 }
 
-const { title, description, image, barbaNamespace = 'page' } = Astro.props
+const { title, description, image, pageKey = 'page' } = Astro.props
 ---
 
 <!doctype html>
@@ -19,16 +19,18 @@ const { title, description, image, barbaNamespace = 'page' } = Astro.props
   <head>
     <BaseHead title={title} description={description} image={image} />
   </head>
-  <body data-barba="wrapper">
+  <body>
     <Navigation />
-    <main data-barba="container" data-barba-namespace={barbaNamespace}>
+    <main data-page-key={pageKey}>
       <slot />
     </main>
     <Footer />
 
     <script>
-      import { initAnimations } from '../scripts/animations'
-      initAnimations()
+      import { cleanupAnimations, initAnimations } from '../scripts/animations'
+      // View Transitions：切换前销毁旧页动画（ScrollTrigger/Lenis），加载后重新初始化
+      document.addEventListener('astro:before-swap', () => cleanupAnimations())
+      document.addEventListener('astro:page-load', () => initAnimations())
     </script>
   </body>
 </html>

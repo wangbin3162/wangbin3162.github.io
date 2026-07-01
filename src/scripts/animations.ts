@@ -262,7 +262,7 @@ export function destroyPageAnimations() {
 export function initPageAnimations() {
   if (typeof window === 'undefined') return
 
-  const namespace = document.querySelector('[data-barba-namespace]')?.getAttribute('data-barba-namespace')
+  const namespace = document.querySelector('[data-page-key]')?.getAttribute('data-page-key')
 
   initRevealAnimations()
   initSectionTitleAnimations()

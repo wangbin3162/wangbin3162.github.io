@@ -311,3 +311,33 @@ hr {
   display: inline-block;
   will-change: transform, opacity;
 }
+
+/* View Transitions：黑色幕布式过渡 —— 旧页淡出 → 黑色幕 → 新页淡入 */
+::view-transition-group(root) {
+  background: #000;
+}
+::view-transition-old(root) {
+  animation: vt-fade-out 0.3s ease forwards;
+}
+::view-transition-new(root) {
+  animation: vt-fade-in 0.3s ease 0.3s both;
+}
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
