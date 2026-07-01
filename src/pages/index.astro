@@ -268,7 +268,7 @@ const duplicatedFeatured = [...featuredProjects, ...featuredProjects]
     <div class="container">
       <div class="hero-inner">
         <p class="hero-greeting">{heroContent.greeting}</p>
-        <h1 class="hero-name">{heroContent.name}</h1>
+        <h1 class="hero-name" data-split-text="">{heroContent.name}</h1>
         <p class="hero-role">{heroContent.role}</p>
         <div class="hero-stats">
           {
@@ -289,9 +289,9 @@ const duplicatedFeatured = [...featuredProjects, ...featuredProjects]
 
   <section class="home-section projects-section" id="projects">
     <div class="container">
-      <SectionHeader tag="Projects" title="P R O J E C T S" />
+      <SectionHeader tag="Projects" title="P R O J E C T S" splitText />
     </div>
-    <div class="projects-track">
+    <div class="projects-track reveal-stagger" data-reveal-stagger="0.1">
       {
         duplicatedFeatured.map((item) => (
           <a href={`/project/${item.name}`} class="project-card glass-card">
@@ -311,9 +311,9 @@ const duplicatedFeatured = [...featuredProjects, ...featuredProjects]
 
   <section class="home-section" id="what-i-do">
     <div class="container">
-      <SectionHeader tag="What I Do" title="W H A T&nbsp;&nbsp;I&nbsp;&nbsp;D O" />
-      <p class="what-i-do-intro" set:html={aboutIntro} />
-      <div class="what-i-do-stats">
+      <SectionHeader tag="What I Do" title="W H A T&nbsp;&nbsp;I&nbsp;&nbsp;D O" splitText />
+      <p class="what-i-do-intro reveal" set:html={aboutIntro} />
+      <div class="what-i-do-stats reveal-stagger" data-reveal-stagger="0.15">
         {
           aboutStats.slice(0, 3).map((stat) => (
             <div class="what-i-do-stat glass-card">
@@ -328,8 +328,8 @@ const duplicatedFeatured = [...featuredProjects, ...featuredProjects]
 
   <section class="home-section" id="experience">
     <div class="container">
-      <SectionHeader tag="Experience" title="E X P E R I E N C E" />
-      <div class="timeline">
+      <SectionHeader tag="Experience" title="E X P E R I E N C E" splitText />
+      <div class="timeline reveal-stagger" data-reveal-stagger="0.2">
         {
           experienceEntries.map((entry) => (
             <div class="timeline-item">
@@ -348,8 +348,8 @@ const duplicatedFeatured = [...featuredProjects, ...featuredProjects]
 
   <section class="home-section" id="contact">
     <div class="container">
-      <SectionHeader tag="Contact" title="C O N T A C T" />
-      <div class="contact-links">
+      <SectionHeader tag="Contact" title="C O N T A C T" splitText />
+      <div class="contact-links reveal-stagger" data-reveal-stagger="0.1">
         {
           contactLinks.map((link) => (
             <a

@@ -86,7 +86,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-height) + 24px);
 }
 
@@ -298,4 +297,17 @@ hr {
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* Animation helpers */
+.reveal,
+.reveal-stagger > * {
+  opacity: 0;
+}
+
+.split-char,
+.hero-char,
+.section-char {
+  display: inline-block;
+  will-change: transform, opacity;
 }

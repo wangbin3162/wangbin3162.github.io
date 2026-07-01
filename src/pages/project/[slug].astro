@@ -111,8 +111,8 @@ const pageDescription = item.description
 
   <section class="project-detail">
     <div class="container">
-      <h1 class="project-name">{item.name}</h1>
-      <div class="project-info-grid">
+      <h1 class="project-name" data-split-text="">{item.name}</h1>
+      <div class="project-info-grid reveal-stagger" data-reveal-stagger="0.1">
         <div class="project-info-row">
           <span class="project-info-label">YEAR</span>
           <span class="project-info-value">{item.year}</span>
@@ -133,11 +133,11 @@ const pageDescription = item.description
           </span>
         </div>
       </div>
-      <p class="project-description">{item.description}</p>
-      <div class="project-techs">
+      <p class="project-description reveal">{item.description}</p>
+      <div class="project-techs reveal-stagger" data-reveal-stagger="0.05">
         {item.techs.map((tech) => <span class="tech-chip">{tech}</span>)}
       </div>
-      <div class="project-image">
+      <div class="project-image reveal">
         <Image src={item.image} alt={item.name} widths={[1200]} sizes="100vw" />
       </div>
     </div>

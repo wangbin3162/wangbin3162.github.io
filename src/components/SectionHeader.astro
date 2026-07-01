@@ -3,13 +3,14 @@ interface Props {
   tag: string
   title: string
   align?: 'left' | 'center'
+  splitText?: boolean
 }
 
-const { tag, title, align = 'center' } = Astro.props
+const { tag, title, align = 'center', splitText = false } = Astro.props
 ---
 
 <div class:list={['section-header', `align-${align}`]}>
   <span class="section-tag">{tag}</span>
-  <h2 class="section-title">{title}</h2>
+  <h2 class="section-title" data-split-text={splitText ? '' : undefined}>{title}</h2>
   <div class="section-divider"></div>
 </div>

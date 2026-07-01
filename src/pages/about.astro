@@ -290,15 +290,15 @@ const pageTitle = `About — ${SITE_TITLE_ZH}`
 
   <section class="about-section" id="intro">
     <div class="container">
-      <SectionHeader tag="About" title="A B O U T" />
-      <p class="about-intro" set:html={aboutIntro} />
+      <SectionHeader tag="About" title="A B O U T" splitText />
+      <p class="about-intro reveal" set:html={aboutIntro} />
     </div>
   </section>
 
   <section class="about-section" id="team">
     <div class="container">
-      <SectionHeader tag="Team" title="T E A M" />
-      <div class="team-card glass-card">
+      <SectionHeader tag="Team" title="T E A M" splitText />
+      <div class="team-card glass-card reveal">
         <div>
           <h2 class="team-name">{heroContent.name}</h2>
           <p class="team-role">{heroContent.role}</p>
@@ -311,8 +311,8 @@ const pageTitle = `About — ${SITE_TITLE_ZH}`
 
   <section class="about-section" id="experience">
     <div class="container">
-      <SectionHeader tag="Experience" title="E X P E R I E N C E" />
-      <div class="timeline">
+      <SectionHeader tag="Experience" title="E X P E R I E N C E" splitText />
+      <div class="timeline reveal-stagger" data-reveal-stagger="0.2">
         {
           experienceEntries.map((entry) => (
             <div class="timeline-item">
@@ -328,7 +328,7 @@ const pageTitle = `About — ${SITE_TITLE_ZH}`
       </div>
       {
         projectGroups.map((group) => (
-          <div class="project-group">
+          <div class="project-group reveal">
             <div class="project-group-label">{group.label}</div>
             <div class="project-grid">
               {group.items.map((item) => (
@@ -353,8 +353,8 @@ const pageTitle = `About — ${SITE_TITLE_ZH}`
 
   <section class="about-section" id="skills">
     <div class="container">
-      <SectionHeader tag="Skills" title="S K I L L S" />
-      <div class="skills-grid">
+      <SectionHeader tag="Skills" title="S K I L L S" splitText />
+      <div class="skills-grid reveal-stagger" data-reveal-stagger="0.12">
         {
           skillGroups.map((group) => (
             <div class="skill-card glass-card">
@@ -376,8 +376,8 @@ const pageTitle = `About — ${SITE_TITLE_ZH}`
 
   <section class="about-section" id="strengths">
     <div class="container">
-      <SectionHeader tag="Strengths" title="S T R E N G T H S" />
-      <div class="strengths-grid">
+      <SectionHeader tag="Strengths" title="S T R E N G T H S" splitText />
+      <div class="strengths-grid reveal-stagger" data-reveal-stagger="0.12">
         {
           strengths.map((item) => (
             <div class="strength-card glass-card">
@@ -393,8 +393,8 @@ const pageTitle = `About — ${SITE_TITLE_ZH}`
 
   <section class="about-section" id="contact">
     <div class="container">
-      <SectionHeader tag="Contact" title="C O N T A C T" />
-      <div class="contact-links">
+      <SectionHeader tag="Contact" title="C O N T A C T" splitText />
+      <div class="contact-links reveal-stagger" data-reveal-stagger="0.1">
         {
           contactLinks.map((link) => (
             <a
