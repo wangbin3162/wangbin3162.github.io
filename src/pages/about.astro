@@ -1,4 +1,5 @@
 ---
+import CollapsibleSection from '../components/CollapsibleSection.vue'
 import SectionHeader from '../components/SectionHeader.astro'
 import {
   aboutIntro,
@@ -377,16 +378,20 @@ const pageTitle = `About — ${SITE_TITLE_ZH}`
   <section class="about-section" id="strengths">
     <div class="container">
       <SectionHeader tag="Strengths" title="S T R E N G T H S" splitText />
-      <div class="strengths-grid reveal-stagger" data-reveal-stagger="0.12">
-        {
-          strengths.map((item) => (
-            <div class="strength-card glass-card">
-              <span class="strength-icon">{item.icon}</span>
-              <h3 class="strength-title">{item.title}</h3>
-              <p class="strength-desc">{item.description}</p>
-            </div>
-          ))
-        }
+      <div class="reveal">
+        <CollapsibleSection client:load label={`${strengths.length} 项核心优势`}>
+          <div class="strengths-grid">
+            {
+              strengths.map((item) => (
+                <div class="strength-card glass-card">
+                  <span class="strength-icon">{item.icon}</span>
+                  <h3 class="strength-title">{item.title}</h3>
+                  <p class="strength-desc">{item.description}</p>
+                </div>
+              ))
+            }
+          </div>
+        </CollapsibleSection>
       </div>
     </div>
   </section>

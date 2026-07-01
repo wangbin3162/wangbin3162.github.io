@@ -5,14 +5,6 @@ import { openSourceItems } from '../data/opensource'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import { SITE_DESCRIPTION, SITE_TITLE_ZH } from '../consts'
 
-function splitProjectName(name: string) {
-  const parts = name.split('-')
-  if (parts.length <= 1) return [name]
-  const head = parts.slice(0, -1).join('-')
-  const tail = parts[parts.length - 1]
-  return [head, tail]
-}
-
 const pageTitle = `Projects — ${SITE_TITLE_ZH}`
 ---
 
@@ -36,14 +28,19 @@ const pageTitle = `Projects — ${SITE_TITLE_ZH}`
       margin-top: var(--space-xl);
     }
     .project-item {
-      position: relative;
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
       padding: var(--space-lg) 0;
       border-bottom: 1px solid var(--border);
       text-decoration: none;
     }
     .project-item:first-child {
       border-top: 1px solid var(--border);
+    }
+    .project-info {
+      flex: 1;
+      min-width: 0;
     }
     .project-meta {
       display: flex;
@@ -81,39 +78,35 @@ const pageTitle = `Projects — ${SITE_TITLE_ZH}`
       gap: var(--space-xs);
     }
     .project-hover-image {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%) translateX(20px);
+      flex-shrink: 0;
       width: 280px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s var(--ease-in-out), transform 0.3s var(--ease-in-out);
-      z-index: 10;
+      transition: transform 0.3s var(--ease-out);
     }
     .project-hover-image :global(img) {
       width: 100%;
       aspect-ratio: 16 / 10;
       object-fit: cover;
       border-radius: var(--radius-md);
+      display: block;
+      transition: box-shadow 0.3s var(--ease-out);
     }
     .project-item:hover .project-hover-image {
-      opacity: 1;
-      transform: translateY(-50%) translateX(0);
+      transform: translateY(-8px);
+    }
+    .project-item:hover .project-hover-image :global(img) {
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
     }
     @media (max-width: 768px) {
+      .project-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+      }
       .project-title {
         font-size: var(--text-h2);
       }
       .project-hover-image {
-        position: static;
-        transform: none;
         width: 100%;
-        opacity: 1;
-        margin-top: var(--space-sm);
-      }
-      .project-item:hover .project-hover-image {
-        transform: none;
       }
     }
   </style>
@@ -124,21 +117,20 @@ const pageTitle = `Projects — ${SITE_TITLE_ZH}`
       <div class="project-list">
         {
           openSourceItems.map((item, index) => {
-            const [nameHead, nameTail] = splitProjectName(item.name)
             const num = String(index + 1).padStart(2, '0')
             return (
               <a href={`/project/${item.name}`} class="project-item">
-                <div class="project-meta">
-                  <span class="project-number">( {num} )</span>
-                  <span class="project-year">{item.year}</span>
-                </div>
-                <h2 class="project-title">
-                  <span>{nameHead}</span>
-                  <br />
-                  <span>{nameTail}</span>
-                </h2>
-                <div class="project-techs">
-                  {item.techs.map((tech) => <span class="tech-chip">{tech}</span>)}
+                <div class="project-info">
+                  <div class="project-meta">
+                    <span class="project-number">( {num} )</span>
+                    <span class="project-year">{item.year}</span>
+                  </div>
+                  <h2 class="project-title">
+                    <span>{item.name}</span>
+                  </h2>
+                  <div class="project-techs">
+                    {item.techs.map((tech) => <span class="tech-chip">{tech}</span>)}
+                  </div>
                 </div>
                 <div class="project-hover-image">
                   <Image src={item.image} alt={item.name} widths={[400]} sizes="280px" />

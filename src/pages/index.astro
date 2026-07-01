@@ -1,5 +1,6 @@
 ---
-import { Image } from 'astro:assets'
+import { getImage } from 'astro:assets'
+import ProjectMarquee from '../components/ProjectMarquee.vue'
 import SectionHeader from '../components/SectionHeader.astro'
 import avatar from '../assets/site/avatar.png'
 import { openSourceItems } from '../data/opensource'
@@ -16,7 +17,22 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import { SITE_DESCRIPTION, SITE_TITLE_FULL } from '../consts'
 
 const featuredProjects = openSourceItems.slice(0, 5)
-const duplicatedFeatured = [...featuredProjects, ...featuredProjects]
+
+// 预优化图片为 WebP，把 URL 传给 Vue Island 组件（Vue 内不能直接用 Astro <Image>）
+const featuredCards = await Promise.all(
+  featuredProjects.map(async (item) => {
+    const img = await getImage({ src: item.image, width: 400, format: 'webp' })
+    return {
+      name: item.name,
+      year: item.year,
+      techs: item.techs,
+      description: item.description,
+      imageSrc: img.src,
+      imageAlt: item.name,
+      href: `/project/${item.name}`
+    }
+  })
+)
 ---
 
 <BaseLayout
@@ -107,62 +123,8 @@ const duplicatedFeatured = [...featuredProjects, ...featuredProjects]
     .projects-section .container {
       margin-bottom: var(--space-lg);
     }
-    .projects-track {
-      display: flex;
-      gap: var(--space-md);
-      width: max-content;
-      animation: marquee 60s linear infinite;
-    }
-    .projects-track:hover {
-      animation-play-state: paused;
-    }
-    @keyframes marquee {
-      from {
-        transform: translateX(0);
-      }
-      to {
-        transform: translateX(-50%);
-      }
-    }
-    .project-card {
-      display: block;
-      width: 300px;
-      flex-shrink: 0;
-      overflow: hidden;
-      text-decoration: none;
-    }
-    .project-card :global(img) {
+    .projects-marquee-wrap {
       width: 100%;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-    }
-    .project-card-body {
-      padding: var(--space-md);
-    }
-    .project-card-title {
-      margin-bottom: var(--space-xs);
-      font-family: var(--font-display);
-      font-size: var(--text-h3);
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-    .project-card:hover .project-card-title {
-      color: var(--accent);
-    }
-    .project-card-desc {
-      margin-bottom: var(--space-sm);
-      color: var(--text-muted);
-      font-size: var(--text-small);
-      line-height: 1.5;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .project-card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-xs);
     }
     /* What I Do */
     .what-i-do-intro {
@@ -258,9 +220,6 @@ const duplicatedFeatured = [...featuredProjects, ...featuredProjects]
       .hero-stats {
         gap: var(--space-md);
       }
-      .project-card {
-        width: 260px;
-      }
     }
   </style>
 
@@ -291,21 +250,8 @@ const duplicatedFeatured = [...featuredProjects, ...featuredProjects]
     <div class="container">
       <SectionHeader tag="Projects" title="P R O J E C T S" splitText />
     </div>
-    <div class="projects-track reveal-stagger" data-reveal-stagger="0.1">
-      {
-        duplicatedFeatured.map((item) => (
-          <a href={`/project/${item.name}`} class="project-card glass-card">
-            <Image src={item.image} alt={item.name} widths={[400]} sizes="300px" />
-            <div class="project-card-body">
-              <h3 class="project-card-title">{item.name}</h3>
-              <p class="project-card-desc">{item.description}</p>
-              <div class="project-card-tags">
-                {item.techs.map((tech) => <span class="tech-chip">{tech}</span>)}
-              </div>
-            </div>
-          </a>
-        ))
-      }
+    <div class="projects-marquee-wrap reveal">
+      <ProjectMarquee client:load projects={featuredCards} />
     </div>
   </section>
 
