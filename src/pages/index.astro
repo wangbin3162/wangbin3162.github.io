@@ -1,229 +1,177 @@
 ---
-import { Image } from 'astro:assets'
-import BaseHead from '../components/BaseHead.astro'
-import avatar from '../assets/site/avatar.png'
-import beianIcon from '../assets/site/beian.png'
-import { heroContent, heroStats, heroTags, filingInfo } from '../data/profile'
-import { SITE_TITLE_FULL, SITE_DESCRIPTION } from '../consts'
+import ModeToggle from '../components/ModeToggle.astro'
+import CreativeHero from '../components/creative/CreativeHero.astro'
+import CreativeFolders from '../components/creative/CreativeFolders.astro'
+import CreativeReceipts from '../components/creative/CreativeReceipts.astro'
+import MinimalIntro from '../components/minimal/MinimalIntro.astro'
+import MinimalProducts from '../components/minimal/MinimalProducts.astro'
+import MinimalOpenSource from '../components/minimal/MinimalOpenSource.astro'
+import MinimalProjects from '../components/minimal/MinimalProjects.astro'
+import MinimalClientWorks from '../components/minimal/MinimalClientWorks.astro'
+import MinimalFigmaDesign from '../components/minimal/MinimalFigmaDesign.astro'
+import MinimalCreativeCoding from '../components/minimal/MinimalCreativeCoding.astro'
+import MinimalVisuals from '../components/minimal/MinimalVisuals.astro'
+import MinimalVibeCoding from '../components/minimal/MinimalVibeCoding.astro'
+import MinimalJustForFun from '../components/minimal/MinimalJustForFun.astro'
+import MinimalLetsTalk from '../components/minimal/MinimalLetsTalk.astro'
+import MinimalContact from '../components/minimal/MinimalContact.astro'
+import SiteFooter from '../components/SiteFooter.astro'
+import ThemeToggle from '../components/ThemeToggle.astro'
+import Decorations from '../components/Decorations.astro'
 ---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0e0e12" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="description"
+      content="Atishay Tuli is a creative frontend developer and a designer who develops. Specializing in GSAP, React, and immersive web experiences."
+    />
+    <meta
+      name="keywords"
+      content="atishay, Atishay Tuli, atishaytuli07, frontend developer, creative developer, creative frontend developer, UI engineer, GSAP developer, Framer Motion developer, React developer, Next.js developer, landing page developer, web animation, animated landing page, designer who codes"
+    />
+    <meta name="author" content="Atishay Tuli" />
+    <meta name="robots" content="index, follow" />
+    <meta
+      property="og:title"
+      content="Atishay Tuli · Creative Frontend Developer"
+    />
+    <meta
+      property="og:description"
+      content="Creative frontend developer who designs, builds, and animates web experiences. React · Next.js · GSAP · Framer Motion."
+    />
+    <meta
+      property="og:image"
+      content="https://www.creativeatishay.in/images/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Atishay Tuli, Creative Frontend Developer"
+    />
+    <meta property="og:url" content="https://www.creativeatishay.in" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Atishay Tuli · Creative Frontend Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Explore Atishay Tuli's webfolio featuring creative tools, GSAP animations, and immersive web experiences."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.creativeatishay.in/images/og-image.png"
+    />
+    <title>Atishay Tuli · Creative Frontend Developer &amp; Designer</title>
+    <link rel="canonical" href="https://www.creativeatishay.in" />
+    <link rel="icon" href="/assets/images/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/assets/images/favicon.png" />
+    <link rel="stylesheet" href="/assets/styles/style.css" />
+    <link rel="stylesheet" href="/assets/styles/fonts.css" />
+    <link rel="stylesheet" href="/assets/styles/app.css" />
 
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <BaseHead title={SITE_TITLE_FULL} description={SITE_DESCRIPTION} image={avatar} />
-  <style>
-    :root {
-      --bg-start: #f0f4ff;
-      --bg-end: #f5f0ff;
-      --accent: #6366f1;
-      --accent2: #a855f7;
-      --glass-bg: rgba(255, 255, 255, 0.7);
-      --glass-border: rgba(255, 255, 255, 0.5);
-      --text-primary: #1e1b4b;
-      --text-muted: #6b7280;
-      --radius: 24px;
-      --font-display: 'Outfit', sans-serif;
-      --font-body: 'Noto Sans SC', sans-serif;
-    }
+    <!-- LCP element: the avatar is a CSS background-image, so the browser can't
+         discover it until app.css parses. Preload it high-priority so it starts
+         with the document -> the largest paint lands far sooner. -->
+    <link rel="preload" as="image" href="/assets/images/01.webp" fetchpriority="high" />
+    <!-- Signature type system: Hanken Grotesk (body), Bricolage Grotesque
+         (display), JetBrains Mono (metrics). Self-hosted (latin subset) so the
+         fonts are on our own origin instead of the third-party critical path.
+         Preload the two the above-the-fold text needs so they start with the
+         document, not after the CSS parses. -->
+    <link rel="preload" href="/assets/fonts/hanken-grotesk-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/bricolage-grotesque-400_800.woff2" as="font" type="font/woff2" crossorigin />
 
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- Overrides: only the few things specific to this site (avatar image,
+         making static project items visible since there is no JS animation). -->
 
-    body {
-      font-family: var(--font-body);
-      color: var(--text-primary);
-      min-height: 100vh;
-      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
-      display: flex;
-      flex-direction: column;
-      line-height: 1.6;
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .hero-card {
-      width: 100%;
-      max-width: 720px;
-      text-align: center;
-      padding: 56px 40px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius);
-      box-shadow: 0 8px 40px rgba(99, 102, 241, 0.1);
-    }
-
-    .avatar {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 24px;
-      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.6), 0 12px 32px rgba(99, 102, 241, 0.2);
-    }
-
-    .greeting {
-      font-family: var(--font-display);
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--accent);
-      margin-bottom: 8px;
-      letter-spacing: 1px;
-    }
-
-    .name {
-      font-family: var(--font-display);
-      font-size: clamp(40px, 8vw, 64px);
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-
-    .role {
-      font-family: var(--font-display);
-      font-size: clamp(16px, 3vw, 20px);
-      color: var(--text-muted);
-      margin-bottom: 28px;
-    }
-
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin-bottom: 28px;
-      flex-wrap: wrap;
-    }
-
-    .stat-num {
-      font-family: var(--font-display);
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1.2;
-    }
-
-    .stat-label {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .tags {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .tag {
-      font-size: 13px;
-      font-weight: 500;
-      padding: 6px 16px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.6);
-      border: 1px solid rgba(99, 102, 241, 0.15);
-      color: var(--accent);
-    }
-
-    footer {
-      padding: 24px;
-      text-align: center;
-      font-size: 12px;
-      color: var(--text-muted);
-      border-top: 1px solid rgba(99, 102, 241, 0.08);
-    }
-
-    footer a {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    footer a:hover {
-      color: var(--accent);
-    }
-
-    .gongan {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-left: 12px;
-    }
-
-    .gongan-icon {
-      width: 16px;
-      height: 18px;
-      flex: 0 0 auto;
-    }
-
-    @media (max-width: 480px) {
-      .hero-card {
-        padding: 40px 24px;
-      }
-      .stats {
-        gap: 20px;
-      }
-      .gongan {
-        margin-left: 0;
-        margin-top: 8px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <section class="hero-card">
-      <Image
-        src={avatar}
-        alt="王彬"
-        widths={[280]}
-        sizes="140px"
-        class="avatar"
-      />
-      <p class="greeting">{heroContent.greeting}</p>
-      <h1 class="name">{heroContent.name}</h1>
-      <p class="role">{heroContent.role}</p>
-      <div class="stats">
-        {
-          heroStats.map((stat) => (
-            <div class="stat">
-              <div class="stat-num">{stat.value}</div>
-              <div class="stat-label">{stat.label}</div>
-            </div>
-          ))
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "Atishay Tuli",
+          "alternateName": ["atishay", "atishaytuli", "atishaytuli07"],
+          "jobTitle": "Creative Frontend Developer",
+          "url": "https://www.creativeatishay.in",
+          "sameAs": [
+            "https://github.com/atishaytuli07",
+            "https://www.linkedin.com/in/atishaytuli07/",
+            "https://twitter.com/atishaytuli07",
+            "https://dribbble.com/atishaytuli07",
+            "https://www.behance.net/atishaytuli07"
+          ],
+          "description": "Atishay Tuli is a creative frontend developer and a designer who develops. Specializing in GSAP, Framer Motion, React, and immersive web experiences.",
+          "image": "https://www.creativeatishay.in/images/01.webp",
+          "knowsAbout": [
+            "Frontend Development",
+            "Creative Development",
+            "GSAP",
+            "Framer Motion",
+            "React",
+            "Next.js",
+            "Tailwind CSS",
+            "Web Animation",
+            "Landing Page Development",
+            "UI Design",
+            "Figma",
+            "On-Page SEO"
+          ]
         }
-      </div>
-      <div class="tags">
-        {heroTags.map((tag) => <span class="tag">{tag}</span>)}
-      </div>
-    </section>
-  </main>
+      }
+    </script>
+  </head>
 
-  <footer>
-    <a href={filingInfo.icpHref} target="_blank" rel="noreferrer">{filingInfo.icpLabel}</a>
-    <span class="gongan">
-      <Image
-        class="gongan-icon"
-        src={beianIcon}
-        alt=""
-        widths={[32]}
-        sizes="16px"
-      />
-      <a href={filingInfo.gonganHref} target="_blank" rel="noreferrer">{filingInfo.gonganLabel}</a>
-    </span>
-  </footer>
-</body>
+  <body class="site-body">
+    <a class="skip-link" href="#content">Skip to content</a>
+    <div class="page-shell">
+      <!-- Mode toggle -->
+      <ModeToggle />
+      <!-- Creative mode (shown only when toggled) -->
+      <div class="creative-only">
+        <CreativeHero />
+        <CreativeFolders />
+        <CreativeReceipts />
+      </div>
+      <MinimalIntro />
+      <MinimalProducts />
+      <MinimalOpenSource />
+      <MinimalProjects />
+      <MinimalClientWorks />
+      <MinimalFigmaDesign />
+      <MinimalCreativeCoding />
+      <MinimalVisuals />
+      <MinimalVibeCoding />
+      <MinimalJustForFun />
+      <MinimalLetsTalk />
+      <MinimalContact />
+      <!-- Footer with live clock -->
+      <footer class="site-footer">
+        <div>
+          <p>
+            <span id="clock" class="clock">
+              <span data-h>00</span><span class="clock-colon">:</span
+              ><span data-m>00</span><span class="clock-colon">:</span
+              ><span data-s>00</span> <span data-ampm>AM</span> · India
+            </span>
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <Decorations />
+    <ThemeToggle />
+    <script src="/assets/scripts/lenis.min.js" defer></script>
+    <script src="/assets/scripts/script.js" defer></script>
+  </body>
 </html>
