@@ -1,48 +1,56 @@
 # AGENTS.md
 
-This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
+This file provides guidance to AI coding assistants when working with code in this repository.
 
 ## What This Is
 
-A GitHub Pages personal portfolio site (wangbin3162.github.io) serving as a personal resume/showcase and open-source project gallery. All content is in Chinese (zh-CN). Deployed as static HTML to GitHub Pages from the `docs/` directory.
+A GitHub Pages personal portfolio site (`wangbin3162.github.io`) serving as a personal resume/showcase. All user-facing content is in Chinese (zh-CN).
+
+The site is now built with [Astro](https://astro.build/) as a static site and deployed to GitHub Pages from the `dist/` directory.
 
 ## Development Commands
 
 ```bash
-npm run dev      # Start Vite dev server on port 3000 (auto-opens browser)
-npm run build    # Build to docs/dist
-npm run preview  # Preview production build
+pnpm install     # install dependencies
+pnpm run dev     # start Astro dev server
+pnpm run build   # build static output to dist/
+pnpm run preview # preview production build
 ```
 
-No test suite, no build step required for deployment — the HTML files in `docs/` are served directly by GitHub Pages.
+No test suite is configured.
 
 ## Architecture
 
-This is a pure static site with no framework — just vanilla HTML/CSS/JS served via Vite for local development.
+- **Framework**: Astro 6 static site
+- **Integrations**: `@astrojs/sitemap`, `@astrojs/vue`, `@tailwindcss/vite`
+- **No Markdown / MDX support**: `src/content.config.ts` and `@astrojs/mdx` have been removed
+- **No RSS**: `@astrojs/rss` has been removed
+- **Output directory**: `dist/`
 
-- **`docs/`** — The root served by both Vite and GitHub Pages
-  - `index.html` — Desktop presentation-style personal site (slide navigation with keyboard/mouse/touch, canvas particle background)
-  - `mobile.html` — Mobile-optimized version with bottom tab navigation and swipe gestures
-  - `github-demo.html` — Open-source project gallery page (Tailwind CSS via CDN)
-  - `images/` — Screenshot images for open-source project cards
-- **`vite.config.js`** — Sets `docs` as root directory
-- **Root-level files** — Resume documents (`简历.md`, PDF, DOCX), project listing (`开源组件库清单.md`)
+### Directory Layout
 
-### Design System (index.html & mobile.html)
+- `src/pages/index.astro` — single-page homepage (hero + footer only)
+- `src/components/BaseHead.astro` — shared `<head>` component
+- `src/data/profile.ts` — personal info, stats, contact, and filing data
+- `src/data/opensource.ts` — open-source project list (currently unused by the homepage)
+- `src/assets/` — images consumed by Astro components
+- `public/` — static files copied directly to `dist/`
+- `static/` — legacy static files and resume documents (not part of the Astro build)
+- `docs/部署说明.md` — deployment notes
 
-Both files share the same CSS custom property theme (dark sci-fi aesthetic):
-- `--bg: #060d1a`, `--accent: #00e5ff`, `--accent2: #7b61ff`, `--gold: #ffd60a`
-- Google Fonts: `Exo 2` (headings/numbers), `Noto Sans SC` (body text)
-- Glass-morphism cards with `var(--glass)` backgrounds and `var(--glass-border)` borders
-- `.r` class for reveal-on-slide animations (index.html), `.fade-in` class for page transitions (mobile.html)
+### Design System
+
+- Light gradient theme with glass-morphism cards
+- CSS custom properties are defined inline in `src/pages/index.astro`
+- Google Fonts: `Outfit` (headings/numbers), `Noto Sans SC` (body text)
 
 ### Key Patterns
 
-- **index.html** uses a slide-based navigation system: slides are `.slide` divs stacked absolutely, one `.active` at a time, navigated via keyboard arrows, mouse wheel, touch swipe, and dot indicators.
-- **mobile.html** uses a page-based navigation system: `.page` divs toggled by a fixed bottom nav bar (`data-page` attributes), with left/right swipe support.
-- Both files are self-contained single-file HTML — all CSS and JS are inline, no external build dependencies.
+- `src/pages/index.astro` is a self-contained single-page Astro component with inline styles and a small client script.
+- Data is kept out of the markup in `src/data/*.ts`.
+- Use `astro:assets` (`<Image />`) for images imported from `src/assets/`.
 
 ## Code Style
 
 - Prettier: no semicolons, single quotes, 2-space indent, trailing comma `none`, print width 100
-- ESLint: Vue 3 + TypeScript config (present for related projects, not actively used in this static site)
+- TypeScript is used for data files and component frontmatter
