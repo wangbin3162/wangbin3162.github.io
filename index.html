@@ -1,0 +1,3033 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafbf9">
+  <meta name="description" content="王彬的个人站点与简历。前端部门负责人，12 年研发与管理经验，精通 Vue3 / TypeScript / React 19，专注前端架构、数据可视化、AI 智能体工程化与团队成长。">
+  <title>王彬 Wang Bin — 部门负责人 · 12 年前端架构与技术管理</title>
+  <link rel="icon" href="assets/favicon.ico">
+  <style>
+    /* =========================================================
+       王彬 · 个人简历与作品集站点
+       设计理念：Warm Paper Minimal 自然纸质质感 + 鼠尾草绿（Sage Green）
+       单文件架构：内嵌全部样式、SVG 图标与交互脚本，零第三方运行时依赖
+       ========================================================= */
+    :root {
+      --bg: #fafbf9;
+      --surface: #ffffff;
+      --ink: #242824;
+      --secondary: #60665e;
+      --muted: #7b8178;
+      --line: #e4e7e0;
+      --line-subtle: #edf0e8;
+      --accent: #63765a;
+      --accent-dark: #43563b;
+      --accent-light: #eef2e9;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --container: 1140px;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      --shadow-sm: 0 1px 3px rgba(35, 44, 26, .04);
+      --shadow-md: 0 8px 24px rgba(35, 44, 26, .05);
+      --shadow-lg: 0 18px 40px rgba(30, 40, 24, .12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    ::selection { color: var(--accent-dark); background: #dfe8d7; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { color: inherit; cursor: pointer; border: 0; background: transparent; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img, svg { display: block; max-width: 100%; }
+    h1, h2, h3, h4, p, figure { margin: 0; }
+    ul { margin: 0; padding: 0; list-style: none; }
+    [hidden] { display: none !important; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+
+    .container { width: min(var(--container), calc(100% - 64px)); margin-inline: auto; }
+    .icon { width: 18px; height: 18px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+    .mono { font-family: var(--mono); }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 16px;
+      z-index: 120;
+      padding: 10px 18px;
+      border-radius: 6px;
+      color: #fff;
+      background: var(--ink);
+      transform: translateY(-160%);
+      transition: transform .2s;
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.6px;
+      line-height: 1.5;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-wrap: nowrap;
+    }
+    .eyebrow::before { content: ""; width: 22px; height: 1.5px; background: currentColor; flex-shrink: 0; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 10px 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      font-size: 13px;
+      font-weight: 550;
+      line-height: 1.5;
+      transition: background .2s, border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .button:hover { background: var(--accent-light); border-color: #c9d2c2; transform: translateY(-2px); }
+    .button-dark { color: #fff; background: var(--ink); border-color: var(--ink); }
+    .button-dark:hover { color: #fff; background: var(--accent-dark); border-color: var(--accent-dark); }
+    .button .icon { width: 15px; height: 15px; }
+
+    .text-link { display: inline-flex; align-items: center; gap: 6px; transition: color .2s; }
+    .text-link:hover { color: var(--accent); }
+    .text-link .icon { width: 14px; height: 14px; }
+
+    /* ==================== 顶部导航 ==================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      border-bottom: 1px solid rgba(228, 231, 224, .85);
+      background: rgba(250, 251, 249, .92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; min-height: 76px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--ink);
+      font-family: Georgia, serif;
+      font-size: 20px;
+      font-style: italic;
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    .brand-name { font-size: 15px; font-weight: 650; letter-spacing: 1.5px; }
+    .brand-name span { margin-left: 6px; color: var(--muted); font-family: var(--mono); font-size: 10px; font-weight: 400; letter-spacing: .5px; }
+    .nav { display: flex; align-items: center; gap: 26px; margin-left: auto; }
+    .nav a {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      color: var(--secondary);
+      font-size: 13px;
+      transition: color .2s;
+    }
+    .nav a:hover, .nav a[aria-current="location"] { color: var(--ink); font-weight: 550; }
+    .nav a[aria-current="location"]::after {
+      position: absolute;
+      bottom: 6px;
+      left: calc(50% - 2px);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      content: "";
+    }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .header-download { min-height: 36px; padding: 7px 14px; font-size: 12px; background: transparent; }
+    .header-download .icon { width: 13px; height: 13px; }
+    .menu-toggle { display: none; width: 42px; height: 42px; padding: 11px; border-radius: 6px; }
+    .menu-toggle span { display: block; width: 20px; height: 1.6px; margin: 5px 0; background: var(--ink); transition: transform .2s; }
+    .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(3.3px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3.3px) rotate(-45deg); }
+    .reading-progress { position: absolute; bottom: -1px; left: 0; height: 2px; width: 100%; transform: scaleX(0); transform-origin: left; background: var(--accent); }
+
+    /* ==================== 首屏 Hero ==================== */
+    .hero { padding-top: 68px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 320px; align-items: center; gap: 80px; }
+    .intro-line { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .intro-name { font-size: 17px; font-weight: 650; letter-spacing: 1px; }
+    .intro-en { color: var(--muted); font-family: var(--mono); font-size: 12px; }
+    .intro-divider { width: 1px; height: 14px; margin-inline: 2px; background: #d2d7cc; }
+    .intro-role { color: var(--secondary); font-size: 13px; }
+    .hero h1 { font-size: clamp(40px, 4.8vw, 64px); font-weight: 650; line-height: 1.25; letter-spacing: -2px; }
+    .hero h1 .second-line { display: block; margin-top: 6px; }
+    .hero h1 em { position: relative; color: var(--accent); font-style: normal; }
+    .hero h1 em::after {
+      position: absolute;
+      right: 1px;
+      bottom: -6px;
+      left: 2px;
+      height: 8px;
+      border-top: 2px solid #a9b69f;
+      border-radius: 50%;
+      transform: rotate(-2.5deg);
+      content: "";
+    }
+    .hero-description { max-width: 560px; margin-top: 24px; color: var(--secondary); font-size: 14px; line-height: 1.95; }
+    .hero-description strong { color: var(--ink); font-weight: 600; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-contact { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; margin-top: 26px; color: var(--secondary); font-size: 12px; }
+    .hero-contact .icon { width: 14px; height: 14px; }
+    .hero-location { display: inline-flex; align-items: center; gap: 6px; }
+
+    .portrait-wrap { position: relative; padding-bottom: 24px; }
+    .portrait-wrap::before {
+      position: absolute;
+      inset: 12px -10px 32px 10px;
+      z-index: -1;
+      border: 1px solid #dce1d6;
+      border-radius: 16px;
+      background: #eef0e9;
+      transform: rotate(3deg);
+      content: "";
+    }
+    .portrait {
+      position: relative;
+      height: 380px;
+      overflow: hidden;
+      border: 1px solid rgba(36, 40, 36, .08);
+      border-radius: 14px;
+      background: #dce0d7;
+      isolation: isolate;
+      box-shadow: var(--shadow-md);
+    }
+    .portrait img { position: relative; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+    .availability {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 11px;
+      border: 1px solid rgba(255, 255, 255, .7);
+      border-radius: 6px;
+      color: #3e4d37;
+      background: rgba(250, 252, 247, .9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      font-size: 11px;
+      letter-spacing: .4px;
+    }
+    .status-dot { display: inline-block; width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: #5a8a47; box-shadow: 0 0 0 3px rgba(90, 138, 71, .2); }
+    .portrait-note {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      left: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 15px;
+      border: 1px solid rgba(255, 255, 255, .55);
+      border-radius: 8px;
+      color: var(--ink);
+      background: rgba(250, 251, 248, .9);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .portrait-note p { font-size: 12px; font-weight: 550; letter-spacing: .5px; }
+    .portrait-note span { display: block; margin-top: 2px; color: var(--secondary); font-family: var(--mono); font-size: 9px; letter-spacing: 1px; }
+    .portrait-note .icon { width: 22px; height: 22px; color: var(--accent); }
+    .portrait-caption { display: flex; justify-content: space-between; margin-top: 12px; color: var(--muted); font-family: var(--mono); font-size: 9px; letter-spacing: 1px; }
+
+    .hero-bottom { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 52px; padding: 26px 0 28px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .metrics { display: flex; gap: 44px; margin: 0; padding: 0; }
+    .metric { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+    .metric + .metric { padding-left: 44px; border-left: 1px solid var(--line); }
+    .metric-value { font-size: 34px; font-weight: 600; line-height: 1.2; letter-spacing: -1.5px; flex-shrink: 0; }
+    .metric-value span { margin-left: 2px; color: var(--accent); font-size: 20px; font-weight: 400; }
+    .metric-label { color: var(--secondary); font-size: 11.5px; line-height: 1.6; white-space: nowrap; }
+    .hero-scroll { display: inline-flex; align-items: center; gap: 12px; color: var(--secondary); font-size: 11px; letter-spacing: .8px; }
+    .hero-scroll .icon { width: 15px; height: 15px; }
+
+    /* ==================== 通用 Section ==================== */
+    .section { padding-top: 80px; padding-bottom: 80px; scroll-margin-top: 90px; }
+    .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 36px; margin-bottom: 36px; }
+    .section-heading h2 { margin-top: 12px; font-size: 30px; font-weight: 600; line-height: 1.35; letter-spacing: -.8px; }
+    .section-description { max-width: 420px; color: var(--secondary); font-size: 13px; line-height: 1.9; }
+
+    /* ==================== 01. 个人优势 ==================== */
+    .strengths-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .strength {
+      position: relative;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+    }
+    .strength:hover { border-color: #c8d1c2; transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .strength-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    .strength-icon { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid #e2e7dc; border-radius: 10px; color: var(--accent); background: #f0f3ed; }
+    .strength-icon .icon { width: 20px; height: 20px; }
+    .strength-number { color: #8a9085; font-family: var(--mono); font-size: 11px; }
+    .strength h3 { margin-bottom: 8px; font-size: 16px; font-weight: 600; letter-spacing: -.2px; }
+    .strength p { color: var(--secondary); font-size: 12.5px; line-height: 1.85; }
+
+    /* ==================== 02. 项目经历 ==================== */
+    .projects-section { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #f3f5f0; }
+    .project-filter { display: flex; flex-wrap: wrap; gap: 5px; padding: 4px; border: 1px solid #e1e5da; border-radius: 8px; background: rgba(255, 255, 255, .7); }
+    .filter-button {
+      min-height: 36px;
+      padding: 7px 15px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      color: var(--secondary);
+      background: transparent;
+      font-size: 12px;
+      line-height: 1.5;
+      transition: background .2s, color .2s, box-shadow .2s;
+    }
+    .filter-button:hover { color: var(--ink); }
+    .filter-button[aria-pressed="true"] { color: var(--ink); background: #fff; border-color: #e6e9e1; box-shadow: var(--shadow-sm); font-weight: 600; }
+    .filter-button .mono { margin-left: 4px; font-size: 10px; opacity: .8; }
+
+    .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    .project-card {
+      overflow: hidden;
+      border: 1px solid #e1e5dc;
+      border-radius: var(--radius);
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      transition: border-color .25s, box-shadow .25s, transform .25s;
+    }
+    .project-card:hover { border-color: #c4ceba; box-shadow: var(--shadow-md); transform: translateY(-3px); }
+
+    /* 置顶精选大卡片 (Featured - 合同审查平台) */
+    .project-featured { display: grid; grid-template-columns: 1fr 1fr; grid-column: 1 / -1; }
+    .project-featured .project-thumb-box { min-height: 100%; border-right: 1px solid #e5e9df; border-bottom: 0; }
+    .project-featured .project-content { padding: 32px 34px 28px; }
+
+    /* 缩略图容器 (原图高清晰度渲染，适中尺寸展示) */
+    .project-thumb-box {
+      position: relative;
+      width: 100%;
+      height: 210px;
+      background: #eef1ea;
+      overflow: hidden;
+      border-bottom: 1px solid #edf0ea;
+      cursor: pointer;
+    }
+    .project-thumb-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform .4s ease;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+    .project-thumb-box:hover img { transform: scale(1.04); }
+
+    .thumb-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border: 1px solid rgba(255, 255, 255, .7);
+      border-radius: 5px;
+      color: #3b4536;
+      background: rgba(250, 252, 247, .92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-size: 11px;
+      font-family: var(--mono);
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,.06);
+      pointer-events: none;
+    }
+    .thumb-badge .icon { width: 13px; height: 13px; }
+
+    .thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(36, 40, 36, .45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .25s ease;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 550;
+      gap: 8px;
+    }
+    .project-thumb-box:hover .thumb-overlay { opacity: 1; }
+    .thumb-overlay .btn-view {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, .95);
+      color: var(--ink);
+      border-radius: 6px;
+      font-size: 12px;
+      transform: translateY(6px);
+      transition: transform .25s ease, background .2s;
+    }
+    .project-thumb-box:hover .thumb-overlay .btn-view { transform: translateY(0); }
+    .thumb-overlay .btn-view:hover { background: #fff; color: var(--accent-dark); }
+
+    /* 项目卡片正文 */
+    .project-content { display: flex; flex-direction: column; flex: 1; padding: 26px 28px 24px; }
+    .project-kicker { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: 1px; }
+    .featured-label { padding: 3px 8px; border-radius: 4px; color: var(--accent-dark); background: var(--accent-light); font-family: var(--font); font-size: 10px; font-weight: 600; letter-spacing: .5px; }
+    .project-title { font-size: 20px; font-weight: 650; line-height: 1.4; letter-spacing: -.5px; color: var(--ink); }
+    .project-title span { color: var(--accent-dark); font-weight: 700; margin-right: 4px; }
+    .project-role { margin-top: 6px; color: var(--secondary); font-size: 11px; }
+    .project-role .date { margin-left: 8px; padding-left: 8px; border-left: 1px solid var(--line); color: var(--muted); font-family: var(--mono); font-size: 10px; }
+    .project-bg { margin-top: 10px; color: var(--secondary); font-size: 12.5px; line-height: 1.8; }
+
+    /* 业务价值模块 */
+    .project-value-box {
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      background: #f7f9f4;
+      border: 1px solid #e6ebe0;
+      font-size: 12px;
+      line-height: 1.75;
+      color: #4a5445;
+    }
+    .project-value-box strong { color: var(--accent-dark); font-weight: 600; margin-right: 4px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .tag { padding: 3px 8px; border: 1px solid #e8ebe4; border-radius: 4px; color: #626958; background: #fafbf8; font-family: var(--mono); font-size: 10px; line-height: 1.6; }
+
+    .project-bullets { display: grid; gap: 8px; margin-top: 16px; flex: 1; }
+    .project-bullets li { position: relative; padding-left: 14px; color: var(--secondary); font-size: 12px; line-height: 1.8; }
+    .project-bullets li::before { position: absolute; top: 9px; left: 0; width: 4px; height: 4px; border-radius: 1px; background: #8a9a7d; content: ""; }
+    .project-bullets strong { color: #3b4536; font-weight: 600; }
+
+    .project-result { display: flex; align-items: center; gap: 20px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+    .result-item { display: flex; align-items: baseline; gap: 6px; }
+    .result-item + .result-item { padding-left: 18px; border-left: 1px solid var(--line); }
+    .result-item strong { color: var(--accent-dark); font-family: var(--mono); font-size: 20px; font-weight: 600; line-height: 1.2; letter-spacing: -.8px; }
+    .result-item span { color: var(--secondary); font-size: 10px; }
+
+    .project-detail { margin-top: 14px; }
+    .project-detail summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 30px; color: var(--secondary); font-size: 11px; cursor: pointer; list-style: none; }
+    .project-detail summary::-webkit-details-marker { display: none; }
+    .project-detail summary .icon { width: 13px; height: 13px; transition: transform .2s; }
+    .project-detail[open] summary { color: var(--accent-dark); font-weight: 600; }
+    .project-detail[open] summary .icon { transform: rotate(180deg); }
+    .detail-body { margin-top: 6px; padding: 12px 15px; border-left: 2px solid #cbd6c0; border-radius: 0 6px 6px 0; color: var(--secondary); background: #f6f8f3; font-size: 11.5px; line-height: 1.85; }
+
+    .project-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line-subtle); }
+    .btn-gallery-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      padding: 6px 12px;
+      border: 1px solid #d4dec9;
+      border-radius: 6px;
+      background: #f7f9f4;
+      transition: all .2s;
+    }
+    .btn-gallery-trigger:hover { background: var(--accent-light); border-color: var(--accent); color: var(--ink); }
+    .btn-gallery-trigger .icon { width: 14px; height: 14px; }
+
+    /* ==================== 03. 开源作品 (10大精选 + 更多折叠) ==================== */
+    .oss-grid-10 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 28px; }
+    .oss-item-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+    .oss-item-card:hover { transform: translateY(-3px); border-color: #c4ceba; box-shadow: var(--shadow-md); }
+    .oss-media {
+      height: 190px;
+      background: #eef1ea;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      border-bottom: 1px solid #edf0ea;
+    }
+    .oss-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform .4s ease;
+      image-rendering: -webkit-optimize-contrast;
+    }
+    .oss-item-card:hover .oss-media img { transform: scale(1.04); }
+    .oss-body { padding: 22px 24px 22px; display: flex; flex-direction: column; flex: 1; }
+    .oss-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+    .oss-header h3 { font-size: 17px; font-weight: 650; color: var(--ink); }
+    .oss-stars-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: #f3f6ef;
+      color: #55674c;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .oss-stars-badge .icon { width: 12px; height: 12px; fill: currentColor; }
+    .oss-desc { color: var(--secondary); font-size: 12.5px; line-height: 1.8; }
+    .oss-meta-block {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: #f8faf6;
+      border: 1px solid #ebf0e6;
+      border-radius: 6px;
+      font-size: 11.5px;
+      line-height: 1.7;
+      color: #4b5645;
+    }
+    .oss-meta-block strong { color: var(--accent-dark); font-weight: 600; }
+    .oss-actions { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line-subtle); }
+    .oss-links { display: flex; align-items: center; gap: 12px; }
+
+    /* 开源折叠面板 (更多开源库) */
+    .more-oss-section { margin-top: 24px; }
+    .more-oss-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 12px 24px;
+      border: 1px dashed #ced7c6;
+      border-radius: var(--radius);
+      background: #f7f9f5;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .more-oss-toggle:hover { background: #eef3eb; border-color: var(--accent); }
+    .more-oss-toggle .icon { transition: transform .25s ease; }
+    .more-oss-toggle.is-active .icon { transform: rotate(180deg); }
+
+    .more-oss-content {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .more-oss-content.is-open { display: grid; }
+    .extra-lib-card {
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      transition: all .2s;
+    }
+    .extra-lib-card:hover { border-color: #c4ceba; box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+    .extra-lib-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+    .extra-lib-name { font-family: var(--mono); font-size: 13px; font-weight: 650; color: var(--ink); }
+    .extra-lib-desc { font-size: 11px; color: var(--secondary); margin-top: 4px; line-height: 1.6; }
+
+    /* ==================== 04. 技能矩阵 ==================== */
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: var(--radius); background: #fff; overflow: hidden; }
+    .skill-group { padding: 28px 24px 30px; }
+    .skill-group + .skill-group { border-left: 1px solid var(--line); }
+    .skill-kicker { color: var(--muted); font-family: var(--mono); font-size: 9px; letter-spacing: 1px; }
+    .skill-group h3 { margin-top: 10px; font-size: 16px; font-weight: 600; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 7px 6px; margin-top: 18px; }
+    .skill-list li { padding: 4px 8px; border-radius: 4px; color: var(--secondary); background: #f4f6f0; font-size: 11px; line-height: 1.6; }
+
+    /* ==================== 05. 工作履历与教育 ==================== */
+    .exp-edu-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .timeline-card, .edu-box {
+      padding: 32px 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+    .block-header { margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+    .block-header h3 { font-size: 20px; font-weight: 650; }
+    .block-header p { font-size: 12px; color: var(--secondary); margin-top: 4px; }
+
+    .tl-item + .tl-item { margin-top: 24px; padding-top: 24px; border-top: 1px dashed var(--line); }
+    .tl-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+    .tl-head h4 { font-size: 16px; font-weight: 650; }
+    .tl-period { color: var(--muted); font-family: var(--mono); font-size: 11px; }
+    .tl-role { display: inline-block; margin-top: 4px; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; color: var(--accent-dark); background: var(--accent-light); }
+    .tl-bullets { margin-top: 12px; display: grid; gap: 6px; }
+    .tl-bullets li { position: relative; padding-left: 13px; font-size: 12px; color: var(--secondary); line-height: 1.8; }
+    .tl-bullets li::before { position: absolute; top: 8px; left: 0; width: 4px; height: 4px; border-radius: 1px; background: #8a9a7d; content: ""; }
+
+    .edu-item { display: grid; grid-template-columns: 40px 1fr auto; gap: 14px; align-items: center; padding: 16px 0; }
+    .edu-item + .edu-item { border-top: 1px solid var(--line-subtle); }
+    .edu-icon { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 8px; color: var(--accent); background: #f6f8f3; }
+    .edu-icon .icon { width: 19px; height: 19px; }
+    .edu-item h4 { font-size: 14.5px; font-weight: 600; }
+    .edu-item p { margin-top: 2px; color: var(--secondary); font-size: 12px; }
+    .edu-time { color: var(--muted); font-family: var(--mono); font-size: 11px; }
+
+    /* ==================== 06. 联系与页脚 ==================== */
+    .contact-section { padding-bottom: 64px; scroll-margin-top: 96px; }
+    .contact-box {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      overflow: hidden;
+      padding: 48px 52px;
+      border: 1px solid #dfe5d8;
+      border-radius: var(--radius);
+      background: #eef2e8;
+    }
+    .contact-box::after {
+      position: absolute;
+      top: -140px;
+      right: -90px;
+      width: 380px;
+      height: 380px;
+      border: 1px solid rgba(120, 141, 102, .15);
+      border-radius: 50%;
+      pointer-events: none;
+      content: "";
+    }
+    .contact-heading h2 { margin-top: 14px; font-size: 34px; font-weight: 600; line-height: 1.35; letter-spacing: -1.2px; }
+    .contact-heading p { max-width: 360px; margin-top: 14px; color: var(--secondary); font-size: 13px; line-height: 1.9; }
+    .contact-info { position: relative; z-index: 1; }
+    .contact-label { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; color: #55664b; font-size: 11.5px; }
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1.5px solid #bdc9b2;
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 600;
+      line-height: 1.5;
+      letter-spacing: -.5px;
+      transition: color .2s, border-color .2s;
+    }
+    .contact-email:hover { color: var(--accent); border-color: var(--accent); }
+    .contact-email .icon { width: 20px; height: 20px; }
+
+    .contact-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .contact-buttons .button { min-height: 40px; padding: 9px 15px; border-color: #d6ded0; background: rgba(255,255,255,.75); font-size: 12px; gap: 8px; }
+    .contact-buttons .button:hover { background: #fff; border-color: #9cb08d; }
+    .contact-buttons .icon { width: 14px; height: 14px; }
+    .contact-links { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-top: 20px; font-size: 12px; color: var(--secondary); }
+    .contact-links a { display: inline-flex; align-items: center; gap: 6px; transition: color .2s; }
+    .contact-links a:hover { color: var(--ink); font-weight: 550; }
+
+    .site-footer { border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 76px; color: var(--muted); font-size: 11px; }
+    .footer-left { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .copyright { color: var(--secondary); font-family: var(--mono); font-size: 10px; }
+    .back-top { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; color: var(--secondary); cursor: pointer; transition: color .2s; }
+    .back-top:hover { color: var(--ink); }
+    .back-top .icon { width: 14px; height: 14px; transform: rotate(180deg); }
+
+    /* ==================== 轻量 Toast 浮层 ==================== */
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 150;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: calc(100% - 48px);
+      padding: 12px 18px;
+      border: 1px solid #dde4d6;
+      border-radius: 8px;
+      color: #fff;
+      background: #34432c;
+      box-shadow: var(--shadow-lg);
+      font-size: 12.5px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: opacity .25s, transform .25s, visibility .25s;
+      pointer-events: none;
+    }
+    .toast.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .toast .icon { width: 16px; height: 16px; color: #a9cf8e; }
+
+    /* ==================== 多图浏览 Lightbox 弹出层 ==================== */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      background: rgba(22, 26, 22, .9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+    .lightbox-modal.is-open { opacity: 1; visibility: visible; }
+
+    .lb-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 28px;
+      color: #e4e7e0;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      flex-shrink: 0;
+    }
+    .lb-title-wrap { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .lb-title { font-size: 15px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .lb-counter {
+      padding: 3px 9px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, .12);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #cdd6c4;
+      flex-shrink: 0;
+    }
+    .lb-close {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      color: #e4e7e0;
+      background: rgba(255, 255, 255, .08);
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .lb-close:hover { background: rgba(255, 255, 255, .2); color: #fff; }
+    .lb-close .icon { width: 20px; height: 20px; }
+
+    .lb-stage {
+      position: relative;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 80px;
+      min-height: 0;
+      user-select: none;
+    }
+    .lb-img-wrap {
+      max-width: 100%;
+      max-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lb-image {
+      max-width: 90vw;
+      max-height: 72vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, .45);
+      transition: opacity .2s ease, transform .2s ease;
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+    .lb-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      color: #fff;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .2);
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+      z-index: 10;
+    }
+    .lb-nav-btn:hover { background: rgba(255, 255, 255, .25); transform: translateY(-50%) scale(1.08); }
+    .lb-nav-btn.prev { left: 24px; }
+    .lb-nav-btn.next { right: 24px; }
+    .lb-nav-btn .icon { width: 22px; height: 22px; }
+
+    .lb-thumbs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 24px 20px;
+      overflow-x: auto;
+      flex-shrink: 0;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+    }
+    .lb-thumb-item {
+      width: 58px;
+      height: 40px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      opacity: .5;
+      cursor: pointer;
+      transition: opacity .2s, border-color .2s, transform .2s;
+      flex-shrink: 0;
+      background: #000;
+    }
+    .lb-thumb-item img { width: 100%; height: 100%; object-fit: cover; }
+    .lb-thumb-item:hover { opacity: .85; }
+    .lb-thumb-item.active { opacity: 1; border-color: #a4c98f; transform: scale(1.06); }
+
+    /* ==================== 视口渐显动效 ==================== */
+    .motion-ready .reveal {
+      transition: opacity .65s ease, transform .65s cubic-bezier(.2,.7,.3,1);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+    .motion-ready .reveal:not(.is-visible) { opacity: 0; transform: translateY(22px); }
+    .delay-1 { --reveal-delay: 80ms; }
+    .delay-2 { --reveal-delay: 160ms; }
+    .delay-3 { --reveal-delay: 240ms; }
+
+    /* ==================== 响应式设计 ==================== */
+    @media (max-width: 1100px) {
+      .container { width: calc(100% - 48px); }
+      .hero-grid { grid-template-columns: 1fr 280px; gap: 48px; }
+      .hero h1 { font-size: 52px; }
+      .portrait { height: 340px; }
+      .metrics { gap: 28px; }
+      .metric + .metric { padding-left: 28px; }
+      .strengths-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .skill-group:nth-child(3) { border-left: 0; }
+      .skill-group:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .oss-grid-10 { grid-template-columns: 1fr; }
+      .more-oss-content { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      .nav { gap: 18px; }
+      .hero { padding-top: 50px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero-portrait { max-width: 320px; }
+      .hero h1 { font-size: 46px; }
+      .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        margin-bottom: 28px;
+      }
+      .section-heading > div { width: 100%; }
+      .section-heading h2 {
+        font-size: 26px;
+        letter-spacing: -.6px;
+        word-break: normal;
+        overflow-wrap: break-word;
+      }
+      .section-description { max-width: 100%; font-size: 13px; line-height: 1.85; }
+      .project-featured { grid-template-columns: 1fr; }
+      .project-featured .project-thumb-box { height: 240px; border-right: 0; border-bottom: 1px solid #e5e9df; }
+      .exp-edu-layout { grid-template-columns: 1fr; gap: 24px; }
+      .contact-box { grid-template-columns: 1fr; gap: 32px; padding: 36px 32px; }
+      .contact-heading h2 { font-size: 30px; }
+    }
+
+    @media (max-width: 720px) {
+      html { scroll-padding-top: 84px; }
+      .container { width: calc(100% - 32px); }
+      .header-inner { min-height: 64px; }
+      .menu-toggle { display: block; }
+      .nav {
+        position: absolute;
+        top: 64px;
+        right: 0;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 20px 18px;
+        border-bottom: 1px solid var(--line);
+        background: #fafbf9;
+        box-shadow: 0 14px 20px rgba(30, 40, 24, .04);
+      }
+      .nav.is-open { display: flex; }
+      .nav a { padding: 9px 12px; border-radius: 6px; font-size: 13.5px; }
+      .nav a:hover { background: var(--accent-light); }
+      .nav a[aria-current="location"]::after { top: calc(50% - 2px); right: 14px; bottom: auto; left: auto; }
+      .hero { padding-top: 36px; }
+      .hero h1 { font-size: 36px; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .metrics { width: 100%; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+      .metric { flex: 1 1 45%; }
+      .metric + .metric { padding-left: 0; border-left: 0; }
+      .section { padding-top: 54px; padding-bottom: 54px; scroll-margin-top: 80px; }
+      .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .section-heading > div { width: 100%; }
+      .section-heading h2 {
+        font-size: 23px;
+        line-height: 1.32;
+        letter-spacing: -.4px;
+        word-break: normal;
+        overflow-wrap: break-word;
+      }
+      .section-description { font-size: 12.5px; line-height: 1.8; }
+      .eyebrow { gap: 8px; font-size: 10px; letter-spacing: 1.3px; }
+      .eyebrow::before { width: 16px; }
+      .strengths-grid { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr; }
+      .oss-grid-10 { grid-template-columns: 1fr; }
+      .more-oss-content { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .skill-group + .skill-group { border-left: 0; border-top: 1px solid var(--line); }
+      .lb-stage { padding: 16px 20px; }
+      .lb-nav-btn { width: 38px; height: 38px; }
+      .lb-nav-btn.prev { left: 8px; }
+      .lb-nav-btn.next { right: 8px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .container { width: calc(100% - 24px); }
+      .hero h1 { font-size: 32px; letter-spacing: -1.2px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .button { width: 100%; }
+      .section-heading h2 { font-size: 21px; }
+      .project-content { padding: 20px 18px; }
+      .oss-body { padding: 18px 16px; }
+      .contact-box { padding: 28px 20px; }
+      .contact-heading h2 { font-size: 26px; }
+      .contact-buttons .button { width: 100%; }
+    }
+
+    /* ==================== 打印 / 另存为 PDF ==================== */
+    @media print {
+      @page { size: A4; margin: 12mm; }
+      :root { --bg: #fff; --surface: #fff; }
+      body { background: #fff; font-size: 10pt; color: #111; }
+      .site-header, .skip-link, .hero-actions, .hero-portrait, .hero-scroll,
+      .project-filter, .contact-buttons, .toast, .back-top, .reading-progress,
+      .lightbox-modal, .btn-gallery-trigger, .thumb-overlay, .more-oss-toggle { display: none !important; }
+      .hero { padding-top: 0; }
+      .hero-grid { display: block; }
+      .hero h1 { font-size: 26pt; }
+      .section { padding: 20px 0; scroll-margin: 0; }
+      .project-card, .project-card[hidden] { display: block !important; margin-bottom: 18px; break-inside: avoid; border: 1px solid #ccc; }
+      .project-thumb-box { display: none; }
+      .project-featured { display: block; }
+      .project-content { padding: 16px; }
+      .more-oss-content { display: grid !important; }
+      .skills-grid { grid-template-columns: repeat(4, 1fr); break-inside: avoid; }
+      .contact-box { padding: 20px; border: 1px solid #ccc; background: #fff; }
+      .contact-box::after { display: none; }
+      .motion-ready .reveal, .motion-ready .reveal:not(.is-visible) { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">跳转到主要内容</a>
+
+  <!-- ==================== 轻量内嵌 SVG 图标库 ==================== -->
+  <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></symbol>
+      <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"/></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 10 5-10 5L2 8l10-5Zm-10 9 10 5 10-5M2 16l10 5 10-5"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6m3 9v-2a6 6 0 0 0-2-4"/></symbol>
+      <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4.5 19a9 9 0 1 1 15 0H4.5Zm7.5-7 4-4M5 12h1m12 0h1M12 5v1"/><circle cx="12" cy="12" r="1"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16M8 15l4-5 4 2 5-7M17 5h4v4"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5C9 3 5 3 2 4v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Zm0 0v15"/></symbol>
+      <symbol id="i-graduate" viewBox="0 0 24 24"><path d="m2 8 10-5 10 5-10 5L2 8Zm4 2v7c4 3 8 3 12 0v-7m4-2v8"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9.5 9.5 0 0 1-4-.9L3 21l1.9-5.5a9.5 9.5 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3h.5a8.5 8.5 0 0 1 8 8v.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01" stroke-width="3"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.1 8.6 22 9.3 16.9 14 18.3 21 12 17.6 5.7 21 7.1 14 2 9.3 8.9 8.6 12 2"/></symbol>
+      <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+      <symbol id="i-prev" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+      <symbol id="i-next" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+      <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ==================== 顶部导航栏 ==================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="王彬，返回首页">
+        <span class="brand-mark" aria-hidden="true">wb.</span>
+        <span class="brand-name">王彬 <span>WANG BIN</span></span>
+      </a>
+
+      <nav class="nav" id="primary-navigation" aria-label="主要导航">
+        <a href="#about">个人优势</a>
+        <a href="#projects">项目经历</a>
+        <a href="#opensource">开源作品</a>
+        <a href="#skills">技能栈</a>
+        <a href="#experience">工作经历</a>
+        <a href="#education">教育背景</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="button header-download print-button" type="button" title="打开打印面板，可另存为 A4 PDF 简历" aria-label="导出简历，打印或另存为 PDF">
+          简历 PDF
+          <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+        </button>
+        <button class="menu-toggle" type="button" aria-label="展开导航菜单" aria-controls="primary-navigation" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="reading-progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <!-- ==================== 00. 首屏 Hero ==================== -->
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <div class="intro-line">
+            <span class="intro-name">你好，我是王彬</span>
+            <span class="intro-en">Wang Bin</span>
+            <span class="intro-divider" aria-hidden="true"></span>
+            <span class="intro-role">前端 · 部门负责人</span>
+          </div>
+          <h1 id="hero-title">构建卓越体验，<span class="second-line">也带领团队<em>从 0 到 1。</em></span></h1>
+          <p class="hero-description">
+            12 年前端研发与团队管理经验，精通 <strong>Vue3 / TypeScript 与前端工程化</strong>，兼具 React 19 大型项目实战与 AI 工程化落地能力。<br>
+            主导企业级组件库、数据大屏、低代码平台、企业级 BI 与 AI Agent 平台落地，维护 11 个开源组件库，让架构服务业务，让好的想法稳稳落地。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#contact">
+              聊聊新的机会
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+            </a>
+            <a class="button" href="#projects">
+              浏览精选项目
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+            </a>
+            <a class="button" href="王彬-个人简历.docx" download="王彬-个人简历.docx">
+              下载 Word 简历
+              <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+            </a>
+          </div>
+          <div class="hero-contact">
+            <a class="text-link" href="tel:17625160896">
+              <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
+              17625160896
+            </a>
+            <a class="text-link" href="mailto:316281400@qq.com">
+              <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+              316281400@qq.com
+            </a>
+            <span class="hero-location">
+              <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+              江苏 · 徐州
+            </span>
+            <a class="text-link" href="https://github.com/wangbin3162" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <figure class="hero-portrait reveal delay-2">
+          <div class="portrait-wrap">
+            <div class="portrait">
+              <!-- 高清头像原图 -->
+              <img
+                id="profile-photo"
+                src="assets/avatar.png"
+                alt="王彬肖像照片"
+                width="600"
+                height="700"
+                loading="eager"
+                decoding="async">
+              <span class="availability"><span class="status-dot" aria-hidden="true"></span>在职 · 开放交流机会</span>
+              <div class="portrait-note">
+                <div>
+                  <p>保持技术敏感，持续务实构建。</p>
+                  <span>ALWAYS CURIOUS. ALWAYS BUILDING.</span>
+                </div>
+                <svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>
+              </div>
+            </div>
+            <figcaption class="portrait-caption">
+              <span>ARCHITECT · LEADER · BUILDER</span>
+              <span>34.26° N · 117.18° E</span>
+            </figcaption>
+          </div>
+        </figure>
+      </div>
+
+      <div class="hero-bottom reveal delay-1">
+        <dl class="metrics" aria-label="职业生涯关键指标">
+          <div class="metric">
+            <dt class="sr-only">前端研发年限</dt>
+            <dd class="metric-value">12<span>+</span></dd>
+            <dd class="metric-label">年前端研发经验<br>深厚工程底蕴</dd>
+          </div>
+          <div class="metric">
+            <dt class="sr-only">技术团队管理规模</dt>
+            <dd class="metric-value">10<span>人</span></dd>
+            <dd class="metric-label">全栈研发团队<br>研发效率提升 60%</dd>
+          </div>
+          <div class="metric">
+            <dt class="sr-only">开源项目数量</dt>
+            <dd class="metric-value">11<span>个</span></dd>
+            <dd class="metric-label">开源组件库与工具<br>持续活跃维护</dd>
+          </div>
+          <div class="metric">
+            <dt class="sr-only">核心基础组件</dt>
+            <dd class="metric-value">60<span>+</span></dd>
+            <dd class="metric-label">企业级组件封装<br>支撑 50+ 业务系统</dd>
+          </div>
+        </dl>
+        <a class="hero-scroll" href="#about">向下探索优势<svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+      </div>
+    </section>
+
+    <!-- ==================== 01. 个人优势 ==================== -->
+    <section class="section container" id="about" aria-labelledby="about-title">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">01 / Strengths</p>
+          <h2 id="about-title">技术的深度，管理的温度。</h2>
+        </div>
+        <p class="section-description">技术深度与团队管理兼备，擅长将复杂业务拆解为清晰、可演进且高效落地的工程方案。</p>
+      </div>
+
+      <div class="strengths-grid">
+        <article class="strength reveal">
+          <div class="strength-top">
+            <span class="strength-icon"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span>
+            <span class="strength-number">01</span>
+          </div>
+          <h3>技术管理双栖</h3>
+          <p>从 0 到 1 搭建并带领 10 人技术团队（6 后端、2 前端、1 UI、1 运维），建立 GitFlow、Code Review 与自动化发布闭环，部门综合交付效率提升 60%，直报研发总监。</p>
+        </article>
+
+        <article class="strength reveal delay-1">
+          <div class="strength-top">
+            <span class="strength-icon"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg></span>
+            <span class="strength-number">02</span>
+          </div>
+          <h3>AI 工程化落地</h3>
+          <p>主导智能合同审查平台、AI Agent 编排（Langflow / React 19）、企业级知识库、OCR 单据识别、智能语音纪要等多类 AI 产品从算法接入到生产闭环。</p>
+        </article>
+
+        <article class="strength reveal delay-2">
+          <div class="strength-top">
+            <span class="strength-icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>
+            <span class="strength-number">03</span>
+          </div>
+          <h3>低代码与可视化专长</h3>
+          <p>主导大屏设计器与 28 万行级企业 BI 平台，基于 Schema + 双模式渲染支撑 40+ 大屏组件、60+ 可视化分析组件；自研低代码引擎助业务开发提效 70%。</p>
+        </article>
+
+        <article class="strength reveal delay-3">
+          <div class="strength-top">
+            <span class="strength-icon"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></span>
+            <span class="strength-number">04</span>
+          </div>
+          <h3>全端 + 全栈架构</h3>
+          <p>精通 Vue3 / React 19 / TypeScript，覆盖 Web、小程序、H5、React Native、Electron 与 macOS 原生（Swift）；兼具 Python / FastAPI / PostgreSQL 后端建模与架构实力。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== 02. 项目经历 ==================== -->
+    <section class="section projects-section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">02 / Selected work</p>
+            <h2 id="projects-title">做过的事，是最好的证明。</h2>
+          </div>
+          <div class="project-filter" role="group" aria-label="按技术方向筛选项目">
+            <button class="filter-button" type="button" data-filter="all" aria-pressed="true" aria-controls="project-list">
+              全部项目 <span class="mono">13</span>
+            </button>
+            <button class="filter-button" type="button" data-filter="ai" aria-pressed="false" aria-controls="project-list">
+              AI 智能体 <span class="mono">07</span>
+            </button>
+            <button class="filter-button" type="button" data-filter="data-viz" aria-pressed="false" aria-controls="project-list">
+              数据与可视化 <span class="mono">04</span>
+            </button>
+            <button class="filter-button" type="button" data-filter="platform" aria-pressed="false" aria-controls="project-list">
+              平台与综合 <span class="mono">02</span>
+            </button>
+          </div>
+        </div>
+        <p class="sr-only" id="filter-status" aria-live="polite" aria-atomic="true">显示全部 13 个项目</p>
+
+        <div class="project-grid" id="project-list">
+
+          <!-- 01. 置顶核心第一位：智能合同审查平台 (AI 合同管理) -->
+          <article class="project-card project-featured reveal" data-category="ai" aria-labelledby="proj-contract-title">
+            <div class="project-thumb-box gallery-trigger"
+                 data-title="智能合同审查平台"
+                 data-gallery='["assets/projects/01-智能合同审查/contract01.png", "assets/projects/01-智能合同审查/contract02.png", "assets/projects/01-智能合同审查/contract03.png", "assets/projects/01-智能合同审查/contract04.png", "assets/projects/01-智能合同审查/contract05.png"]'
+                 title="点击查看完整图集">
+              <img src="assets/projects/01-智能合同审查/contract01.png" alt="智能合同审查平台截图" loading="lazy">
+              <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 5 张截图</span>
+              <div class="thumb-overlay">
+                <span class="btn-view"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 点击浏览多图</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-kicker">
+                <span>01 / LEGAL & COMPLIANCE AI</span>
+                <span class="featured-label">核心置顶 · AI智能体</span>
+              </div>
+              <h3 class="project-title" id="proj-contract-title"><span>智能合同审查</span> 平台 (AI 合同管理)</h3>
+              <p class="project-role">项目负责人 / 前端负责人<span class="date">Vue 3 · FastAPI · OnlyOffice · NDJSON</span></p>
+
+              <div class="project-value-box">
+                <strong>【项目价值】</strong>
+                覆盖台账提取、合规审查、版本对比与规则资产库。全流程自动化将单份合同审查耗时从人工 2 小时缩减至 <strong>30 秒内</strong>，法务人效提升 <strong>80%</strong>；全程版本留痕与 DOCX 单条采纳回写，满足企业强合规审计要求。
+              </div>
+
+              <div class="tags" aria-label="技术栈">
+                <span class="tag">Vue 3</span><span class="tag">FastAPI</span><span class="tag">OnlyOffice</span><span class="tag">PostgreSQL</span><span class="tag">NDJSON 流式</span><span class="tag">Vue Flow</span><span class="tag">Tailwind v4</span><span class="tag">Redis</span>
+              </div>
+
+              <ul class="project-bullets">
+                <li><strong>长文本漏审攻坚</strong>：针对大合同超 LLM 上下文难题，独创<strong>规则按章节打分分发与章节并发精读算法</strong>，审查完整度达 100%。</li>
+                <li><strong>成果精确回写</strong>：实现 <strong>DOCX run 级底层文本替换与单条建议采纳/撤销</strong>，使 AI 审查意见可直接无损落回 Word。</li>
+                <li><strong>对话式结构化台账</strong>：流式分步进度提取 <strong>19 项合同字段</strong>，支持双批并发提取与原文锚点高亮回验（准确率≥90%）。</li>
+                <li><strong>双粒度智能比对</strong>：自研段落级 + 词级双粒度差异分析引擎，配合大模型自动产出法律风险分析报告。</li>
+                <li><strong>健壮服务端工程</strong>：FastAPI 分层架构，统一大模型调用重试、分阶段超时与清洗，后端覆盖 <strong>148 条 pytest</strong> 自动化测试。</li>
+              </ul>
+
+              <div class="project-result">
+                <div class="result-item"><strong>&lt;30s</strong><span>单份智能审查</span></div>
+                <div class="result-item"><strong>19 项</strong><span>字段自动台账</span></div>
+                <div class="result-item"><strong>100%</strong><span>DOCX 无损回写</span></div>
+                <div class="result-item"><strong>148 条</strong><span>测试用例全覆盖</span></div>
+              </div>
+
+              <details class="project-detail">
+                <summary>技术决策与架构复盘<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                <div class="detail-body">
+                  <strong>架构权衡：</strong>针对整篇合同输入超大模型窗口易导致注意力漂移与遗漏问题，放弃了“整篇喂入”的粗放方案，采用“统一文档解析底座 + 章节结构树 + 规则引擎前置打分路由 + 并发精读”的精细化编排管线。前端 OnlyOffice 深度定制中，自研高亮遮罩层与操作命令树，实现采纳建议与原版合同的秒级 Diff 切换与可撤回保障。
+                </div>
+              </details>
+
+              <div class="project-card-footer">
+                <button class="btn-gallery-trigger gallery-trigger" type="button"
+                        data-title="智能合同审查平台"
+                        data-gallery='["assets/projects/01-智能合同审查/contract01.png", "assets/projects/01-智能合同审查/contract02.png", "assets/projects/01-智能合同审查/contract03.png", "assets/projects/01-智能合同审查/contract04.png", "assets/projects/01-智能合同审查/contract05.png"]'>
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 查看全部截图
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 02. Langflow 智能体开发平台 -->
+          <article class="project-card reveal" data-category="ai" aria-labelledby="proj-langflow-title">
+            <div class="project-thumb-box gallery-trigger"
+                 data-title="企业级 AI Agent 开发平台（Langflow）"
+                 data-gallery='["assets/projects/09-langflow智能体平台/langflow01.png", "assets/projects/09-langflow智能体平台/langflow02.png", "assets/projects/09-langflow智能体平台/langflow03.png"]'
+                 title="点击查看图集">
+              <img src="assets/projects/09-langflow智能体平台/langflow01.png" alt="Langflow 智能体开发平台截图" loading="lazy">
+              <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 3 张截图</span>
+              <div class="thumb-overlay">
+                <span class="btn-view"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 点击浏览多图</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-kicker">
+                <span>02 / AI AGENT ORCHESTRATION</span>
+                <span class="tag">AI 智能体</span>
+              </div>
+              <h3 class="project-title" id="proj-langflow-title"><span>Langflow</span> 企业级 AI Agent 开发平台</h3>
+              <p class="project-role">前端负责人<span class="date">React 19 · Vite 7 · @xyflow/react</span></p>
+
+              <div class="project-value-box">
+                <strong>【项目价值】</strong>基于 Langflow 开源内核的企业级编排底座，让非技术业务人员通过拖拽节点快速搭建复杂多 Agent 协同系统，智能体研发交付周期缩短 <strong>70%</strong>。
+              </div>
+
+              <div class="tags" aria-label="技术栈">
+                <span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">@xyflow/react</span><span class="tag">Zustand</span><span class="tag">TanStack Query</span><span class="tag">WebSocket</span>
+              </div>
+
+              <ul class="project-bullets">
+                <li>基于 React Flow 打造拖拽式编排画布，实现<strong>节点吸附、拓扑连线校验、分组子图递归</strong>与运行状态毫秒级实时渲染。</li>
+                <li>设计 Zustand 多 Store 状态架构（flowStore 1300+ 行），深度联动 <strong>150+ React Query</strong> 数据 Hook 保证数据一致性。</li>
+                <li>封装 <code>UseRequestProcessor</code> 统一请求层，规范 30+ 业务域接口，搭建 7 语言国际化与 82 插槽白标定制层。</li>
+              </ul>
+
+              <div class="project-result">
+                <div class="result-item"><strong>150+</strong><span>Query Hooks</span></div>
+                <div class="result-item"><strong>7 语言</strong><span>国际化白标</span></div>
+              </div>
+
+              <details class="project-detail">
+                <summary>技术复盘<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                <div class="detail-body">为解决画布节点超百个时的重渲染卡顿，采用状态下沉策略与微任务批处理更新；连线校验基于类型系统前置拦截死锁；白标层采用依赖倒置设计，无需分叉代码即可交付不同定制客户。</div>
+              </details>
+
+              <div class="project-card-footer">
+                <button class="btn-gallery-trigger gallery-trigger" type="button"
+                        data-title="企业级 AI Agent 开发平台（Langflow）"
+                        data-gallery='["assets/projects/09-langflow智能体平台/langflow01.png", "assets/projects/09-langflow智能体平台/langflow02.png", "assets/projects/09-langflow智能体平台/langflow03.png"]'>
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 查看全部截图
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03. 企业智能体平台知识库（新小蝶） -->
+          <article class="project-card reveal delay-1" data-category="ai" aria-labelledby="proj-ai04-title">
+            <div class="project-thumb-box gallery-trigger"
+                 data-title="AI 智能体平台知识库（新小蝶）"
+                 data-gallery='["assets/projects/04-企业智能体平台知识库/ai01.png", "assets/projects/04-企业智能体平台知识库/ai02.png", "assets/projects/04-企业智能体平台知识库/ai03.png", "assets/projects/04-企业智能体平台知识库/ai04.png"]'
+                 title="点击查看图集">
+              <img src="assets/projects/04-企业智能体平台知识库/ai01.png" alt="AI 智能体平台知识库截图" loading="lazy">
+              <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 4 张截图</span>
+              <div class="thumb-overlay">
+                <span class="btn-view"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 点击浏览多图</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-kicker">
+                <span>03 / ENTERPRISE KNOWLEDGE BASE</span>
+                <span class="tag">AI 智能体</span>
+              </div>
+              <h3 class="project-title" id="proj-ai04-title"><span>新小蝶</span> AI 智能体平台知识库</h3>
+              <p class="project-role">前端负责人<span class="date">Vue 3 · Vite 7 · SSE · Pinia</span></p>
+
+              <div class="project-value-box">
+                <strong>【项目价值】</strong>解决企业大模型接入分散、文档切片问答精度差的痛点，构建企业统一知识库与多端对话中枢，服务数十家大型政企客户。
+              </div>
+
+              <div class="tags" aria-label="技术栈">
+                <span class="tag">Vue 3</span><span class="tag">Vite 7</span><span class="tag">SSE 流式</span><span class="tag">Element Plus</span><span class="tag">Pinia</span><span class="tag">Web Component</span>
+              </div>
+
+              <ul class="project-bullets">
+                <li>一套代码统一配置中心与 PC / Mobile / Embed 对话端，高质量支撑 <strong>97+ 核心业务视图</strong>。</li>
+                <li>基于 SSE 协议实现极速打字机流式对话，完美支持<strong>断点续传、手动中止、语音输入与原文切片溯源</strong>。</li>
+                <li>自研配置驱动动态表单引擎，将对话面板封装为 <strong>Web Component</strong>，支持在任意三方异构系统零成本嵌入。</li>
+              </ul>
+
+              <div class="project-result">
+                <div class="result-item"><strong>97+</strong><span>支撑视图</span></div>
+                <div class="result-item"><strong>&lt;50ms</strong><span>首字流式响应</span></div>
+              </div>
+
+              <details class="project-detail">
+                <summary>技术复盘<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                <div class="detail-body">通过虚拟滚动处理超长对话上下文渲染，有效避免 DOM 节点过多导致的卡顿；将流式 Markdown 解析器与代码高亮进行 Web Worker 离线异步分流，保障打字机渲染帧率稳定 60 FPS。</div>
+              </details>
+
+              <div class="project-card-footer">
+                <button class="btn-gallery-trigger gallery-trigger" type="button"
+                        data-title="AI 智能体平台知识库（新小蝶）"
+                        data-gallery='["assets/projects/04-企业智能体平台知识库/ai01.png", "assets/projects/04-企业智能体平台知识库/ai02.png", "assets/projects/04-企业智能体平台知识库/ai03.png", "assets/projects/04-企业智能体平台知识库/ai04.png"]'>
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 查看全部截图
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04. OCR 智能单据识别平台 -->
+          <article class="project-card reveal" data-category="ai" aria-labelledby="proj-ocr-title">
+            <div class="project-thumb-box gallery-trigger"
+                 data-title="智能单据识别（OCR）平台"
+                 data-gallery='["assets/projects/02-OCR智能单据识别/ocr01.png", "assets/projects/02-OCR智能单据识别/ocr02.png", "assets/projects/02-OCR智能单据识别/ocr03.png", "assets/projects/02-OCR智能单据识别/ocr04.png"]'
+                 title="点击查看图集">
+              <img src="assets/projects/02-OCR智能单据识别/ocr01.png" alt="智能单据识别平台截图" loading="lazy">
+              <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 4 张截图</span>
+              <div class="thumb-overlay">
+                <span class="btn-view"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 点击浏览多图</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-kicker">
+                <span>04 / DOCUMENT INTELLIGENCE</span>
+                <span class="tag">AI 智能体</span>
+              </div>
+              <h3 class="project-title" id="proj-ocr-title"><span>智能单据识别</span> (OCR) 平台</h3>
+              <p class="project-role">前端负责人<span class="date">Vue 3 · Vite 7 · form-create · Socket.io</span></p>
+
+              <div class="project-value-box">
+                <strong>【项目价值】</strong>将发票、医疗单据等繁杂非结构化影像瞬间转化为高精度业务结构化数据，单张单据录入耗时从 3 分钟降至 5 秒以内，准确率达 98%+。
+              </div>
+
+              <div class="tags" aria-label="技术栈">
+                <span class="tag">Vue 3</span><span class="tag">Vite 7</span><span class="tag">Pinia</span><span class="tag">bin-ui-design</span><span class="tag">form-create</span>
+              </div>
+
+              <ul class="project-bullets">
+                <li>主导 Vue 3 + Vite 7 工程基座，统一请求、状态与路由守卫，实现角色 + 权限码细粒度递归鉴权。</li>
+                <li>集成可视化表单设计器并自研旧 <code>form_json</code> 兼容层，支撑模板在线动态拖拽编排。</li>
+                <li>设计多源上传链路（拖拽 / 拍照 / 扫码），落地<strong>原图原文字段框选核验与识别准确率监控大盘</strong>。</li>
+              </ul>
+
+              <div class="project-result">
+                <div class="result-item"><strong>98%+</strong><span>关键字段回填率</span></div>
+                <div class="result-item"><strong>5 秒</strong><span>单张极速结构化</span></div>
+              </div>
+
+              <details class="project-detail">
+                <summary>技术复盘<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                <div class="detail-body">单据框选联动采用 SVG 矢量层精准叠加在单据高分辨率图像上，支持双指缩放、旋转矫正与字段高亮，使得操作人员核对修正效率提升 3 倍以上。</div>
+              </details>
+
+              <div class="project-card-footer">
+                <button class="btn-gallery-trigger gallery-trigger" type="button"
+                        data-title="智能单据识别（OCR）平台"
+                        data-gallery='["assets/projects/02-OCR智能单据识别/ocr01.png", "assets/projects/02-OCR智能单据识别/ocr02.png", "assets/projects/02-OCR智能单据识别/ocr03.png", "assets/projects/02-OCR智能单据识别/ocr04.png"]'>
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 查看全部截图
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 05. AI 财务差旅报销系统 -->
+          <article class="project-card reveal delay-1" data-category="ai" aria-labelledby="proj-remib-title">
+            <div class="project-thumb-box gallery-trigger"
+                 data-title="AI 财务差旅报销系统"
+                 data-gallery='["assets/projects/03-AI报销助手/remib01.png", "assets/projects/03-AI报销助手/remib02.png", "assets/projects/03-AI报销助手/remib03.png"]'
+                 title="点击查看图集">
+              <img src="assets/projects/03-AI报销助手/remib01.png" alt="AI 财务差旅报销系统截图" loading="lazy">
+              <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 3 张截图</span>
+              <div class="thumb-overlay">
+                <span class="btn-view"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 点击浏览多图</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-kicker">
+                <span>05 / AI FINANCIAL WORKFLOW</span>
+                <span class="tag">AI 智能体</span>
+              </div>
+              <h3 class="project-title" id="proj-remib-title"><span>AI 财务差旅报销</span> 系统</h3>
+              <p class="project-role">项目负责人 / 前端负责人<span class="date">Vue 3 · TypeScript · FastAPI · Casbin</span></p>
+
+              <div class="project-value-box">
+                <strong>【项目价值】</strong>票据拍照即自动归类识别、差旅标准自动计算比对、申请即自动生单，彻底消除繁琐手工贴票，财务初审工作量下降 <strong>90%</strong>。
+              </div>
+
+              <div class="tags" aria-label="技术栈">
+                <span class="tag">Vue 3</span><span class="tag">FastAPI</span><span class="tag">Element Plus</span><span class="tag">Pinia</span><span class="tag">Casbin 权限</span><span class="tag">DashScope</span>
+              </div>
+
+              <ul class="project-bullets">
+                <li>搭建模块化前端底座，沉淀 <code>useTable</code> 与通用表单体系，支撑 <strong>84 核心视图与 73 组件</strong>。</li>
+                <li>落地 Casbin 三级功能权限与四级行/列数据权限；主导五大核心业务流程，实现补助精准自动核算。</li>
+                <li>深度对接 DashScope 票据识别模型完成批量一键填报，实现 FastAPI 异步后端高并发架构。</li>
+              </ul>
+
+              <div class="project-result">
+                <div class="result-item"><strong>84 视图</strong><span>前端业务模块</span></div>
+                <div class="result-item"><strong>90%↓</strong><span>人工核算工时</span></div>
+              </div>
+
+              <details class="project-detail">
+                <summary>技术复盘<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                <div class="detail-body">针对报销审批链条长、状态繁多的问题，前端设计了状态机驱动的流程看板，对表单数据变动实施不可变快照，支持任意审批节点前后溯源与审计回滚。</div>
+              </details>
+
+              <div class="project-card-footer">
+                <button class="btn-gallery-trigger gallery-trigger" type="button"
+                        data-title="AI 财务差旅报销系统"
+                        data-gallery='["assets/projects/03-AI报销助手/remib01.png", "assets/projects/03-AI报销助手/remib02.png", "assets/projects/03-AI报销助手/remib03.png"]'>
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 查看全部截图
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 06. 听悟大模型智能纪要 -->
+          <article class="project-card reveal" data-category="ai" aria-labelledby="proj-tingwu-title">
+            <div class="project-thumb-box gallery-trigger"
+                 data-title="听悟大模型智能纪要（智能语音助手）"
+                 data-gallery='["assets/projects/05-智能语音助手/yuyin01.png", "assets/projects/05-智能语音助手/yuyin02.png"]'
+                 title="点击查看图集">
+              <img src="assets/projects/05-智能语音助手/yuyin01.png" alt="听悟大模型智能纪要截图" loading="lazy">
+              <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 2 张截图</span>
+              <div class="thumb-overlay">
+                <span class="btn-view"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 点击浏览多图</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-kicker">
+                <span>06 / AUDIO & SPEECH AI</span>
+                <span class="tag">AI 智能体</span>
+              </div>
+              <h3 class="project-title" id="proj-tingwu-title"><span>听悟智能纪要</span> (智能语音助手)</h3>
+              <p class="project-role">项目负责人 / 前端负责人<span class="date">React 18 · TypeScript · Monorepo</span></p>
+
+              <div class="project-value-box">
+                <strong>【项目价值】</strong>赋能长会议、商务访谈与电话录音整理，毫秒级转写 + 说话人分离 + AI 思维导图生成，纪要产出效率提升 <strong>85%</strong>。
+              </div>
+
+              <div class="tags" aria-label="技术栈">
+                <span class="tag">React 18</span><span class="tag">AudioContext</span><span class="tag">MediaRecorder</span><span class="tag">WebSocket</span><span class="tag">Lerna Monorepo</span>
+              </div>
+
+              <ul class="project-bullets">
+                <li>设计<strong>五层 Monorepo 架构（14 个子包）</strong>分层解耦，高标准支撑多端与多业务线协同开发。</li>
+                <li>自研音频采集核心与重采样管线，通过 <strong>WebSocket 心跳机制</strong>保障网络抖动下 0 丢帧重连。</li>
+                <li>搭建文档撤销重做引擎，自研 Markdown / 思维导图联动组件，深度对接阿里云百炼大模型能力。</li>
+              </ul>
+
+              <div class="project-result">
+                <div class="result-item"><strong>14 个包</strong><span>Monorepo 架构</span></div>
+                <div class="result-item"><strong>0 丢帧</strong><span>音频断线重连</span></div>
+              </div>
+
+              <details class="project-detail">
+                <summary>技术复盘<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                <div class="detail-body">利用 AudioWorklet 替代传统 ScriptProcessor 解决主线程卡顿对音频流造成的掉帧断音问题；将大文本长文纪要的实时增量 Diff 运算放入 Web Worker 提升响应速度。</div>
+              </details>
+
+              <div class="project-card-footer">
+                <button class="btn-gallery-trigger gallery-trigger" type="button"
+                        data-title="听悟大模型智能纪要（智能语音助手）"
+                        data-gallery='["assets/projects/05-智能语音助手/yuyin01.png", "assets/projects/05-智能语音助手/yuyin02.png"]'>
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 查看全部截图
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 07. 企业级数据分析与 BI 平台 -->
+          <article class="project-card reveal delay-1" data-category="data-viz" aria-labelledby="proj-bi-title">
+            <div class="project-thumb-box gallery-trigger"
+                 data-title="企业级数据分析与 BI 平台"
+                 data-gallery='["assets/projects/06-数据分析平台/fxpt01.png", "assets/projects/06-数据分析平台/fxpt02.png", "assets/projects/06-数据分析平台/fxpt03.png", "assets/projects/06-数据分析平台/fxpt04.png", "assets/projects/06-数据分析平台/fxpt05.png"]'
+                 title="点击查看图集">
+              <img src="assets/projects/06-数据分析平台/fxpt01.png" alt="企业级数据分析与 BI 平台截图" loading="lazy">
+              <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 5 张截图</span>
+              <div class="thumb-overlay">
+                <span class="btn-view"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 点击浏览多图</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-kicker">
+                <span>07 / ENTERPRISE BI PLATFORM</span>
+                <span class="tag">数据与可视化</span>
+              </div>
+              <h3 class="project-title" id="proj-bi-title"><span>企业级数据分析与 BI</span> 平台</h3>
+              <p class="project-role">前端负责人<span class="date">Vue 3 · ECharts 5 · OLAP · @vue-flow</span></p>
+
+              <div class="project-value-box">
+                <strong>【项目价值】</strong>从 0 到 1 打造 28 万行级大型商业智能分析套件，涵盖数据接入、多模 OLAP 建模、可视化画布与自助报表全链路，业务自助交付占比达 <strong>80%</strong>。
+              </div>
+
+              <div class="tags" aria-label="技术栈">
+                <span class="tag">Vue 3</span><span class="tag">ECharts 5</span><span class="tag">@vue-flow</span><span class="tag">vxe-table</span><span class="tag">Pinia</span><span class="tag">ExcelJS</span>
+              </div>
+
+              <ul class="project-bullets">
+                <li>主导 <strong>28 万行代码级前端架构</strong>，抽象建模—搭建—分析—报告全链路，高质量交付 <strong>70+ 核心模块</strong>。</li>
+                <li>设计 JSON 驱动可视化搭建器与 <strong>60+ 基础图表/控件体系</strong>，实现 Join / SQL / 文件 / API 四模建模。</li>
+                <li>事件总线 + 脚本钩子打通跨组件联动；编辑锁心跳防冲突、撤销重做堆栈保障团队协同效率。</li>
+              </ul>
+
+              <div class="project-result">
+                <div class="result-item"><strong>28 万行</strong><span>前端代码体量</span></div>
+                <div class="result-item"><strong>60+</strong><span>图表控件沉淀</span></div>
+              </div>
+
+              <details class="project-detail">
+                <summary>技术复盘<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                <div class="detail-body">自研基于 Canvas 和 SVG 混合渲染的分层渲染管线，针对十万级数据点图表采用降采样（LTTB）和视口动态剔除，首屏首包加载体积精简 65%。</div>
+              </details>
+
+              <div class="project-card-footer">
+                <button class="btn-gallery-trigger gallery-trigger" type="button"
+                        data-title="企业级数据分析与 BI 平台"
+                        data-gallery='["assets/projects/06-数据分析平台/fxpt01.png", "assets/projects/06-数据分析平台/fxpt02.png", "assets/projects/06-数据分析平台/fxpt03.png", "assets/projects/06-数据分析平台/fxpt04.png", "assets/projects/06-数据分析平台/fxpt05.png"]'>
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 查看全部截图
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 08. 大屏可视化设计器 -->
+          <article class="project-card reveal" data-category="data-viz" aria-labelledby="proj-datav-title">
+            <div class="project-thumb-box gallery-trigger"
+                 data-title="大屏可视化设计器（bin-datav-schema）"
+                 data-gallery='["assets/projects/08-智能可视化大屏/daping01.png", "assets/projects/08-智能可视化大屏/daping02.png", "assets/projects/08-智能可视化大屏/daping03.png"]'
+                 title="点击查看图集">
+              <img src="assets/projects/08-智能可视化大屏/daping01.png" alt="大屏可视化设计器截图" loading="lazy">
+              <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 3 张截图</span>
+              <div class="thumb-overlay">
+                <span class="btn-view"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 点击浏览多图</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-kicker">
+                <span>08 / LOW-CODE DATA VISUALIZATION</span>
+                <span class="tag">数据与可视化</span>
+              </div>
+              <h3 class="project-title" id="proj-datav-title"><span>大屏可视化设计器</span> (bin-datav-schema)</h3>
+              <p class="project-role">项目负责人 / 前端负责人<span class="date">Vue 3 · Three.js · ECharts 5 · GSAP</span></p>
+
+              <div class="project-value-box">
+                <strong>【项目价值】</strong>打破政企领导驾驶舱与数据监控大屏逐屏定制开发的效率瓶颈，实现拖拽式 0 代码编排与毫秒级数据联动，交付周期缩减 <strong>70%</strong>。
+              </div>
+
+              <div class="tags" aria-label="技术栈">
+                <span class="tag">Vue 3</span><span class="tag">Vite 5</span><span class="tag">Three.js</span><span class="tag">ECharts 5</span><span class="tag">GSAP 动效</span><span class="tag">mitt 总线</span>
+              </div>
+
+              <ul class="project-bullets">
+                <li>主导 Vue3 大屏设计器架构，<strong>Schema + 双模式渲染</strong>强力支撑 40 类、14 分类组件无缝编排。</li>
+                <li>设计 <code>useDataCenter</code> 统一数据装配层，收敛静态/模型/接口三类数据源，支持多维下钻与自动轮询。</li>
+                <li>引入 <strong>mitt 事件总线与跨屏广播</strong>，突破性自研 AI 智能数据解读面板（流式分析 + 语音播报）。</li>
+              </ul>
+
+              <div class="project-result">
+                <div class="result-item"><strong>40 类</strong><span>大屏组件库</span></div>
+                <div class="result-item"><strong>70%↓</strong><span>交付周期缩减</span></div>
+              </div>
+
+              <details class="project-detail">
+                <summary>技术复盘<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                <div class="detail-body">屏幕适配采用 Scale 等比缩放与 Viewport 自适应双引擎，结合离屏 Canvas 预渲染技术，在多块 4K 超宽拼接屏展示时仍保持超低 GPU 开销与无畸变展示。</div>
+              </details>
+
+              <div class="project-card-footer">
+                <button class="btn-gallery-trigger gallery-trigger" type="button"
+                        data-title="大屏可视化设计器（bin-datav-schema）"
+                        data-gallery='["assets/projects/08-智能可视化大屏/daping01.png", "assets/projects/08-智能可视化大屏/daping02.png", "assets/projects/08-智能可视化大屏/daping03.png"]'>
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 查看全部截图
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 09. 报表设计平台（数据报表系统） -->
+          <article class="project-card reveal delay-1" data-category="data-viz" aria-labelledby="proj-report-title">
+            <div class="project-thumb-box gallery-trigger"
+                 data-title="报表设计平台（数据报表系统）"
+                 data-gallery='["assets/projects/07-数据报表系统/report01.png", "assets/projects/07-数据报表系统/report02.png"]'
+                 title="点击查看图集">
+              <img src="assets/projects/07-数据报表系统/report01.png" alt="报表设计平台截图" loading="lazy">
+              <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 2 张截图</span>
+              <div class="thumb-overlay">
+                <span class="btn-view"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 点击浏览多图</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-kicker">
+                <span>09 / ENTERPRISE SPREADSHEET</span>
+                <span class="tag">数据与可视化</span>
+              </div>
+              <h3 class="project-title" id="proj-report-title"><span>报表设计平台</span> (数据报表系统)</h3>
+              <p class="project-role">项目负责人 / 前端负责人<span class="date">Vue 3 · UniverJS · @visactor/vtable</span></p>
+
+              <div class="project-value-box">
+                <strong>【项目价值】</strong>将企业沉重的传统 Excel 式财务报表完整迁移至 Web 在线设计、实时计算取数与协同填报，彻底摆脱人工多版本邮件传输与数据混乱。
+              </div>
+
+              <div class="tags" aria-label="技术栈">
+                <span class="tag">Vue 3</span><span class="tag">UniverJS</span><span class="tag">@visactor/vtable</span><span class="tag">ExcelJS</span><span class="tag">SSE</span>
+              </div>
+
+              <ul class="project-bullets">
+                <li>主导 Vue 3 + UniverJS 报表平台架构，抽象<strong>单元格级原子配置模型</strong>，支撑复杂交叉多级表头。</li>
+                <li>深度优化数据渲染管线：1000 行转换时间从 41ms 降至 20ms，公式处理耗时降低 83%。</li>
+                <li>从 0 到 1 打造设计、预览、填报、财务合并四大模块，实现强校验填报闭环与 OAuth2 自动续期。</li>
+              </ul>
+
+              <div class="project-result">
+                <div class="result-item"><strong>83%↓</strong><span>公式耗时优化</span></div>
+                <div class="result-item"><strong>1000 行</strong><span>20ms 极速转换</span></div>
+              </div>
+
+              <details class="project-detail">
+                <summary>技术复盘<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                <div class="detail-body">引入稀疏矩阵（Sparse Matrix）存储空值单元格，大幅降低大表占用内存；自研公式计算图依赖拓扑排序，按需重算变更单元格，消灭大表录入卡顿。</div>
+              </details>
+
+              <div class="project-card-footer">
+                <button class="btn-gallery-trigger gallery-trigger" type="button"
+                        data-title="报表设计平台（数据报表系统）"
+                        data-gallery='["assets/projects/07-数据报表系统/report01.png", "assets/projects/07-数据报表系统/report02.png"]'>
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 查看全部截图
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 10. AI 政务服务报告系统 -->
+          <article class="project-card reveal" data-category="ai" aria-labelledby="proj-gov-title">
+            <div class="project-thumb-box gallery-trigger"
+                 data-title="政务月度服务简报系统"
+                 data-gallery='["assets/projects/10-AI政务服务报告/report01.png", "assets/projects/10-AI政务服务报告/report02.png"]'
+                 title="点击查看图集">
+              <img src="assets/projects/10-AI政务服务报告/report01.png" alt="政务月度服务简报系统截图" loading="lazy">
+              <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 2 张截图</span>
+              <div class="thumb-overlay">
+                <span class="btn-view"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 点击浏览多图</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-kicker">
+                <span>10 / GOV TECH AUTOMATION</span>
+                <span class="tag">AI 智能体</span>
+              </div>
+              <h3 class="project-title" id="proj-gov-title"><span>政务月度服务简报</span> 自动化系统</h3>
+              <p class="project-role">前端负责人<span class="date">Vue 3 · Vite 8 · bin-editor-next · html2canvas</span></p>
+
+              <div class="project-value-box">
+                <strong>【项目价值】</strong>面向省市多地政务项目，将人工数天的数据汇聚、报告排版与成册导出流程转化为一键批量自动生成，报告产出时间从 <strong>数天压缩至 10 分钟</strong>。
+              </div>
+
+              <div class="tags" aria-label="技术栈">
+                <span class="tag">Vue 3</span><span class="tag">Vite 8</span><span class="tag">bin-editor-next</span><span class="tag">iframe 沙箱</span><span class="tag">html2canvas</span>
+              </div>
+
+              <ul class="project-bullets">
+                <li>主导 Vue3 + Vite 分层架构，封装高效 <code>useTable</code> 与多租户模板批量生成交互体系。</li>
+                <li>基于 <strong>iframe 沙箱 + MutationObserver</strong> 实现在线所见即所得编辑、样式隔离与实时回写。</li>
+                <li>打通模板设计—数据填充—在线批注—PDF 生成—外链安全分享的政务报告全闭环。</li>
+              </ul>
+
+              <div class="project-result">
+                <div class="result-item"><strong>数天→10分</strong><span>报告产出提效</span></div>
+                <div class="result-item"><strong>100%</strong><span>多地市格式标准</span></div>
+              </div>
+
+              <details class="project-detail">
+                <summary>技术复盘<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                <div class="detail-body">为解决 html2canvas 截断跨页文字导致的断字问题，自研智能分页算法，在 DOM 渲染前提前探测段落高度与分页安全区，保证打印与 PDF 导出排版无断裂。</div>
+              </details>
+
+              <div class="project-card-footer">
+                <button class="btn-gallery-trigger gallery-trigger" type="button"
+                        data-title="政务月度服务简报系统"
+                        data-gallery='["assets/projects/10-AI政务服务报告/report01.png", "assets/projects/10-AI政务服务报告/report02.png"]'>
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 查看全部截图
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 11. Visual-DXP 数据交换平台 -->
+          <article class="project-card reveal delay-1" data-category="data-viz" aria-labelledby="proj-dxp-title">
+            <div class="project-thumb-box gallery-trigger"
+                 data-title="Visual-DXP 数据交换平台"
+                 data-gallery='["assets/projects/11-数据交换系统/dxp01.png", "assets/projects/11-数据交换系统/dxp02.png", "assets/projects/11-数据交换系统/dxp03.png"]'
+                 title="点击查看图集">
+              <img src="assets/projects/11-数据交换系统/dxp01.png" alt="Visual-DXP 数据交换平台截图" loading="lazy">
+              <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 3 张截图</span>
+              <div class="thumb-overlay">
+                <span class="btn-view"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 点击浏览多图</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-kicker">
+                <span>11 / VISUAL ETL & INTEGRATION</span>
+                <span class="tag">数据与可视化</span>
+              </div>
+              <h3 class="project-title" id="proj-dxp-title"><span>Visual-DXP</span> 数据交换平台</h3>
+              <p class="project-role">前端负责人<span class="date">Vue 3 · Vite 3 · @vue-flow · ECharts</span></p>
+
+              <div class="project-value-box">
+                <strong>【项目价值】</strong>打通跨部门异构数据库、FTP、消息队列与 OpenAPI 之间的数据流转，提供纯拖拽式可视化 ETL 作业编排，替代传统写 SQL/脚本的繁重运维。
+              </div>
+
+              <div class="tags" aria-label="技术栈">
+                <span class="tag">Vue 3</span><span class="tag">@vue-flow</span><span class="tag">Pinia</span><span class="tag">ECharts</span><span class="tag">bin-ui-design</span>
+              </div>
+
+              <ul class="project-bullets">
+                <li>主导可视化作业编排引擎，基于 <code>@vue-flow</code> 自研数据源节点、转换算子、依赖校验与拓扑排序。</li>
+                <li>构建角色驱动的动态权限路由与菜单鉴权体系，实现企业级版本许可与安全沙箱防护。</li>
+                <li>负责任务调度、字段映射、数据清洗等核心模块，搭建 ECharts 任务执行吞吐量与异常实时监控。</li>
+              </ul>
+
+              <div class="project-result">
+                <div class="result-item"><strong>拓扑排序</strong><span>自动依赖推导</span></div>
+                <div class="result-item"><strong>零代码</strong><span>异构数据汇聚</span></div>
+              </div>
+
+              <details class="project-detail">
+                <summary>技术复盘<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                <div class="detail-body">节点连接时基于字段类型推断机制前置拦截类型不匹配错误；对于多分支环形依赖采用 Kahn 算法进行即时校验，防止后台 ETL 引擎运行时死锁。</div>
+              </details>
+
+              <div class="project-card-footer">
+                <button class="btn-gallery-trigger gallery-trigger" type="button"
+                        data-title="Visual-DXP 数据交换平台"
+                        data-gallery='["assets/projects/11-数据交换系统/dxp01.png", "assets/projects/11-数据交换系统/dxp02.png", "assets/projects/11-数据交换系统/dxp03.png"]'>
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 查看全部截图
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 12. 云之家 AI 移动工作台 H5 -->
+          <article class="project-card reveal" data-category="platform" aria-labelledby="proj-mobile-title">
+            <div class="project-thumb-box gallery-trigger"
+                 data-title="云之家 AI 移动工作台 H5"
+                 data-gallery='["assets/projects/12-云之家智能语音日志/rizhi01.png", "assets/projects/12-云之家智能语音日志/rizhi02.png"]'
+                 title="点击查看图集">
+              <img src="assets/projects/12-云之家智能语音日志/rizhi01.png" alt="云之家 AI 移动工作台 H5 截图" loading="lazy">
+              <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 2 张截图</span>
+              <div class="thumb-overlay">
+                <span class="btn-view"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 点击浏览多图</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-kicker">
+                <span>12 / MOBILE AI WORKSPACE</span>
+                <span class="tag">平台与综合</span>
+              </div>
+              <h3 class="project-title" id="proj-mobile-title"><span>云之家 AI</span> 移动工作台 H5</h3>
+              <p class="project-role">前端负责人<span class="date">Vue 3.5 · Vite 5 · Vant 4 · Web Crypto</span></p>
+
+              <div class="project-value-box">
+                <strong>【项目价值】</strong>深度嵌入金蝶云之家移动端生态，免密码、无感跳转，让全员随时随地通过手机高效记录语音日志与发起 AI 业务查询。
+              </div>
+
+              <div class="tags" aria-label="技术栈">
+                <span class="tag">Vue 3.5</span><span class="tag">Vite 5</span><span class="tag">Vant 4</span><span class="tag">Web Crypto</span><span class="tag">localforage</span>
+              </div>
+
+              <ul class="project-bullets">
+                <li>主导 Vue3 移动端极致轻量基座搭建，组件自动按需导入，首屏包压缩后仅数十 KB。</li>
+                <li>自研云之家轻应用免登插件（JSBridge 唤起与状态持久化），实现<strong>打开即完成身份鉴权</strong>。</li>
+                <li>实现 <strong>AES-256-GCM + 双层 Base64</strong> 安全免登链路，配置请求单例并发与 5xx 自动重试。</li>
+              </ul>
+
+              <div class="project-result">
+                <div class="result-item"><strong>秒级</strong><span>免登直接进入</span></div>
+                <div class="result-item"><strong>&lt;1s</strong><span>弱网首屏渲染</span></div>
+              </div>
+
+              <details class="project-detail">
+                <summary>技术复盘<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                <div class="detail-body">利用 localforage 建立本地轻量离线存储，常用工作台入口与常用指令做客户端预缓存；配合滑动回弹与骨架屏，在移动端打造媲美原生 App 的触控跟手体验。</div>
+              </details>
+
+              <div class="project-card-footer">
+                <button class="btn-gallery-trigger gallery-trigger" type="button"
+                        data-title="云之家 AI 移动工作台 H5"
+                        data-gallery='["assets/projects/12-云之家智能语音日志/rizhi01.png", "assets/projects/12-云之家智能语音日志/rizhi02.png"]'>
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 查看全部截图
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 13. 其他综合项目群 -->
+          <article class="project-card reveal delay-1" data-category="platform" aria-labelledby="proj-other-title">
+            <div class="project-thumb-box gallery-trigger"
+                 data-title="其他重点项目群（低代码 / 数据治理 / 人事考试网 / 信用系列 / 3D 大屏）"
+                 data-gallery='["assets/projects/13-其他项目/other01.png", "assets/projects/13-其他项目/other2.png", "assets/projects/13-其他项目/other3.png", "assets/projects/13-其他项目/other4.png", "assets/projects/13-其他项目/other5.png"]'
+                 title="点击查看图集">
+              <img src="assets/projects/13-其他项目/other01.png" alt="其他项目集截图" loading="lazy">
+              <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 5 张截图</span>
+              <div class="thumb-overlay">
+                <span class="btn-view"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 点击浏览多图</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <div class="project-kicker">
+                <span>13 / PORTFOLIO HIGHLIGHTS</span>
+                <span class="tag">平台与综合</span>
+              </div>
+              <h3 class="project-title" id="proj-other-title"><span>企业级工程与政务</span> 重点项目群</h3>
+              <p class="project-role">前端负责人 / 技术负责人<span class="date">低代码 · 数据治理 · 3D大屏 · 考试网</span></p>
+
+              <div class="project-value-box">
+                <strong>【项目价值】</strong>历年主导落地的一系列企业核心系统组合，覆盖数据资产血缘纳管、政务考试高并发、企业信用大数据与全端交付。
+              </div>
+
+              <div class="tags" aria-label="技术栈">
+                <span class="tag">Vue 3</span><span class="tag">D3.js</span><span class="tag">ECharts</span><span class="tag">Element Plus</span><span class="tag">uni-app</span><span class="tag">小程序</span>
+              </div>
+
+              <ul class="project-bullets">
+                <li><strong>企业级低代码平台</strong>：拖拽设计 + 50+ 业务组件 + JSON Schema 自动生成代码，支撑 30+ 业务系统上线。</li>
+                <li><strong>数据治理资产平台</strong>：基于 D3.js / ECharts 研发全链路数据血缘关系拓扑图，纳管全司 80% 核心数据。</li>
+                <li><strong>人事考试与信用系列</strong>：150+ 复杂表单页面，覆盖 500 万+ 主体信用数据，荣获 <strong>3 个省级优秀信息化项目奖</strong>。</li>
+              </ul>
+
+              <div class="project-result">
+                <div class="result-item"><strong>3 项</strong><span>省级优秀项目奖</span></div>
+                <div class="result-item"><strong>500万+</strong><span>主体数据纳管</span></div>
+              </div>
+
+              <details class="project-detail">
+                <summary>技术复盘<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+                <div class="detail-body">在跨度多年的多套系统演进中，提炼出团队统一的技术基建与组件规范，使得后续新产品孵化具备极高的代码复用度，团队人效在不同业务线间顺畅平移。</div>
+              </details>
+
+              <div class="project-card-footer">
+                <button class="btn-gallery-trigger gallery-trigger" type="button"
+                        data-title="其他重点项目群（低代码 / 数据治理 / 人事考试网 / 信用系列 / 3D 大屏）"
+                        data-gallery='["assets/projects/13-其他项目/other01.png", "assets/projects/13-其他项目/other2.png", "assets/projects/13-其他项目/other3.png", "assets/projects/13-其他项目/other4.png", "assets/projects/13-其他项目/other5.png"]'>
+                  <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 查看全部截图
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="project-note reveal" style="display: flex; align-items: center; justify-content: space-between; margin-top: 32px; color: var(--secondary); font-size: 12px;">
+          <span style="display: inline-flex; align-items: center; gap: 8px;">
+            <svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg>
+            共精选 13 个代表性系统，点击任意项目缩略图可查看高保真图集。
+          </span>
+          <a class="text-link" href="#contact">交流更多项目细节<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 03. 开源作品 (10大精选 + 更多展开) ==================== -->
+    <section class="section container" id="opensource" aria-labelledby="oss-title">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">03 / Open Source & Tools</p>
+          <h2 id="oss-title">开源作品与实用工具</h2>
+        </div>
+        <p class="section-description">深度拥抱开源社区，持续自研并维护 10+ 款开源组件库与 AI 工程提效工具，代码全部在 GitHub 公开。</p>
+      </div>
+
+      <!-- 10 个核心个人开源作品卡片 (按 docs/文件路径说明.md 标准展示) -->
+      <div class="oss-grid-10">
+
+        <!-- 01. AI 资讯聚合平台 -->
+        <article class="oss-item-card reveal">
+          <div class="oss-media gallery-trigger"
+               data-title="AI 资讯聚合平台 (ai-news)"
+               data-gallery='["assets/github/01-ai-news/new01.png", "assets/github/01-ai-news/new02.png", "assets/github/01-ai-news/new03.png"]'
+               title="点击查看图集">
+            <img src="assets/github/01-ai-news/new01.png" alt="AI 资讯聚合平台截图" loading="lazy">
+            <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 3 张截图</span>
+          </div>
+          <div class="oss-body">
+            <div class="oss-header">
+              <h3>AI 资讯聚合平台 (ai-news)</h3>
+              <span class="tag">AI 工具</span>
+            </div>
+            <p class="oss-desc">面向 AI 研发者的资讯自动化聚合平台，贯通多源采集、LLM 智能摘要提炼与响应式 Web 可视化展示。</p>
+            <div class="oss-meta-block">
+              <strong>【项目价值】</strong>自动化闭环取代人工繁重信息筛选，稳定定时产出行业快讯、科技日报与 Changelog，并自动化推送到飞书群。<br>
+              <strong>【技术亮点】</strong>五层解耦架构（采集/聚合/分析/生成/渲染）；RSS+Twitter+GitHub 三类抓取器；AI 摘要 48 小时双重去重与多层兜底解析；结合 ECharts 数据大盘。
+            </div>
+            <div class="tags" style="margin-top: 10px;">
+              <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">DeepSeek API</span><span class="tag">ECharts</span><span class="tag">Nginx</span>
+            </div>
+            <div class="oss-actions">
+              <button class="btn-gallery-trigger gallery-trigger" type="button"
+                      data-title="AI 资讯聚合平台 (ai-news)"
+                      data-gallery='["assets/github/01-ai-news/new01.png", "assets/github/01-ai-news/new02.png", "assets/github/01-ai-news/new03.png"]'>
+                <svg class="icon"><use href="#i-image"/></svg> 查看图集
+              </button>
+              <div class="oss-links">
+                <a class="text-link" href="https://github.com/wangbin3162" target="_blank" rel="noopener">GitHub 源码<svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02. binvia · AI 供应商聚合路由网关 -->
+        <article class="oss-item-card reveal delay-1">
+          <div class="oss-media gallery-trigger"
+               data-title="binvia · 本地 AI 供应商网关"
+               data-gallery='["assets/github/02-binvia/binvia01.png", "assets/github/02-binvia/binvia02.png"]'
+               title="点击查看图集">
+            <img src="assets/github/02-binvia/binvia01.png" alt="binvia 截图" loading="lazy">
+            <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 2 张截图</span>
+          </div>
+          <div class="oss-body">
+            <div class="oss-header">
+              <h3>binvia · AI 供应商聚合网关</h3>
+              <span class="tag">macOS 原生</span>
+            </div>
+            <p class="oss-desc">基于 Swift 6.2 打造的 macOS 本地极速网关，将 8 家主流大模型供应商统一收敛为单个 OpenAI 兼容端点。</p>
+            <div class="oss-meta-block">
+              <strong>【项目价值】</strong>本地所有 AI 客户端（Cursor、Chatbox 等）无需分别配置多套 Key 与 BaseURL，统一由本地网关按模型名称与成本做智能路由与计费统计。<br>
+              <strong>【技术亮点】</strong>纯原生 Swift + POSIX Socket 零第三方依赖；Provider 协议注册表；双向 SSE 流式协议归一化与模型参数双向转换；SwiftUI 菜单栏常驻监控。
+            </div>
+            <div class="tags" style="margin-top: 10px;">
+              <span class="tag">Swift 6.2</span><span class="tag">SwiftUI</span><span class="tag">AppKit</span><span class="tag">POSIX Socket</span><span class="tag">macOS</span>
+            </div>
+            <div class="oss-actions">
+              <button class="btn-gallery-trigger gallery-trigger" type="button"
+                      data-title="binvia · 本地 AI 供应商网关"
+                      data-gallery='["assets/github/02-binvia/binvia01.png", "assets/github/02-binvia/binvia02.png"]'>
+                <svg class="icon"><use href="#i-image"/></svg> 查看图集
+              </button>
+              <div class="oss-links">
+                <a class="text-link" href="https://github.com/wangbin3162" target="_blank" rel="noopener">GitHub 源码<svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03. bin-ui-design (135★) -->
+        <article class="oss-item-card reveal">
+          <div class="oss-media gallery-trigger"
+               data-title="bin-ui-design · 企业级 UI 组件库"
+               data-gallery='["assets/github/03-bin-ui-design/binui01.png", "assets/github/03-bin-ui-design/binui02.png", "assets/github/03-bin-ui-design/binui03.png"]'
+               title="点击查看图集">
+            <img src="assets/github/03-bin-ui-design/binui01.png" alt="bin-ui-design 截图" loading="lazy">
+            <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 3 张截图</span>
+          </div>
+          <div class="oss-body">
+            <div class="oss-header">
+              <h3>bin-ui-design · 企业级 UI 组件库</h3>
+              <span class="oss-stars-badge"><svg class="icon"><use href="#i-star"/></svg> 135</span>
+            </div>
+            <p class="oss-desc">基于 Vue 3.5 与 TypeScript 构建的高质量企业级通用 UI 组件库，已正式发布 npm 并支撑 50+ 生产项目。</p>
+            <div class="oss-meta-block">
+              <strong>【项目价值】</strong>统一团队组件标准，消除重复开发轮子，包含 60+ 基础与高阶业务组件，提供完备类型提示与暗黑模式支持。<br>
+              <strong>【技术亮点】</strong>ES+CJS 双产物编译架构与 preserveModules；内置 <code>create()</code> 插件机制与 ConfigProvider 全局配置；完善的按需加载与 Tree-shaking。
+            </div>
+            <div class="tags" style="margin-top: 10px;">
+              <span class="tag">Vue 3.5</span><span class="tag">TypeScript</span><span class="tag">Vite</span><span class="tag">Tree-shaking</span><span class="tag">npm</span>
+            </div>
+            <div class="oss-actions">
+              <button class="btn-gallery-trigger gallery-trigger" type="button"
+                      data-title="bin-ui-design · 企业级 UI 组件库"
+                      data-gallery='["assets/github/03-bin-ui-design/binui01.png", "assets/github/03-bin-ui-design/binui02.png", "assets/github/03-bin-ui-design/binui03.png"]'>
+                <svg class="icon"><use href="#i-image"/></svg> 查看图集
+              </button>
+              <div class="oss-links">
+                <a class="text-link" href="https://github.com/wangbin3162/bin-ui-design" target="_blank" rel="noopener">GitHub (135★)<svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 04. bin-datav (94★) -->
+        <article class="oss-item-card reveal delay-1">
+          <div class="oss-media gallery-trigger"
+               data-title="bin-datav · 数据大屏可视化组件库"
+               data-gallery='["assets/github/04-bin-datav/datav01.png", "assets/github/04-bin-datav/datav02.png"]'
+               title="点击查看图集">
+            <img src="assets/github/04-bin-datav/datav01.png" alt="bin-datav 截图" loading="lazy">
+            <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 2 张截图</span>
+          </div>
+          <div class="oss-body">
+            <div class="oss-header">
+              <h3>bin-datav · 数据大屏组件库</h3>
+              <span class="oss-stars-badge"><svg class="icon"><use href="#i-star"/></svg> 94</span>
+            </div>
+            <p class="oss-desc">专注于现代工业大屏、数字看板与指挥中心的数据可视化组件库与搭建平台（多次咨询与生产落地）。</p>
+            <div class="oss-meta-block">
+              <strong>【项目价值】</strong>沉淀 40+ 工业与科技风格大屏专有组件（边框、飞线图、数字翻牌器、流光水球图），将大屏制作周期从周缩短到天。<br>
+              <strong>【技术亮点】</strong>自研 schema-editor 画布交互引擎；支持拖拽缩放、智能参考线吸附、图层编组、历史快照撤销重做与页面 JSON 序列化持久化。
+            </div>
+            <div class="tags" style="margin-top: 10px;">
+              <span class="tag">Vue 3</span><span class="tag">ECharts 5</span><span class="tag">Three.js</span><span class="tag">Vue Flow</span><span class="tag">Schema</span>
+            </div>
+            <div class="oss-actions">
+              <button class="btn-gallery-trigger gallery-trigger" type="button"
+                      data-title="bin-datav · 数据大屏可视化组件库"
+                      data-gallery='["assets/github/04-bin-datav/datav01.png", "assets/github/04-bin-datav/datav02.png"]'>
+                <svg class="icon"><use href="#i-image"/></svg> 查看图集
+              </button>
+              <div class="oss-links">
+                <a class="text-link" href="https://github.com/wangbin3162/bin-datav" target="_blank" rel="noopener">GitHub (94★)<svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 05. bin-admin-pro (71★) -->
+        <article class="oss-item-card reveal">
+          <div class="oss-media gallery-trigger"
+               data-title="bin-admin-pro · 企业中后台管理框架"
+               data-gallery='["assets/github/05-bin-admin-pro/admin01.png", "assets/github/05-bin-admin-pro/admin02.png", "assets/github/05-bin-admin-pro/admin03.png"]'
+               title="点击查看图集">
+            <img src="assets/github/05-bin-admin-pro/admin01.png" alt="bin-admin-pro 截图" loading="lazy">
+            <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 3 张截图</span>
+          </div>
+          <div class="oss-body">
+            <div class="oss-header">
+              <h3>bin-admin-pro · 中后台管理框架</h3>
+              <span class="oss-stars-badge"><svg class="icon"><use href="#i-star"/></svg> 71</span>
+            </div>
+            <p class="oss-desc">基于 bin-ui-design 的现代化企业级中后台完整解决方案，开箱即用，内置权限、多主题与流程设计器。</p>
+            <div class="oss-meta-block">
+              <strong>【项目价值】</strong>为多业务线提供标准化中后台底座，内置路由鉴权、多标签缓存、通用 CRUD 表格表单封装与 Luckysheet 在线设计。<br>
+              <strong>【技术亮点】</strong>布局/权限/主题三层解耦；自研 <code>useTable/useForm/useTree</code> 响应式 Hooks；基于 CSS 变量的可视化换肤系统。
+            </div>
+            <div class="tags" style="margin-top: 10px;">
+              <span class="tag">Vue 3.5</span><span class="tag">Pinia</span><span class="tag">Vue Router 4</span><span class="tag">Luckysheet</span><span class="tag">jsPlumb</span>
+            </div>
+            <div class="oss-actions">
+              <button class="btn-gallery-trigger gallery-trigger" type="button"
+                      data-title="bin-admin-pro · 企业中后台管理框架"
+                      data-gallery='["assets/github/05-bin-admin-pro/admin01.png", "assets/github/05-bin-admin-pro/admin02.png", "assets/github/05-bin-admin-pro/admin03.png"]'>
+                <svg class="icon"><use href="#i-image"/></svg> 查看图集
+              </button>
+              <div class="oss-links">
+                <a class="text-link" href="https://github.com/wangbin3162/bin-admin-pro" target="_blank" rel="noopener">GitHub (71★)<svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 06. bin-form-maker (7★) -->
+        <article class="oss-item-card reveal delay-1">
+          <div class="oss-media gallery-trigger"
+               data-title="bin-form-maker · JSON Schema 表单设计器"
+               data-gallery='["assets/github/06-form-maker/form01.png"]'
+               title="点击查看大图">
+            <img src="assets/github/06-form-maker/form01.png" alt="bin-form-maker 截图" loading="lazy">
+            <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 1 张截图</span>
+          </div>
+          <div class="oss-body">
+            <div class="oss-header">
+              <h3>bin-form-maker · 表单设计器</h3>
+              <span class="oss-stars-badge"><svg class="icon"><use href="#i-star"/></svg> 7</span>
+            </div>
+            <p class="oss-desc">基于 JSON Schema 标准的可视化动态表单设计器与高性能渲染引擎，支撑动态复杂表单零代码搭建。</p>
+            <div class="oss-meta-block">
+              <strong>【项目价值】</strong>将繁重、多变、强校验的企业审批与收集表单完全配置化，业务人员通过拖拽即可定义表单结构、联动规则与计算公式。<br>
+              <strong>【技术亮点】</strong>设计器 + 渲染器双引擎架构；12 类控件自动注册；20+ 常用校验规则生成器；支持自定义 JavaScript 脚本扩展与全局事件总线。
+            </div>
+            <div class="tags" style="margin-top: 10px;">
+              <span class="tag">Vue 3</span><span class="tag">JSON Schema</span><span class="tag">vuedraggable</span><span class="tag">动态校验</span>
+            </div>
+            <div class="oss-actions">
+              <button class="btn-gallery-trigger gallery-trigger" type="button"
+                      data-title="bin-form-maker · JSON Schema 表单设计器"
+                      data-gallery='["assets/github/06-form-maker/form01.png"]'>
+                <svg class="icon"><use href="#i-image"/></svg> 查看大图
+              </button>
+              <div class="oss-links">
+                <a class="text-link" href="https://github.com/wangbin3162/bin-form-maker" target="_blank" rel="noopener">GitHub 源码<svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 07. bin-excel-pro (6★) -->
+        <article class="oss-item-card reveal">
+          <div class="oss-media gallery-trigger"
+               data-title="bin-excel-pro · 在线 Excel 报表组件库"
+               data-gallery='["assets/github/07-excel-pro/excel01.png"]'
+               title="点击查看大图">
+            <img src="assets/github/07-excel-pro/excel01.png" alt="bin-excel-pro 截图" loading="lazy">
+            <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 1 张截图</span>
+          </div>
+          <div class="oss-body">
+            <div class="oss-header">
+              <h3>bin-excel-pro · Excel 报表组件</h3>
+              <span class="oss-stars-badge"><svg class="icon"><use href="#i-star"/></svg> 6</span>
+            </div>
+            <p class="oss-desc">基于 Univer Sheet 内核二次封装的在线 Excel 报表与填报组件库，完美融合复杂表格设计与后端数据模板灌入。</p>
+            <div class="oss-meta-block">
+              <strong>【项目价值】</strong>支持使用真实 Excel 模板（带样式、公式与单元格合并）直接上传并绑定变量，自动渲染为网页交互式数据表格与填报工具。<br>
+              <strong>【技术亮点】</strong>Univer 插件层封装（选区、权限锁定、快照恢复）；自研 <code>${对象.字段}</code> 动态占位语法；Excel 导入导出高保真还原处理链。
+            </div>
+            <div class="tags" style="margin-top: 10px;">
+              <span class="tag">Vue 3</span><span class="tag">UniverJS</span><span class="tag">ExcelJS</span><span class="tag">luckyexcel</span>
+            </div>
+            <div class="oss-actions">
+              <button class="btn-gallery-trigger gallery-trigger" type="button"
+                      data-title="bin-excel-pro · 在线 Excel 报表组件库"
+                      data-gallery='["assets/github/07-excel-pro/excel01.png"]'>
+                <svg class="icon"><use href="#i-image"/></svg> 查看大图
+              </button>
+              <div class="oss-links">
+                <a class="text-link" href="https://github.com/wangbin3162/bin-excel-pro" target="_blank" rel="noopener">GitHub 源码<svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 08. thinking-orbs-universal -->
+        <article class="oss-item-card reveal delay-1">
+          <div class="oss-media gallery-trigger"
+               data-title="thinking-orbs-universal · 框架无关 AI 动效库"
+               data-gallery='["assets/github/08-thinking-orbs/think01.png", "assets/github/08-thinking-orbs/think02.png"]'
+               title="点击查看图集">
+            <img src="assets/github/08-thinking-orbs/think01.png" alt="thinking-orbs 截图" loading="lazy">
+            <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 2 张截图</span>
+          </div>
+          <div class="oss-body">
+            <div class="oss-header">
+              <h3>thinking-orbs-universal</h3>
+              <span class="tag">通用动效库</span>
+            </div>
+            <p class="oss-desc">框架无关的现代 AI 思考球动效组件库，支持 Vue / React / Web Component / 原生 JS 通用无缝接入。</p>
+            <div class="oss-meta-block">
+              <strong>【项目价值】</strong>将原本绑定在 React 上的前沿动效抽象为跨生态内核，为大模型对话提供打字、等待、推理思考过程的生动视觉反馈。<br>
+              <strong>【技术亮点】</strong>纯 2D Canvas + 3D 正交投影 + 斐波那契球面点阵算法；六种动态状态 × 双尺寸预设；轻量、无第三方依赖、已发布 v1.1.0。
+            </div>
+            <div class="tags" style="margin-top: 10px;">
+              <span class="tag">TypeScript</span><span class="tag">Canvas 2D</span><span class="tag">Web Component</span><span class="tag">跨框架</span>
+            </div>
+            <div class="oss-actions">
+              <button class="btn-gallery-trigger gallery-trigger" type="button"
+                      data-title="thinking-orbs-universal · 框架无关 AI 动效库"
+                      data-gallery='["assets/github/08-thinking-orbs/think01.png", "assets/github/08-thinking-orbs/think02.png"]'>
+                <svg class="icon"><use href="#i-image"/></svg> 查看图集
+              </button>
+              <div class="oss-links">
+                <a class="text-link" href="https://github.com/wangbin3162" target="_blank" rel="noopener">GitHub 源码<svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 09. AetherDock (Chrome 扩展) -->
+        <article class="oss-item-card reveal">
+          <div class="oss-media gallery-trigger"
+               data-title="AetherDock · MV3 AI 侧边栏助手"
+               data-gallery='["assets/github/09-chrome-extension/cebian01.png"]'
+               title="点击查看大图">
+            <img src="assets/github/09-chrome-extension/cebian01.png" alt="AetherDock 截图" loading="lazy">
+            <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 1 张截图</span>
+          </div>
+          <div class="oss-body">
+            <div class="oss-header">
+              <h3>AetherDock · AI 侧边栏助手</h3>
+              <span class="tag">Chrome 扩展</span>
+            </div>
+            <p class="oss-desc">基于 Chrome Manifest V3 打造的智能化侧边栏扩展，划词提问、全页书签搜索与流式多轮会话。</p>
+            <div class="oss-meta-block">
+              <strong>【项目价值】</strong>在浏览器任意网页提供常驻呼出的智能助手，免去切屏复制粘帖的麻烦，集成书签检索与右键快捷指令。<br>
+              <strong>【技术亮点】</strong>MV3 三端协同架构（Content Script / Service Worker / Side Panel）；Service Worker 代理规避 CORS 跨域；自定义通用 Storage 跨上下文同步。
+            </div>
+            <div class="tags" style="margin-top: 10px;">
+              <span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Chrome MV3</span><span class="tag">Turborepo</span>
+            </div>
+            <div class="oss-actions">
+              <button class="btn-gallery-trigger gallery-trigger" type="button"
+                      data-title="AetherDock · MV3 AI 侧边栏助手"
+                      data-gallery='["assets/github/09-chrome-extension/cebian01.png"]'>
+                <svg class="icon"><use href="#i-image"/></svg> 查看大图
+              </button>
+              <div class="oss-links">
+                <a class="text-link" href="https://github.com/wangbin3162" target="_blank" rel="noopener">GitHub 源码<svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 10. agents-skills -->
+        <article class="oss-item-card reveal delay-1">
+          <div class="oss-media gallery-trigger"
+               data-title="agents-skills · AI 编程技能库"
+               data-gallery='["assets/github/10-agent-skills/skills.png"]'
+               title="点击查看大图">
+            <img src="assets/github/10-agent-skills/skills.png" alt="agents-skills 截图" loading="lazy">
+            <span class="thumb-badge"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg> 1 张截图</span>
+          </div>
+          <div class="oss-body">
+            <div class="oss-header">
+              <h3>agents-skills · AI 技能库</h3>
+              <span class="tag">AI Agent Skills</span>
+            </div>
+            <p class="oss-desc">面向 AI 编程智能体（Claude Code / Cursor / Codex）的高复用工程技能库，规范定义与自动化流水线。</p>
+            <div class="oss-meta-block">
+              <strong>【项目价值】</strong>将复杂的工程任务（代码审查、网站抓取提取、重构测试）封装为标准化的 SKILL.md，支持通过 npx 一键安装注入，显著约束大模型行为准度。<br>
+              <strong>【技术亮点】</strong>严格遵循 YAML frontmatter 标准规范；内置自研零依赖设计提取器；集成 Playwright 与 Puppeteer MCP 自动化调度。
+            </div>
+            <div class="tags" style="margin-top: 10px;">
+              <span class="tag">SKILL.md</span><span class="tag">MCP</span><span class="tag">Playwright</span><span class="tag">Prompt 工程</span>
+            </div>
+            <div class="oss-actions">
+              <button class="btn-gallery-trigger gallery-trigger" type="button"
+                      data-title="agents-skills · AI 编程技能库"
+                      data-gallery='["assets/github/10-agent-skills/skills.png"]'>
+                <svg class="icon"><use href="#i-image"/></svg> 查看大图
+              </button>
+              <div class="oss-links">
+                <a class="text-link" href="https://github.com/wangbin3162" target="_blank" rel="noopener">GitHub 源码<svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- 展开更多开源库机制 (包含 bin-editor-next 194⭐ 等其余 6 个组件库) -->
+      <div class="more-oss-section reveal">
+        <button class="more-oss-toggle" id="toggle-more-oss" type="button" aria-expanded="false">
+          <span>点击展开更多开源库 (6个组件库 · 含 bin-editor-next 等)</span>
+          <svg class="icon"><use href="#i-chevron"/></svg>
+        </button>
+
+        <div class="more-oss-content" id="more-oss-content">
+          <!-- 11. bin-editor-next (194★) -->
+          <article class="extra-lib-card">
+            <div class="extra-lib-top">
+              <div>
+                <a class="extra-lib-name" href="https://github.com/wangbin3162/bin-editor-next" target="_blank" rel="noopener">bin-editor-next ↗</a>
+                <p class="extra-lib-desc">基于 brace 的 Vue3 高性能代码与 JSON 编辑器组件库，使用广泛，支持语法高亮与折叠。</p>
+              </div>
+              <span class="oss-stars-badge"><svg class="icon"><use href="#i-star"/></svg> 194</span>
+            </div>
+            <div style="height: 120px; border-radius: 6px; overflow: hidden; background: #eef1ea;" class="gallery-trigger"
+                 data-title="bin-editor-next (194★)"
+                 data-gallery='["assets/github/11-other/bin-editor-next.png"]'>
+              <img src="assets/github/11-other/bin-editor-next.png" alt="bin-editor-next 截图" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+            </div>
+          </article>
+
+          <!-- 12. bin-tree-org (103★) -->
+          <article class="extra-lib-card">
+            <div class="extra-lib-top">
+              <div>
+                <a class="extra-lib-name" href="https://github.com/wangbin3162/bin-tree-org" target="_blank" rel="noopener">bin-tree-org ↗</a>
+                <p class="extra-lib-desc">Vue2 时代广受好评的高效企业组织架构树组件，支持拖拽、展开折叠与自定义插槽。</p>
+              </div>
+              <span class="oss-stars-badge"><svg class="icon"><use href="#i-star"/></svg> 103</span>
+            </div>
+            <div style="height: 120px; border-radius: 6px; overflow: hidden; background: #eef1ea;" class="gallery-trigger"
+                 data-title="bin-tree-org (103★)"
+                 data-gallery='["assets/github/11-other/bin-tree-org.png"]'>
+              <img src="assets/github/11-other/bin-tree-org.png" alt="bin-tree-org 截图" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+            </div>
+          </article>
+
+          <!-- 13. bin-charts-next (24★) -->
+          <article class="extra-lib-card">
+            <div class="extra-lib-top">
+              <div>
+                <a class="extra-lib-name" href="https://github.com/wangbin3162/bin-charts-next" target="_blank" rel="noopener">bin-charts-next ↗</a>
+                <p class="extra-lib-desc">基于 Vue3 与 ECharts 5 深度二次封装的业务图表库，开箱即用，支持自适应与主题联动。</p>
+              </div>
+              <span class="oss-stars-badge"><svg class="icon"><use href="#i-star"/></svg> 24</span>
+            </div>
+            <div style="height: 120px; border-radius: 6px; overflow: hidden; background: #eef1ea;" class="gallery-trigger"
+                 data-title="bin-charts-next"
+                 data-gallery='["assets/github/11-other/bin-charts-next.png"]'>
+              <img src="assets/github/11-other/bin-charts-next.png" alt="bin-charts-next 截图" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+            </div>
+          </article>
+
+          <!-- 14. bin-animation (22★) -->
+          <article class="extra-lib-card">
+            <div class="extra-lib-top">
+              <div>
+                <a class="extra-lib-name" href="https://github.com/wangbin3162/bin-animation" target="_blank" rel="noopener">bin-animation ↗</a>
+                <p class="extra-lib-desc">轻量级 Vue CSS3 高性能进场动画库，覆盖淡入、弹跳、旋转、滑入等丰富效果。</p>
+              </div>
+              <span class="oss-stars-badge"><svg class="icon"><use href="#i-star"/></svg> 22</span>
+            </div>
+            <div style="height: 120px; border-radius: 6px; overflow: hidden; background: #eef1ea;" class="gallery-trigger"
+                 data-title="bin-animation"
+                 data-gallery='["assets/github/11-other/bin-animation.png"]'>
+              <img src="assets/github/11-other/bin-animation.png" alt="bin-animation 截图" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+            </div>
+          </article>
+
+          <!-- 15. bin-grid-layout (18★) -->
+          <article class="extra-lib-card">
+            <div class="extra-lib-top">
+              <div>
+                <a class="extra-lib-name" href="https://github.com/wangbin3162/bin-grid-layout" target="_blank" rel="noopener">bin-grid-layout ↗</a>
+                <p class="extra-lib-desc">Vue3 + TypeScript 拖拽网格布局引擎，支持碰撞检测、自动重排与响应式栅格断点。</p>
+              </div>
+              <span class="oss-stars-badge"><svg class="icon"><use href="#i-star"/></svg> 18</span>
+            </div>
+            <div style="height: 120px; border-radius: 6px; overflow: hidden; background: #eef1ea;" class="gallery-trigger"
+                 data-title="bin-grid-layout"
+                 data-gallery='["assets/github/11-other/bin-grid-layout.png"]'>
+              <img src="assets/github/11-other/bin-grid-layout.png" alt="bin-grid-layout 截图" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+            </div>
+          </article>
+
+          <!-- 16. bin-keyframe-animation (8★) -->
+          <article class="extra-lib-card">
+            <div class="extra-lib-top">
+              <div>
+                <a class="extra-lib-name" href="https://github.com/wangbin3162/bin-keyframe-animation" target="_blank" rel="noopener">bin-keyframe-animation ↗</a>
+                <p class="extra-lib-desc">纯 JavaScript 关键帧动画微内核，跨浏览器无依赖驱动复杂逐帧及缓动时间轴。</p>
+              </div>
+              <span class="oss-stars-badge"><svg class="icon"><use href="#i-star"/></svg> 8</span>
+            </div>
+            <div style="height: 120px; border-radius: 6px; overflow: hidden; background: #eef1ea;" class="gallery-trigger"
+                 data-title="bin-keyframe-animation"
+                 data-gallery='["assets/github/11-other/bin-keyframe-animation.png"]'>
+              <img src="assets/github/11-other/bin-keyframe-animation.png" alt="bin-keyframe-animation 截图" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 04. 技能矩阵 ==================== -->
+    <section class="section container" id="skills" aria-labelledby="skills-title">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">04 / My toolkit</p>
+          <h2 id="skills-title">工具在变，解决问题的能力不变。</h2>
+        </div>
+        <p class="section-description">保持技术前沿敏感度，也保持技术选型的克制与务实。用合适的工具，解决真正有价值的问题。</p>
+      </div>
+
+      <div class="skills-grid reveal">
+        <article class="skill-group">
+          <p class="skill-kicker">01 / FRONTEND & FRAMEWORK</p>
+          <h3>核心开发与框架</h3>
+          <ul class="skill-list">
+            <li>TypeScript</li><li>JavaScript (ES6+)</li><li>Vue3 (Composition API)</li><li>Pinia / Vue Router</li><li>React 19 + Next.js</li><li>Zustand / TanStack Query</li><li>Element Plus / AntD</li><li>Tailwind CSS v4</li><li>HTML5 / CSS3 / SCSS</li>
+          </ul>
+        </article>
+
+        <article class="skill-group">
+          <p class="skill-kicker">02 / ARCHITECTURE & BACKEND</p>
+          <h3>工程化与全栈后端</h3>
+          <ul class="skill-list">
+            <li>Vite / Webpack / Rollup</li><li>Lerna / pnpm Monorepo</li><li>Node.js / Express</li><li>Python / FastAPI</li><li>SQLAlchemy / Tortoise-ORM</li><li>PostgreSQL / Redis</li><li>Docker / 容器化</li><li>CI/CD 自动化部署</li><li>Casbin 权限管控</li>
+          </ul>
+        </article>
+
+        <article class="skill-group">
+          <p class="skill-kicker">03 / DATA VIZ & AI AGENTS</p>
+          <h3>数据可视化与 AI</h3>
+          <ul class="skill-list">
+            <li>ECharts 5 / D3.js</li><li>Three.js / WebGL</li><li>UniverJS 在线表格</li><li>Langflow 智能体编排</li><li>SSE 流式通信</li><li>WebSocket 实时交互</li><li>DashScope / 百炼大模型</li><li>RAG 知识库检索</li><li>Web Component 跨端嵌入</li>
+          </ul>
+        </article>
+
+        <article class="skill-group">
+          <p class="skill-kicker">04 / QUALITY & CROSS-PLATFORM</p>
+          <h3>跨端交付与工程质量</h3>
+          <ul class="skill-list">
+            <li>微信小程序 / uni-app</li><li>React Native 移动端</li><li>Electron 桌面应用</li><li>Swift / SwiftUI (macOS)</li><li>Vitest / Jest 单测</li><li>Playwright 自动化测试</li><li>pytest 后端测试</li><li>GitFlow / Code Review</li><li>AI 编程 (Claude / Cursor)</li>
+          </ul>
+        </article>
+      </div>
+      <p style="text-align: center; margin-top: 20px; color: var(--muted); font-size: 12px;" class="reveal">
+        比起罗列技能名词，我更习惯用扎实的交付成果证明技术熟练度。
+      </p>
+    </section>
+
+    <!-- ==================== 05. 工作履历与教育背景 ==================== -->
+    <section class="section container" id="experience" aria-labelledby="journey-title">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">05 / Professional journey</p>
+          <h2 id="journey-title">工作经历与教育背景</h2>
+        </div>
+        <p class="section-description">扎实的计算机科学基础，十余年持续深耕前端工程、企业级产品架构与技术团队管理。</p>
+      </div>
+
+      <div class="exp-edu-layout">
+        <!-- 工作经历 -->
+        <div class="timeline-card reveal">
+          <div class="block-header">
+            <h3>工作经历</h3>
+            <p>12 年持续一线编码与技术架构经验</p>
+          </div>
+
+          <div class="timeline-list">
+            <article class="tl-item">
+              <div class="tl-head">
+                <h4>徐州新蝶科技有限公司</h4>
+                <span class="tl-period">2018.02 — 至今</span>
+              </div>
+              <span class="tl-role">部门负责人</span>
+              <ul class="tl-bullets">
+                <li>负责前端团队与部门整体管理，带领 <strong>10 人技术团队</strong>（6 后端、2 前端、1 UI、1 运维），直接向研发总监汇报。</li>
+                <li>建立完整技术管理体系（技术选型、Code Review、GitFlow、CI/CD）与跨团队协作机制，部门效率提升 60%。</li>
+                <li>主导企业级组件库、数据大屏、低代码平台、BI 平台及多类 AI 应用从 0 到 1 架构设计与落地。</li>
+                <li>推动构建工具向 Vite 演进（提速 70%）、首屏加载优化 50%，全面引入 AI 辅助编程工作流。</li>
+              </ul>
+            </article>
+
+            <article class="tl-item">
+              <div class="tl-head">
+                <h4>上海迪尔希科技有限公司</h4>
+                <span class="tl-period">2015 — 2017</span>
+              </div>
+              <span class="tl-role">Unity 开发工程师</span>
+              <ul class="tl-bullets">
+                <li>使用 Unity3D + C# 开展三维交互逻辑开发、渲染管线搭建与资源调度。</li>
+                <li>负责渲染优化、内存管理与帧率提升等性能攻关，积累了扎实的图形学与性能调优功底。</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <!-- 教育背景 -->
+        <div class="edu-box reveal delay-1" id="education">
+          <div class="block-header">
+            <h3>教育背景</h3>
+            <p>专业系统训练与长期自驱学习</p>
+          </div>
+
+          <div class="edu-list">
+            <article class="edu-item">
+              <span class="edu-icon"><svg class="icon" aria-hidden="true"><use href="#i-graduate"/></svg></span>
+              <div>
+                <h4>江苏科技大学</h4>
+                <p>计算机科学与技术 · 函授本科</p>
+              </div>
+              <span class="edu-time">2013 — 2015</span>
+            </article>
+
+            <article class="edu-item">
+              <span class="edu-icon"><svg class="icon" aria-hidden="true"><use href="#i-book"/></svg></span>
+              <div>
+                <h4>南京交通职业技术学院</h4>
+                <p>城市轨道交通 · 专科</p>
+              </div>
+              <span class="edu-time">2009 — 2012</span>
+            </article>
+
+            <div style="margin-top: 28px; padding: 18px 20px; border-radius: 8px; background: #f4f6f0; font-size: 12.5px; line-height: 1.85; color: var(--secondary);">
+              <strong style="color: var(--ink);">分享与持续构建：</strong><br>
+              组织内部 30+ 场前端与 AI 专题技术分享，在掘金等技术社区持续沉淀原创技术博客。坚信“持续构建与持续输出是最好的成长方式”。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 06. 联系方式与行动号召 ==================== -->
+    <section class="contact-section container" id="contact" aria-labelledby="contact-title">
+      <div class="contact-box reveal">
+        <div class="contact-heading">
+          <p class="eyebrow">Let's build together</p>
+          <h2 id="contact-title">构建下一段精彩，<br>期待与你同行。</h2>
+          <p>如果你正在寻找一位懂技术架构、懂业务交付、懂团队管理的伙伴，随时欢迎沟通交流！</p>
+        </div>
+
+        <div class="contact-info">
+          <p class="contact-label"><span class="status-dot" aria-hidden="true"></span>欢迎交流技术方案、管理经验或职业合作机会</p>
+          <a class="contact-email" href="mailto:316281400@qq.com" title="点击发送邮件">
+            316281400@qq.com
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+          </a>
+
+          <div class="contact-buttons">
+            <button class="button copy-button" type="button" data-copy="316281400@qq.com" data-copy-label="邮箱">
+              <svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>复制邮箱
+            </button>
+            <button class="button copy-button" type="button" data-copy="17625160896" data-copy-label="电话/微信号" title="复制电话/微信号 17625160896">
+              <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>复制微信/电话
+            </button>
+            <a class="button" href="tel:17625160896">
+              <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>拨打电话
+            </a>
+            <button class="button print-button" type="button" title="打开打印面板，可另存为 A4 PDF">
+              <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>导出 PDF 简历
+            </button>
+          </div>
+
+          <div class="contact-links">
+            <a href="https://github.com/wangbin3162" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-github"/></svg> GitHub
+            </a>
+            <a href="https://juejin.cn/user/4230576475747928/posts" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-edit"/></svg> 掘金专栏
+            </a>
+            <a href="http://wangbinai.top" target="_blank" rel="noopener">
+              <svg class="icon"><use href="#i-globe"/></svg> 个人在线站点
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== 页脚 ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <span class="copyright">© <span id="current-year">2026</span> WANG BIN · 王彬</span>
+        <span>保持技术敏感，用热爱与细节构建卓越体验。</span>
+      </div>
+      <a class="back-top" href="#top">回到顶部<svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+    </div>
+  </footer>
+
+  <!-- ==================== Toast 复制成功提示 ==================== -->
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
+    <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+    <span id="toast-message"></span>
+  </div>
+
+  <!-- ==================== 多图浏览 Lightbox 弹出层 (支持全原图) ==================== -->
+  <div class="lightbox-modal" id="lightbox" role="dialog" aria-modal="true" aria-label="项目截图大图浏览" aria-hidden="true">
+    <div class="lb-header">
+      <div class="lb-title-wrap">
+        <h3 class="lb-title" id="lb-title">项目截图预览</h3>
+        <span class="lb-counter" id="lb-counter">1 / 1</span>
+      </div>
+      <button class="lb-close" id="lb-close" type="button" aria-label="关闭画廊 (Esc)">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+
+    <div class="lb-stage" id="lb-stage">
+      <button class="lb-nav-btn prev" id="lb-prev" type="button" aria-label="上一张 (左箭头)">
+        <svg class="icon" aria-hidden="true"><use href="#i-prev"/></svg>
+      </button>
+
+      <div class="lb-img-wrap">
+        <img class="lb-image" id="lb-image" src="" alt="项目大图预览">
+      </div>
+
+      <button class="lb-nav-btn next" id="lb-next" type="button" aria-label="下一张 (右箭头)">
+        <svg class="icon" aria-hidden="true"><use href="#i-next"/></svg>
+      </button>
+    </div>
+
+    <div class="lb-thumbs" id="lb-thumbs"></div>
+  </div>
+
+  <!-- ==================== 原生 JS 交互脚本 ==================== -->
+  <script>
+    (() => {
+      'use strict';
+
+      const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const mobileQuery = window.matchMedia('(max-width: 720px)');
+      const navigation = document.getElementById('primary-navigation');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navLinks = Array.from(navigation.querySelectorAll('a'));
+      let revealObserver;
+
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+
+      /* 1. 移动端汉堡折叠导航 */
+      function closeMenu(restoreFocus = false) {
+        navigation.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', '展开导航菜单');
+        if (restoreFocus) menuToggle.focus();
+      }
+
+      menuToggle.addEventListener('click', () => {
+        const willOpen = menuToggle.getAttribute('aria-expanded') !== 'true';
+        navigation.classList.toggle('is-open', willOpen);
+        menuToggle.setAttribute('aria-expanded', String(willOpen));
+        menuToggle.setAttribute('aria-label', willOpen ? '收起导航菜单' : '展开导航菜单');
+      });
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          closeMenu();
+          if (mobileQuery.matches) {
+            const section = document.querySelector(link.getAttribute('href'));
+            if (section) {
+              section.setAttribute('tabindex', '-1');
+              section.focus({ preventScroll: true });
+              section.addEventListener('blur', () => section.removeAttribute('tabindex'), { once: true });
+            }
+          }
+        });
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+          closeMenu(true);
+        }
+      });
+
+      document.addEventListener('click', event => {
+        if (!navigation.contains(event.target) && !menuToggle.contains(event.target)) {
+          closeMenu();
+        }
+      });
+
+      /* 2. 视口滚动进场淡入（IntersectionObserver） */
+      function configureReveal() {
+        if (revealObserver) revealObserver.disconnect();
+        if (motionPreference.matches || !('IntersectionObserver' in window)) {
+          document.documentElement.classList.remove('motion-ready');
+          document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+          return;
+        }
+
+        document.documentElement.classList.add('motion-ready');
+        revealObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+
+        document.querySelectorAll('.reveal:not(.is-visible)').forEach(element => {
+          revealObserver.observe(element);
+        });
+      }
+
+      configureReveal();
+      if (motionPreference.addEventListener) motionPreference.addEventListener('change', configureReveal);
+      else motionPreference.addListener(configureReveal);
+
+      /* 3. 滚动进度指示条与导航锚点高亮 */
+      const progressBar = document.querySelector('.reading-progress');
+      const sections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+      let scrollScheduled = false;
+
+      function updateScrollUI() {
+        const maximum = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = maximum > 0 ? Math.min(1, Math.max(0, window.scrollY / maximum)) : 0;
+        if (progressBar) progressBar.style.transform = `scaleX(${progress})`;
+
+        const marker = Math.min(220, window.innerHeight * 0.35);
+        let activeSection = null;
+        sections.forEach(section => {
+          if (section && section.getBoundingClientRect().top <= marker) activeSection = section.id;
+        });
+
+        const contactElem = document.getElementById('contact');
+        if (contactElem && contactElem.getBoundingClientRect().top <= marker) {
+          activeSection = 'contact';
+        }
+
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === `#${activeSection}`) {
+            link.setAttribute('aria-current', 'location');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+        scrollScheduled = false;
+      }
+
+      function scheduleScrollUpdate() {
+        if (!scrollScheduled) {
+          scrollScheduled = true;
+          requestAnimationFrame(updateScrollUI);
+        }
+      }
+
+      window.addEventListener('scroll', scheduleScrollUpdate, { passive: true });
+      window.addEventListener('resize', scheduleScrollUpdate, { passive: true });
+      window.addEventListener('load', scheduleScrollUpdate);
+      updateScrollUI();
+
+      /* 4. 项目分类筛选（按技术方向） */
+      const filterButtons = Array.from(document.querySelectorAll('.filter-button'));
+      const projectCards = Array.from(document.querySelectorAll('.project-card'));
+      const filterStatus = document.getElementById('filter-status');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const filter = button.dataset.filter;
+          let count = 0;
+          filterButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+
+          projectCards.forEach(card => {
+            const show = filter === 'all' || card.dataset.category === filter;
+            card.hidden = !show;
+            if (show) {
+              count += 1;
+              card.classList.add('is-visible');
+            }
+          });
+
+          const names = { all: '全部项目', ai: 'AI 智能体', 'data-viz': '数据与可视化', platform: '平台与综合' };
+          if (filterStatus) filterStatus.textContent = `${names[filter] || '项目'}：显示 ${count} 个`;
+          scheduleScrollUpdate();
+        });
+      });
+
+      /* 5. 更多开源库展开/收起切换 */
+      const moreOssToggle = document.getElementById('toggle-more-oss');
+      const moreOssContent = document.getElementById('more-oss-content');
+      if (moreOssToggle && moreOssContent) {
+        moreOssToggle.addEventListener('click', () => {
+          const isOpen = moreOssContent.classList.toggle('is-open');
+          moreOssToggle.classList.toggle('is-active', isOpen);
+          moreOssToggle.setAttribute('aria-expanded', String(isOpen));
+          moreOssToggle.querySelector('span').textContent = isOpen
+            ? '收起额外开源库 ↑'
+            : '点击展开更多开源库 (6个组件库 · 含 bin-editor-next 等) ↓';
+          scheduleScrollUpdate();
+        });
+      }
+
+      /* 6. 复制剪贴板与 Toast 浮层提示 */
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      let toastTimeout;
+
+      function showToast(message) {
+        clearTimeout(toastTimeout);
+        toastMessage.textContent = message;
+        toast.classList.add('is-visible');
+        toastTimeout = setTimeout(() => toast.classList.remove('is-visible'), 3200);
+      }
+
+      function fallbackCopy(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.select();
+        let success = false;
+        try {
+          success = document.execCommand('copy');
+        } catch (_) {
+          success = false;
+        }
+        document.body.removeChild(textArea);
+        return success;
+      }
+
+      async function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+          try {
+            await navigator.clipboard.writeText(text);
+            return true;
+          } catch (_) {
+            return fallbackCopy(text);
+          }
+        }
+        return fallbackCopy(text);
+      }
+
+      document.querySelectorAll('.copy-button').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const val = btn.dataset.copy;
+          const label = btn.dataset.copyLabel || '内容';
+          const success = await copyText(val);
+          showToast(success ? `${label}已复制：${val}` : `请手动复制：${val}`);
+        });
+      });
+
+      /* 7. 原生打印 / 导出 PDF */
+      document.querySelectorAll('.print-button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          closeMenu();
+          window.print();
+        });
+      });
+
+      /* 8. 多图浏览 Lightbox 弹出层核心逻辑 (无损原图) */
+      const lightbox = document.getElementById('lightbox');
+      const lbTitle = document.getElementById('lb-title');
+      const lbCounter = document.getElementById('lb-counter');
+      const lbImage = document.getElementById('lb-image');
+      const lbClose = document.getElementById('lb-close');
+      const lbPrev = document.getElementById('lb-prev');
+      const lbNext = document.getElementById('lb-next');
+      const lbThumbs = document.getElementById('lb-thumbs');
+      const lbStage = document.getElementById('lb-stage');
+
+      let currentGallery = [];
+      let currentIndex = 0;
+      let currentTitle = '';
+
+      function renderLightboxImage() {
+        if (!currentGallery.length) return;
+        const src = currentGallery[currentIndex];
+
+        lbImage.style.opacity = '0';
+        lbImage.style.transform = 'scale(0.97)';
+
+        lbImage.onload = () => {
+          lbImage.style.opacity = '1';
+          lbImage.style.transform = 'scale(1)';
+        };
+        lbImage.src = src;
+        if (lbImage.complete) {
+          lbImage.style.opacity = '1';
+          lbImage.style.transform = 'scale(1)';
+        }
+
+        lbCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
+        lbTitle.textContent = currentTitle;
+
+        // 更新缩略图高亮
+        const thumbButtons = lbThumbs.querySelectorAll('.lb-thumb-item');
+        thumbButtons.forEach((thumb, idx) => {
+          thumb.classList.toggle('active', idx === currentIndex);
+          if (idx === currentIndex) {
+            thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          }
+        });
+
+        // 单张图片时隐藏导航按钮
+        const isMulti = currentGallery.length > 1;
+        lbPrev.style.display = isMulti ? 'grid' : 'none';
+        lbNext.style.display = isMulti ? 'grid' : 'none';
+        lbThumbs.style.display = isMulti ? 'flex' : 'none';
+      }
+
+      function openLightbox(list, title, startIndex = 0) {
+        if (!list || !list.length) return;
+        currentGallery = list;
+        currentTitle = title || '项目截图预览';
+        currentIndex = startIndex;
+
+        // 渲染底部缩略图
+        lbThumbs.innerHTML = '';
+        currentGallery.forEach((imgSrc, idx) => {
+          const item = document.createElement('div');
+          item.className = 'lb-thumb-item' + (idx === currentIndex ? ' active' : '');
+          item.innerHTML = `<img src="${imgSrc}" alt="缩略图 ${idx + 1}" loading="lazy">`;
+          item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentIndex = idx;
+            renderLightboxImage();
+          });
+          lbThumbs.appendChild(item);
+        });
+
+        renderLightboxImage();
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+          if (!lightbox.classList.contains('is-open')) {
+            lbImage.src = '';
+            currentGallery = [];
+          }
+        }, 250);
+      }
+
+      function stepLightbox(direction) {
+        if (!currentGallery.length) return;
+        currentIndex = (currentIndex + direction + currentGallery.length) % currentGallery.length;
+        renderLightboxImage();
+      }
+
+      // 绑定触发器
+      document.querySelectorAll('.gallery-trigger').forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+          if (e.target.closest('details summary') || e.target.closest('a')) return;
+          const raw = trigger.getAttribute('data-gallery') || '[]';
+          const title = trigger.getAttribute('data-title') || '';
+          let list = [];
+          try { list = JSON.parse(raw); } catch (_) { list = []; }
+          if (list.length) {
+            e.preventDefault();
+            e.stopPropagation();
+            openLightbox(list, title, 0);
+          }
+        });
+      });
+
+      lbClose.addEventListener('click', closeLightbox);
+      lbPrev.addEventListener('click', (e) => { e.stopPropagation(); stepLightbox(-1); });
+      lbNext.addEventListener('click', (e) => { e.stopPropagation(); stepLightbox(1); });
+
+      // 点击舞台空白区域关闭弹层
+      lbStage.addEventListener('click', (e) => {
+        if (e.target === lbStage || e.target.classList.contains('lb-img-wrap')) {
+          closeLightbox();
+        }
+      });
+
+      // 键盘导航
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        else if (e.key === 'ArrowLeft') stepLightbox(-1);
+        else if (e.key === 'ArrowRight') stepLightbox(1);
+      });
+
+      /* 9. 头像加载失败优雅回退 */
+      const photo = document.getElementById('profile-photo');
+      if (photo) {
+        photo.addEventListener('error', () => {
+          photo.style.display = 'none';
+          const fb = document.createElement('div');
+          fb.style.cssText = 'width:100%;height:100%;display:grid;place-items:center;font-family:Georgia,serif;font-size:100px;font-style:italic;color:#8a9681;background:#dce0d7;';
+          fb.textContent = 'wb.';
+          photo.parentElement.appendChild(fb);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
